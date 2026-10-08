@@ -1,7 +1,7 @@
 # VEROLA — Print what you imagine
 
-A production-grade, multi-tenant printing platform: a real browser design canvas,
-white-label SaaS for printing shops, a live press floor and a complete order pipeline.
+The online storefront and production platform for **VÉLORA**, a single printing shop in Casablanca: a real browser design canvas,
+a branded catalogue with a live pricing engine, a live press floor and a complete order pipeline.
 
 Built by **BAOUCOUS — Web Developer & Digital Creator**.
 
@@ -12,7 +12,6 @@ Built by **BAOUCOUS — Web Developer & Digital Creator**.
 | Area | Where | Notes |
 |---|---|---|
 | Print customizer | `/customize` | Fabric.js canvas · layers · undo/redo · snapping · DPI preflight · print areas · print proof |
-| White-label SaaS | `/admin → White-label` | every shop gets its own name, logo, palette and domain |
 | Press floor | `/floor` | live machine telemetry over Server-Sent Events |
 | Admin CMS | `/admin` | hero, media, orders, notifications, branding, developer page |
 | Auth | `/login` · `/signup` | scrypt password hashing, server sessions, admin access code |
@@ -20,7 +19,7 @@ Built by **BAOUCOUS — Web Developer & Digital Creator**.
 | Order tracking | `/track/[code]` | glowing production timeline |
 | Developer page | `/developer` | fully editable identity |
 
-**Admin access code:** `SAID2002` → enter it at `/login` → *Administrator access*.
+**Admin access:** set `ADMIN_CODE` in `.env` (local development falls back to `SAID2002`; production never does). Enter it at `/login` → *Administrator access*.
 
 ---
 
@@ -54,7 +53,7 @@ git push -u origin main
    | Key | Value |
    |---|---|
    | `DATABASE_URL` | your pooled Postgres URL (Vercel Postgres / Neon / Supabase) |
-   | `ADMIN_CODE` | `SAID2002` (change it) |
+   | `ADMIN_CODE` | a private code of your choice (required in production) |
    | `ADMIN_EMAILS` | your email, comma separated |
    | `STORAGE_DRIVER` | `blob` on Vercel |
    | `BLOB_READ_WRITE_TOKEN` | from Vercel → Storage → Blob |
@@ -66,13 +65,13 @@ git push -u origin main
 ```bash
 # local
 npm install
-npx drizzle-kit push     # applies the schema
+npm run db:migrate       # applies the migrations in ./drizzle
 npm run dev
 ```
 
 On Vercel, create a Postgres store (Vercel Postgres / Neon / Supabase),
 copy the **pooled** connection string into `DATABASE_URL`, then run
-`npx drizzle-kit push` locally against it once.
+`npm run db:migrate` locally against it once. After changing `src/db/schema.ts`, run `npm run db:generate` and commit the new migration.
 
 ### File storage (important)
 
@@ -83,13 +82,9 @@ Vercel functions have a **read-only filesystem**. Either:
 
 Self-hosting / local: leave `STORAGE_DRIVER=fs` and `UPLOAD_DIR=./data/uploads`.
 
-### Custom domains per shop (white-label)
+### Custom domain
 
-In the admin → **White-label**, set the shop's `domain` (e.g. `print.vr.com`).
-Then point that domain's CNAME at `cname.vercel-dns.com` and add it under
-**Vercel → Project → Domains**. Resolution order is:
-
-`custom domain` → `subdomain (print.verola.com)` → `base domain (verola.com)`
+Point your domain (e.g. `velora.ma`) at the Vercel project and set `NEXT_PUBLIC_SITE_URL` to the same URL.
 
 ---
 
@@ -101,6 +96,9 @@ npm run build       # production build
 npm run start       # serve the build
 npm run typecheck   # tsc --noEmit
 npm run lint        # eslint
+npm test            # unit tests (pricing engine)
+npm run db:generate # create a migration from schema changes
+npm run db:migrate  # apply migrations
 ```
 
 ---
@@ -123,10 +121,9 @@ Tokens, components and rules live in [`DESIGN.md`](./DESIGN.md). Preview them at
 
 * **TypeScript strict**, App Router, server components where possible.
 * **Drizzle ORM + PostgreSQL** — relational schema: users, sessions, orders,
-  jobs, media, tenants, notifications, saved designs, order messages, dev profile.
+  jobs, media, notifications, saved designs, order messages, dev profile.
 * **Pricing engine** (`src/lib/pricing.ts`) is pure and server-validated.
-* **Tenant resolver** (`src/lib/tenant.ts`) rebrands the whole app via CSS
-  variables injected server-side.
+* **Shop config** (`src/lib/shop.ts`) holds the single shop's name, contact, currency and colours.
 * **Storage, email and OAuth** are isolated behind single service modules —
   swapping providers touches one file each.
 * **RTL** for Arabic using logical CSS properties.

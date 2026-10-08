@@ -165,32 +165,6 @@ export const orderMessages = pgTable("order_messages", {
 export type OrderMessage = typeof orderMessages.$inferSelect;
 
 /** Developer profile — editable from the admin. */
-/** White-label tenants — every printing shop on the platform. */
-export const tenants = pgTable("tenants", {
-  id: serial("id").primaryKey(),
-  slug: text("slug").notNull().unique(),
-  name: text("name").notNull(),
-  tagline: text("tagline"),
-  logoUrl: text("logo_url"),
-  domain: text("domain"),
-  city: text("city"),
-  phone: text("phone"),
-  whatsapp: text("whatsapp"),
-  email: text("email"),
-  // brand palette drives the whole site's CSS variables
-  brand1: text("brand_1").notNull().default("#0B63D6"),
-  brand2: text("brand_2").notNull().default("#22C1F0"),
-  brand3: text("brand_3").notNull().default("#FF2E93"),
-  accent: text("accent").notNull().default("#0B63D6"),
-  currency: text("currency").notNull().default("MAD"),
-  active: boolean("active").notNull().default(true),
-  ownerUserId: integer("owner_user_id"),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
-
-export type Tenant = typeof tenants.$inferSelect;
-export type NewTenant = typeof tenants.$inferInsert;
-
 export const devProfile = pgTable("dev_profile", {
   id: serial("id").primaryKey(),
   name: text("name").notNull().default("SA ID"),

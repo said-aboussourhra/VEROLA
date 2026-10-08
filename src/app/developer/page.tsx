@@ -24,7 +24,7 @@ const DEFAULT: DevProfile = {
   name: "BAOUCOUS",
   role: "Web Developer & Digital Creator",
   about:
-    "I design and engineer premium digital products end to end — from the design system and the interaction layer down to the database, the API and the infrastructure. VEROLA is the proof: a real print customizer, a multi-tenant white-label SaaS, a live production floor and a complete order pipeline — built to be used by real printing companies.",
+    "I design and engineer premium digital products end to end — from the design system and the interaction layer down to the database, the API and the infrastructure. VEROLA is the proof: a real print customizer, a branded storefront for a real print shop, a live production floor and a complete order pipeline — built to be used by real printing companies.",
   photo: null,
   whatsapp: "+212600000000",
   instagram: "baoucous.dev",
@@ -93,9 +93,9 @@ const WORK = [
   },
   {
     icon: "globe",
-    title: "White-label SaaS",
-    d: "Multi-tenant platform where every printing shop gets its own name, logo, palette and domain.",
-    tags: ["Multi-tenant", "CSS theming", "DNS"],
+    title: "Print shop platform",
+    d: "A complete storefront for one print shop: catalogue, pricing, uploads, checkout and order tracking, all branded to the shop.",
+    tags: ["Pricing engine", "Live tracking", "Admin CMS"],
     c: "#7C3AED",
   },
   {

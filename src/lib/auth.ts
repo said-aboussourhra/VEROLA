@@ -44,7 +44,12 @@ export interface SessionUser {
 }
 
 /* ---- admin unlock code (SA ID) ---- */
-export const ADMIN_CODE = process.env.ADMIN_CODE || "SAID2002";
+/**
+ * Admin access code. Must be set via ADMIN_CODE in production; the local
+ * development fallback is never used in production builds.
+ */
+export const ADMIN_CODE =
+  process.env.ADMIN_CODE || (process.env.NODE_ENV === "production" ? "" : "SAID2002");
 export const ADMIN_COOKIE = "verola_admin";
 
 export function adminCodeHash(): string {

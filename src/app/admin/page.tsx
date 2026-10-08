@@ -5,7 +5,6 @@ import { useI18n } from "@/lib/i18n";
 import { CATALOG, formatMAD } from "@/lib/pricing";
 import { Icon, Button, Badge, Reveal, SectionHeading, inputCls } from "@/components/ui";
 import { useAuth, useToast } from "@/components/notify";
-import { WhiteLabel } from "@/components/whitelabel";
 
 interface MediaItem {
   id: number;
@@ -34,7 +33,7 @@ interface AdminOrder {
   createdAt: string;
 }
 
-const TABS = ["Hero & Media", "Orders", "Notifications", "White-label", "Developer"] as const;
+const TABS = ["Hero & Media", "Orders", "Notifications", "Developer"] as const;
 
 export default function AdminPage() {
   const { t, L, lang } = useI18n();
@@ -200,9 +199,6 @@ export default function AdminPage() {
             >
               or sign in with a customer account
             </button>
-            <p className="mt-3 text-caption text-ink-faint">
-              Access code: <span className="font-mono tracking-widest text-ink-muted">SAID2002</span>
-            </p>
           </div>
         ) : (
           <>
@@ -409,7 +405,6 @@ export default function AdminPage() {
             )}
 
             {/* WHITE-LABEL SAAS */}
-            {tab === "White-label" && <WhiteLabel />}
 
             {/* DEVELOPER */}
             {tab === "Developer" && (

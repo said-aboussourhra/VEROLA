@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SHOP } from "@/lib/shop";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/track/", "/design-system"],
     },
-    sitemap: "https://velora.ma/sitemap.xml",
+    sitemap: `${SHOP.siteUrl.replace(/\/$/, "")}/sitemap.xml`,
   };
 }

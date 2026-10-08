@@ -30,6 +30,9 @@ export async function POST(req: Request) {
 
   // tolerant compare: ignores case and any spacing the browser may add
   const norm = (s: string) => s.replace(/\s+/g, "").toUpperCase();
+  if (!ADMIN_CODE) {
+    return NextResponse.json({ error: "Admin access is not configured." }, { status: 503 });
+  }
   if (!code || norm(code) !== norm(ADMIN_CODE)) {
     return NextResponse.json({ error: "Wrong access code." }, { status: 401 });
   }

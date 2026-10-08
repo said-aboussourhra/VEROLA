@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import { Syne, Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
-import { resolveBrand, brandCss } from "@/lib/tenant";
-import { TenantProvider } from "@/components/tenant";
+import { shopCss } from "@/lib/shop";
+import { ShopProvider } from "@/components/shop";
 import { I18nProvider } from "@/lib/i18n";
 import { Navbar, Footer, WhatsAppFloat } from "@/components/chrome";
 import { BrandyCursor } from "@/components/cursor";
@@ -56,13 +55,10 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const hdrs = await headers();
-  const brand = await resolveBrand({ host: hdrs.get("host") });
-
   return (
     <html lang="en" dir="ltr" className={`${syne.variable} ${inter.variable} ${arabic.variable}`} suppressHydrationWarning>
       <head>
-        <style dangerouslySetInnerHTML={{ __html: brandCss(brand) }} />
+        <style dangerouslySetInnerHTML={{ __html: shopCss() }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem("verola-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}})();`,
@@ -71,7 +67,7 @@ export default async function RootLayout({
       </head>
       <body className="grain font-body">
         <I18nProvider>
-          <TenantProvider brand={brand}>
+          <ShopProvider>
             <ToastProvider>
               <AuthProvider>
                 <LogoIntro />
@@ -82,7 +78,7 @@ export default async function RootLayout({
                 <WhatsAppFloat />
               </AuthProvider>
             </ToastProvider>
-          </TenantProvider>
+          </ShopProvider>
         </I18nProvider>
       </body>
     </html>
