@@ -1,0 +1,20 @@
+{
+  "name": "VEROLA — Print what you imagine",
+  "short_name": "VEROLA",
+  "description": "Premium digital printing platform — customizer, orders and live production tracking.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#0B63D6",
+  "categories": ["business", "productivity", "shopping"],
+  "icons": [
+    {
+      "src": "/images/products/stickers.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
