@@ -257,7 +257,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
     } = {},
   ) => (
     <label className="block">
-      <span className="block text-[0.78rem] font-semibold text-[#3d4a5c] mb-1.5">{label}</span>
+      <span className="block text-[0.78rem] font-semibold text-ink-body mb-1.5">{label}</span>
       <div className="relative">
         <input
           type={opts.type ?? "text"}
@@ -266,12 +266,12 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
           placeholder={opts.ph}
           autoComplete={opts.autoComplete}
           onChange={(e) => onChange(e.target.value)}
-          className={`w-full rounded-2xl border px-4 py-3.5 text-[0.95rem] bg-white transition-all duration-200 focus:outline-none focus:ring-2 ${
+          className={`w-full rounded-2xl border px-4 py-3.5 text-body-sm bg-white transition-all duration-200 focus:outline-none focus:ring-2 ${
             opts.trailing ? "pe-20" : ""
           } ${
             opts.err
-              ? "border-[#e11d48]/50 focus:border-[#e11d48] focus:ring-[#e11d48]/15"
-              : "border-[#0b63d6]/18 focus:border-[#0b63d6] focus:ring-[#0b63d6]/15"
+              ? "border-danger/50 focus:border-danger focus:ring-danger/15"
+              : "border-brand/18 focus:border-brand focus:ring-brand/15"
           }`}
         />
         {opts.trailing && (
@@ -279,7 +279,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
         )}
       </div>
       {opts.err && (
-        <span className="mt-1.5 flex items-center gap-1.5 text-[0.78rem] text-[#e11d48]">
+        <span className="mt-1.5 flex items-center gap-1.5 text-[0.78rem] text-danger">
           <Icon name="x" className="w-3.5 h-3.5" />
           {opts.err}
         </span>
@@ -348,7 +348,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                   <Icon name={["truck", "layers", "phone"][i]} className="w-4 h-4" />
                 </span>
                 <span>
-                  <span className="block text-white font-semibold text-[0.95rem]">{b.t}</span>
+                  <span className="block text-white font-semibold text-body-sm">{b.t}</span>
                   <span className="block text-white/65 text-[0.85rem] leading-relaxed">{b.d}</span>
                 </span>
               </motion.li>
@@ -374,7 +374,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                   setErrs({});
                 }}
                 className={`relative px-6 py-2.5 text-sm font-semibold rounded-full transition-colors cursor-pointer ${
-                  mode === m ? "text-white" : "text-[#5b6779] hover:text-[#0d1b32]"
+                  mode === m ? "text-white" : "text-ink-muted hover:text-navy"
                 }`}
                 aria-pressed={mode === m}
               >
@@ -400,10 +400,10 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
               exit={reduced ? undefined : { opacity: 0, y: -12 }}
               transition={{ duration: 0.32, ease: EASE }}
             >
-              <h2 className="mt-8 font-display font-extrabold text-[clamp(1.9rem,3.6vw,2.65rem)] leading-[1.06] tracking-[-0.03em] text-[#0d1b32]">
+              <h2 className="mt-8 font-display font-extrabold text-[clamp(1.9rem,3.6vw,2.65rem)] leading-[1.06] tracking-[-0.03em] text-navy">
                 {mode === "login" ? T.loginTitle : T.regTitle}
               </h2>
-              <p className="mt-2.5 text-[#5b6779] leading-relaxed">
+              <p className="mt-2.5 text-ink-muted leading-relaxed">
                 {mode === "login" ? T.loginSub : T.regSub}
               </p>
 
@@ -442,7 +442,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                     <button
                       type="button"
                       onClick={() => setShowPass(!showPass)}
-                      className="rounded-full px-3 py-1.5 text-xs font-semibold text-[#0b63d6] hover:bg-[#0b63d6]/8 transition cursor-pointer"
+                      className="rounded-full px-3 py-1.5 text-xs font-semibold text-brand hover:bg-brand/8 transition cursor-pointer"
                     >
                       {showPass ? T.hide : T.show}
                     </button>
@@ -460,7 +460,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                         transition={{ duration: 0.35, ease: EASE }}
                       />
                     </div>
-                    <p className="mt-1.5 text-[0.72rem] font-medium" style={{ color: strengthColor }}>
+                    <p className="mt-1.5 text-caption font-medium" style={{ color: strengthColor }}>
                       {strengthLabel}
                     </p>
                   </div>
@@ -482,16 +482,16 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                         type="checkbox"
                         checked={remember}
                         onChange={(e) => setRemember(e.target.checked)}
-                        className="w-4 h-4 accent-[#0b63d6]"
+                        className="w-4 h-4 accent-brand"
                       />
-                      <span className="text-sm text-[#5b6779]">{T.remember}</span>
+                      <span className="text-sm text-ink-muted">{T.remember}</span>
                     </label>
                     <button
                       type="button"
                       onClick={() =>
                         toast.info(T.forgot, "Password reset is configured in the email service layer.")
                       }
-                      className="text-sm font-semibold text-[#0b63d6] hover:underline cursor-pointer"
+                      className="text-sm font-semibold text-brand hover:underline cursor-pointer"
                     >
                       {T.forgot}
                     </button>
@@ -503,12 +503,12 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                         type="checkbox"
                         checked={terms}
                         onChange={(e) => setTerms(e.target.checked)}
-                        className="mt-0.5 w-4 h-4 accent-[#0b63d6]"
+                        className="mt-0.5 w-4 h-4 accent-brand"
                       />
-                      <span className="text-sm text-[#5b6779] leading-relaxed">{T.terms}</span>
+                      <span className="text-sm text-ink-muted leading-relaxed">{T.terms}</span>
                     </label>
                     {errs.terms && (
-                      <span className="mt-1.5 flex items-center gap-1.5 text-[0.78rem] text-[#e11d48]">
+                      <span className="mt-1.5 flex items-center gap-1.5 text-[0.78rem] text-danger">
                         <Icon name="x" className="w-3.5 h-3.5" />
                         {errs.terms}
                       </span>
@@ -517,7 +517,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                 )}
 
                 {errs.form && (
-                  <div className="flex items-start gap-2.5 rounded-2xl border border-[#e11d48]/25 bg-[#e11d48]/[0.06] px-4 py-3 text-sm text-[#b4236a]">
+                  <div className="flex items-start gap-2.5 rounded-2xl border border-danger/25 bg-danger/[0.06] px-4 py-3 text-sm text-[#b4236a]">
                     <Icon name="sparkle" className="w-4 h-4 mt-0.5 shrink-0" />
                     {errs.form}
                   </div>
@@ -530,14 +530,14 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
               </form>
 
               <div className="mt-7 flex items-center gap-3">
-                <span className="flex-1 h-px bg-[#0b63d6]/12" />
-                <span className="text-[0.72rem] uppercase tracking-[0.18em] text-[#98a2b3]">{T.or}</span>
-                <span className="flex-1 h-px bg-[#0b63d6]/12" />
+                <span className="flex-1 h-px bg-brand/12" />
+                <span className="text-caption uppercase tracking-[0.18em] text-ink-faint">{T.or}</span>
+                <span className="flex-1 h-px bg-brand/12" />
               </div>
 
               <button
                 onClick={() => setGoogleNote(true)}
-                className="mt-5 w-full flex items-center justify-center gap-3 rounded-2xl border border-[#0b63d6]/18 py-3.5 font-semibold text-[#0d1b32] hover:border-[#0b63d6]/45 hover:bg-[#0b63d6]/[0.04] transition cursor-pointer"
+                className="mt-5 w-full flex items-center justify-center gap-3 rounded-2xl border border-brand/18 py-3.5 font-semibold text-navy hover:border-brand/45 hover:bg-brand/[0.04] transition cursor-pointer"
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden>
                   <path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 0 1-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6Z" />
@@ -549,17 +549,17 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
               </button>
 
               {googleNote && (
-                <p className="mt-2.5 text-center text-[0.72rem] text-[#98a2b3]">{T.googleNote}</p>
+                <p className="mt-2.5 text-center text-caption text-ink-faint">{T.googleNote}</p>
               )}
 
-              <p className="mt-8 text-center text-sm text-[#5b6779]">
+              <p className="mt-8 text-center text-sm text-ink-muted">
                 {mode === "login" ? T.switchingTo : T.switching}{" "}
                 <button
                   onClick={() => {
                     setMode(mode === "login" ? "register" : "login");
                     setErrs({});
                   }}
-                  className="font-semibold text-[#0b63d6] hover:underline cursor-pointer"
+                  className="font-semibold text-brand hover:underline cursor-pointer"
                 >
                   {mode === "login" ? T.switchToRegister : T.switchToLogin}
                 </button>
@@ -567,20 +567,20 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
 
               <button
                 onClick={() => openAuth("login")}
-                className="mt-3 block w-full text-center text-xs text-[#98a2b3] hover:text-[#0b63d6] transition cursor-pointer"
+                className="mt-3 block w-full text-center text-xs text-ink-faint hover:text-brand transition cursor-pointer"
               >
                 ← verola.ma
               </button>
 
               {/* ---- administrator access ---- */}
-              <div className="mt-8 rounded-2xl border border-[#0b63d6]/12 bg-[#f7fafd] p-5">
+              <div className="mt-8 rounded-2xl border border-brand/12 bg-[#f7fafd] p-5">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-9 h-9 rounded-xl bg-[#0d1b32] text-white flex items-center justify-center">
+                  <span className="w-9 h-9 rounded-xl bg-navy text-white flex items-center justify-center">
                     <Icon name="shield" className="w-4.5 h-4.5 w-5 h-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-[#0d1b32]">Administrator access</p>
-                    <p className="text-[0.72rem] text-[#98a2b3]">Enter the studio access code</p>
+                    <p className="text-sm font-semibold text-navy">Administrator access</p>
+                    <p className="text-caption text-ink-faint">Enter the studio access code</p>
                   </div>
                 </div>
 
@@ -598,12 +598,12 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                     onChange={(e) => setAdminCode(e.target.value)}
                     placeholder="••••••••"
                     aria-label="Administrator access code"
-                    className="flex-1 min-w-0 rounded-xl border border-[#0b63d6]/18 bg-white px-3.5 py-2.5 text-sm text-center tracking-[0.35em] font-mono focus:border-[#0b63d6] focus:outline-none focus:ring-2 focus:ring-[#0b63d6]/15"
+                    className="flex-1 min-w-0 rounded-xl border border-brand/18 bg-white px-3.5 py-2.5 text-sm text-center tracking-[0.35em] font-mono focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15"
                   />
                   <button
                     type="submit"
                     disabled={adminBusy}
-                    className="rounded-xl bg-[#0d1b32] text-white px-4 py-2.5 text-sm font-semibold hover:bg-[#16294a] transition cursor-pointer disabled:opacity-60"
+                    className="rounded-xl bg-navy text-white px-4 py-2.5 text-sm font-semibold hover:bg-[#16294a] transition cursor-pointer disabled:opacity-60"
                   >
                     {adminBusy ? "…" : "Open"}
                   </button>
@@ -612,7 +612,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                 {adminMsg && (
                   <p
                     className={`mt-2.5 text-xs flex items-center gap-1.5 ${
-                      adminMsg.ok ? "text-[#0b63d6]" : "text-[#e11d48]"
+                      adminMsg.ok ? "text-brand" : "text-danger"
                     }`}
                   >
                     <Icon name={adminMsg.ok ? "check" : "x"} className="w-3.5 h-3.5" />

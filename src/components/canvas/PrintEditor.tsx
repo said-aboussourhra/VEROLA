@@ -547,7 +547,7 @@ export function PrintEditor({
   return (
     <div className="w-full">
       {/* stage */}
-      <div className="relative rounded-[26px] overflow-hidden border border-[#0b63d6]/12 bg-[#eef3fa]">
+      <div className="relative rounded-tile overflow-hidden border border-brand/12 bg-[#eef3fa]">
         <div
           ref={wrapRef}
           className="relative w-full"
@@ -586,23 +586,23 @@ export function PrintEditor({
           {/* alignment guides */}
           {guides.v !== null && (
             <div
-              className="absolute top-0 bottom-0 w-[1.5px] bg-[#FF2E93] pointer-events-none"
+              className="absolute top-0 bottom-0 w-[1.5px] bg-magenta pointer-events-none"
               style={{ left: `${product.area.x + (guides.v / (canvasRef.current?.getWidth() || 1)) * product.area.w}%` }}
             />
           )}
           {guides.h !== null && (
             <div
-              className="absolute start-0 end-0 h-[1.5px] bg-[#FF2E93] pointer-events-none"
+              className="absolute start-0 end-0 h-[1.5px] bg-magenta pointer-events-none"
               style={{ top: `${product.area.y + (guides.h / (canvasRef.current?.getHeight() || 1)) * product.area.h}%` }}
             />
           )}
 
           {/* print-area caption */}
           <div className="absolute top-3 start-3 flex items-center gap-2">
-            <Badge className="!bg-white/85 !text-[#0b4fb0] !border-white/60 backdrop-blur">
+            <Badge className="!bg-white/85 !text-brand-deep !border-white/60 backdrop-blur">
               <Icon name="layers" className="w-3 h-3" /> PRINT AREA
             </Badge>
-            <Badge className="!bg-white/85 !text-[#5b6779] !border-white/60 backdrop-blur">
+            <Badge className="!bg-white/85 !text-ink-muted !border-white/60 backdrop-blur">
               {product.maxWidthCm} × {product.maxHeightCm} cm
             </Badge>
           </div>
@@ -610,8 +610,8 @@ export function PrintEditor({
           {preview && (
             <div className="absolute inset-0 bg-white/95 backdrop-blur-sm flex items-center justify-center">
               <div className="text-center px-6">
-                <p className="font-display font-extrabold text-2xl text-[#0d1b32]">PRINT PROOF</p>
-                <p className="text-sm text-[#5b6779] mt-2">
+                <p className="font-display font-extrabold text-2xl text-navy">PRINT PROOF</p>
+                <p className="text-sm text-ink-muted mt-2">
                   {L({
                     en: "This is a digital preview of your order.",
                     fr: "Ceci est un aperçu numérique de votre commande.",
@@ -624,8 +624,8 @@ export function PrintEditor({
         </div>
 
         {/* zoom / pan bar */}
-        <div className="flex flex-wrap items-center gap-2 px-4 py-3 bg-white border-t border-[#0b63d6]/10">
-          <Icon name="zoom" className="w-4 h-4 text-[#5b6779]" />
+        <div className="flex flex-wrap items-center gap-2 px-4 py-3 bg-white border-t border-brand/10">
+          <Icon name="zoom" className="w-4 h-4 text-ink-muted" />
           <input
             type="range"
             min={0.5}
@@ -633,21 +633,21 @@ export function PrintEditor({
             step={0.05}
             value={zoom}
             onChange={(e) => setZoom(Number(e.target.value))}
-            className="w-28 accent-[#0b63d6]"
+            className="w-28 accent-brand"
             aria-label="Zoom"
           />
-          <span className="text-xs tabular-nums text-[#5b6779] w-10">{Math.round(zoom * 100)}%</span>
+          <span className="text-xs tabular-nums text-ink-muted w-10">{Math.round(zoom * 100)}%</span>
           <button
             onClick={() => setZoom(1)}
-            className="text-xs font-semibold text-[#0b63d6] hover:underline cursor-pointer"
+            className="text-xs font-semibold text-brand hover:underline cursor-pointer"
           >
             Fit
           </button>
-          <span className="mx-1 w-px h-5 bg-[#0b63d6]/15" />
+          <span className="mx-1 w-px h-5 bg-brand/15" />
           <button
             onClick={() => setPan(!pan)}
             className={`rounded-full px-3 py-1.5 text-xs font-semibold border transition-colors cursor-pointer ${
-              pan ? "bg-[#0b63d6] text-white border-[#0b63d6]" : "text-[#5b6779] border-[#0b63d6]/20"
+              pan ? "bg-brand text-white border-brand" : "text-ink-muted border-brand/20"
             }`}
             aria-pressed={pan}
           >
@@ -655,9 +655,9 @@ export function PrintEditor({
           </button>
           <span className="ms-auto flex items-center gap-1.5 text-xs">
             {saved === "saving" ? (
-              <span className="text-[#98a2b3]">Saving…</span>
+              <span className="text-ink-faint">Saving…</span>
             ) : saved === "saved" ? (
-              <span className="text-[#0b63d6] flex items-center gap-1">
+              <span className="text-brand flex items-center gap-1">
                 <Icon name="check" className="w-3.5 h-3.5" /> Saved
               </span>
             ) : null}
@@ -667,13 +667,13 @@ export function PrintEditor({
 
       {/* quality feedback */}
       {warning && (
-        <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-[#FF2E93]/25 bg-[#FF2E93]/[0.06] px-4 py-3 text-sm text-[#b4236a]">
+        <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-magenta/25 bg-magenta/[0.06] px-4 py-3 text-sm text-[#b4236a]">
           <Icon name="sparkle" className="w-4 h-4 mt-0.5 shrink-0" />
           <span>{warning}</span>
         </div>
       )}
       {ok && (
-        <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-[#0b63d6]/25 bg-[#0b63d6]/[0.06] px-4 py-3 text-sm text-[#0b4fb0]">
+        <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-brand/25 bg-brand/[0.06] px-4 py-3 text-sm text-brand-deep">
           <Icon name="check" className="w-4 h-4 mt-0.5 shrink-0" />
           <span>{ok}</span>
         </div>
@@ -718,10 +718,10 @@ export function PrintEditor({
       </div>
 
       {/* position panel */}
-      <div className="mt-5 rounded-2xl border border-[#0b63d6]/12 bg-white p-4">
+      <div className="mt-5 rounded-2xl border border-brand/12 bg-white p-4">
         <div className="flex items-center justify-between">
-          <p className="font-semibold text-sm text-[#0d1b32]">Position</p>
-          {!sel && <span className="text-xs text-[#98a2b3]">Select an object</span>}
+          <p className="font-semibold text-sm text-navy">Position</p>
+          {!sel && <span className="text-xs text-ink-faint">Select an object</span>}
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2.5">
           {([
@@ -732,10 +732,10 @@ export function PrintEditor({
             ["angle", "Rotation °"],
           ] as const).map(([k, label]) => (
             <label key={k} className="block">
-              <span className="block text-[0.68rem] uppercase tracking-wider text-[#98a2b3] mb-1">{label}</span>
+              <span className="block text-micro uppercase tracking-wider text-ink-faint mb-1">{label}</span>
               <input
                 type="number"
-                className="w-full rounded-lg border border-[#0b63d6]/15 px-2.5 py-1.5 text-sm tabular-nums focus:border-[#0b63d6] focus:outline-none"
+                className="w-full rounded-lg border border-brand/15 px-2.5 py-1.5 text-sm tabular-nums focus:border-brand focus:outline-none"
                 value={form[k]}
                 disabled={!sel}
                 onChange={(e) => {
@@ -756,13 +756,13 @@ export function PrintEditor({
       </div>
 
       {/* text + colour */}
-      <div className="mt-4 rounded-2xl border border-[#0b63d6]/12 bg-white p-4">
-        <p className="font-semibold text-sm text-[#0d1b32]">Text & Colour</p>
+      <div className="mt-4 rounded-2xl border border-brand/12 bg-white p-4">
+        <p className="font-semibold text-sm text-navy">Text & Colour</p>
         <div className="mt-3 grid grid-cols-2 gap-2.5">
           <label className="block col-span-2">
-            <span className="block text-[0.68rem] uppercase tracking-wider text-[#98a2b3] mb-1">Content</span>
+            <span className="block text-micro uppercase tracking-wider text-ink-faint mb-1">Content</span>
             <input
-              className="w-full rounded-lg border border-[#0b63d6]/15 px-2.5 py-1.5 text-sm focus:border-[#0b63d6] focus:outline-none"
+              className="w-full rounded-lg border border-brand/15 px-2.5 py-1.5 text-sm focus:border-brand focus:outline-none"
               value={form.text}
               onChange={(e) => {
                 const v = e.target.value;
@@ -777,9 +777,9 @@ export function PrintEditor({
             />
           </label>
           <label className="block">
-            <span className="block text-[0.68rem] uppercase tracking-wider text-[#98a2b3] mb-1">Font</span>
+            <span className="block text-micro uppercase tracking-wider text-ink-faint mb-1">Font</span>
             <select
-              className="w-full rounded-lg border border-[#0b63d6]/15 px-2.5 py-1.5 text-sm bg-white focus:border-[#0b63d6] focus:outline-none"
+              className="w-full rounded-lg border border-brand/15 px-2.5 py-1.5 text-sm bg-white focus:border-brand focus:outline-none"
               value={form.font}
               onChange={(e) => {
                 const v = e.target.value;
@@ -797,10 +797,10 @@ export function PrintEditor({
             </select>
           </label>
           <label className="block">
-            <span className="block text-[0.68rem] uppercase tracking-wider text-[#98a2b3] mb-1">Size</span>
+            <span className="block text-micro uppercase tracking-wider text-ink-faint mb-1">Size</span>
             <input
               type="number"
-              className="w-full rounded-lg border border-[#0b63d6]/15 px-2.5 py-1.5 text-sm tabular-nums focus:border-[#0b63d6] focus:outline-none"
+              className="w-full rounded-lg border border-brand/15 px-2.5 py-1.5 text-sm tabular-nums focus:border-brand focus:outline-none"
               value={form.size}
               onChange={(e) => {
                 const v = Number(e.target.value);
@@ -845,12 +845,12 @@ export function PrintEditor({
                 canvasRef.current?.renderAll();
               }
             }}
-            className="w-9 h-9 rounded-lg border border-[#0b63d6]/20 cursor-pointer"
+            className="w-9 h-9 rounded-lg border border-brand/20 cursor-pointer"
             aria-label="Custom colour"
           />
           <input
             dir="ltr"
-            className="w-24 rounded-lg border border-[#0b63d6]/15 px-2.5 py-1.5 text-xs font-mono uppercase focus:border-[#0b63d6] focus:outline-none"
+            className="w-24 rounded-lg border border-brand/15 px-2.5 py-1.5 text-xs font-mono uppercase focus:border-brand focus:outline-none"
             value={form.color}
             onChange={(e) => {
               const v = e.target.value;
@@ -860,7 +860,7 @@ export function PrintEditor({
         </div>
         {recentColors.length > 0 && (
           <div className="mt-2.5 flex items-center gap-1.5">
-            <span className="text-[0.68rem] uppercase tracking-wider text-[#98a2b3] me-1">Recent</span>
+            <span className="text-micro uppercase tracking-wider text-ink-faint me-1">Recent</span>
             {recentColors.map((c) => (
               <button
                 key={c}
@@ -872,58 +872,58 @@ export function PrintEditor({
                     canvasRef.current?.renderAll();
                   }
                 }}
-                className="w-6 h-6 rounded-full border border-[#0b63d6]/15 cursor-pointer"
+                className="w-6 h-6 rounded-full border border-brand/15 cursor-pointer"
                 style={{ background: c }}
                 aria-label={c}
               />
             ))}
           </div>
         )}
-        <p className="mt-3 text-[0.72rem] text-[#98a2b3] leading-relaxed">
+        <p className="mt-3 text-caption text-ink-faint leading-relaxed">
           Screen colours may differ slightly from final printed colours.
         </p>
       </div>
 
       {/* layers */}
-      <div className="mt-4 rounded-2xl border border-[#0b63d6]/12 bg-white p-4">
+      <div className="mt-4 rounded-2xl border border-brand/12 bg-white p-4">
         <div className="flex items-center justify-between">
-          <p className="font-semibold text-sm text-[#0d1b32] flex items-center gap-2">
-            <Icon name="layers" className="w-4 h-4 text-[#0b63d6]" /> Layers
+          <p className="font-semibold text-sm text-navy flex items-center gap-2">
+            <Icon name="layers" className="w-4 h-4 text-brand" /> Layers
           </p>
-          <span className="text-xs text-[#98a2b3] tabular-nums">{layers.length}</span>
+          <span className="text-xs text-ink-faint tabular-nums">{layers.length}</span>
         </div>
         {layers.length === 0 ? (
-          <p className="mt-3 text-xs text-[#98a2b3]">Upload a design or add text to begin.</p>
+          <p className="mt-3 text-xs text-ink-faint">Upload a design or add text to begin.</p>
         ) : (
           <ul className="mt-3 space-y-1.5">
             {layers.map((l, i) => (
               <li
                 key={`${l.name}-${i}`}
-                className="flex items-center gap-2 rounded-xl border border-[#0b63d6]/10 px-3 py-2"
+                className="flex items-center gap-2 rounded-xl border border-brand/10 px-3 py-2"
               >
-                <span className="text-[0.68rem] tabular-nums text-[#98a2b3] w-5">
+                <span className="text-micro tabular-nums text-ink-faint w-5">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <Icon
                   name={l.type === "textbox" ? "file" : "sparkle"}
-                  className="w-3.5 h-3.5 text-[#0b63d6]"
+                  className="w-3.5 h-3.5 text-brand"
                 />
                 <span className={`text-sm flex-1 truncate ${l.hidden ? "line-through opacity-50" : ""}`}>
                   {l.name}
                 </span>
-                <button onClick={() => layerOp(i, "up")} className="w-6 h-6 rounded-md text-[#98a2b3] hover:text-[#0b63d6] cursor-pointer" aria-label="Move up">
+                <button onClick={() => layerOp(i, "up")} className="w-6 h-6 rounded-md text-ink-faint hover:text-brand cursor-pointer" aria-label="Move up">
                   <Icon name="arrow" className="w-3.5 h-3.5 -rotate-90 rtl-flip" />
                 </button>
-                <button onClick={() => layerOp(i, "down")} className="w-6 h-6 rounded-md text-[#98a2b3] hover:text-[#0b63d6] cursor-pointer" aria-label="Move down">
+                <button onClick={() => layerOp(i, "down")} className="w-6 h-6 rounded-md text-ink-faint hover:text-brand cursor-pointer" aria-label="Move down">
                   <Icon name="arrow" className="w-3.5 h-3.5 rotate-90 rtl-flip" />
                 </button>
-                <button onClick={() => layerOp(i, "lock")} className={`w-6 h-6 rounded-md cursor-pointer ${l.locked ? "text-[#d98b00]" : "text-[#98a2b3] hover:text-[#0b63d6]"}`} aria-label="Lock">
+                <button onClick={() => layerOp(i, "lock")} className={`w-6 h-6 rounded-md cursor-pointer ${l.locked ? "text-warning" : "text-ink-faint hover:text-brand"}`} aria-label="Lock">
                   <Icon name="shield" className="w-3.5 h-3.5" />
                 </button>
-                <button onClick={() => layerOp(i, "hide")} className={`w-6 h-6 rounded-md cursor-pointer ${l.hidden ? "text-[#e11d48]" : "text-[#98a2b3] hover:text-[#0b63d6]"}`} aria-label="Hide">
+                <button onClick={() => layerOp(i, "hide")} className={`w-6 h-6 rounded-md cursor-pointer ${l.hidden ? "text-danger" : "text-ink-faint hover:text-brand"}`} aria-label="Hide">
                   <Icon name={l.hidden ? "x" : "sun"} className="w-3.5 h-3.5" />
                 </button>
-                <button onClick={() => layerOp(i, "delete")} className="w-6 h-6 rounded-md text-[#98a2b3] hover:text-[#e11d48] cursor-pointer" aria-label="Delete">
+                <button onClick={() => layerOp(i, "delete")} className="w-6 h-6 rounded-md text-ink-faint hover:text-danger cursor-pointer" aria-label="Delete">
                   <Icon name="x" className="w-3.5 h-3.5" />
                 </button>
               </li>

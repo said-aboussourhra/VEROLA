@@ -16,7 +16,7 @@ const PrintEditor = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="rounded-[26px] border border-[#0b63d6]/12 bg-[#eef3fa] animate-pulse" style={{ aspectRatio: "1 / 0.82" }} />
+      <div className="rounded-tile border border-brand/12 bg-[#eef3fa] animate-pulse" style={{ aspectRatio: "1 / 0.82" }} />
     ),
   },
 );
@@ -142,12 +142,12 @@ export function Customize() {
   if (code) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4 py-32">
-        <div className="max-w-lg w-full rounded-[30px] bg-white border border-[#0b63d6]/12 p-10 text-center shadow-[0_50px_100px_-40px_rgba(11,99,214,0.5)]">
+        <div className="max-w-lg w-full rounded-[30px] bg-white border border-brand/12 p-10 text-center shadow-[0_50px_100px_-40px_rgba(11,99,214,0.5)]">
           <span className="mx-auto flex w-16 h-16 rounded-full aurora-bg items-center justify-center text-white pulse-glow">
             <Icon name="check" className="w-8 h-8" />
           </span>
-          <h1 className="mt-6 font-display font-extrabold text-3xl text-[#0d1b32]">Order created</h1>
-          <p className="mt-2 text-[#5b6779]">Your file is in the queue.</p>
+          <h1 className="mt-6 font-display font-extrabold text-3xl text-navy">Order created</h1>
+          <p className="mt-2 text-ink-muted">Your file is in the queue.</p>
           <p className="mt-6 font-display font-extrabold text-3xl aurora-text tracking-widest" dir="ltr">
             #{code}
           </p>
@@ -166,15 +166,15 @@ export function Customize() {
         <Reveal>
           <div className="flex items-center gap-3 mb-3">
             <span className="w-9 h-[3px] rounded-full aurora-bg" />
-            <span className="text-[#0b63d6] text-xs font-bold tracking-[0.28em] uppercase">Print customizer</span>
+            <span className="text-brand text-xs font-bold tracking-[0.28em] uppercase">Print customizer</span>
           </div>
-          <h1 className="font-display font-extrabold text-[clamp(2.15rem,5vw,4rem)] leading-[1.03] tracking-[-0.03em] text-[#0d1b32] uppercase">
+          <h1 className="font-display font-extrabold text-[clamp(2.15rem,5vw,4rem)] leading-[1.03] tracking-[-0.03em] text-navy uppercase">
             {t.hero.h1}
           </h1>
         </Reveal>
 
         {offline && (
-          <div className="mt-6 flex items-start gap-2.5 rounded-2xl border border-[#FFC400]/40 bg-[#FFC400]/[0.12] px-4 py-3 text-sm text-[#8a6100]">
+          <div className="mt-6 flex items-start gap-2.5 rounded-2xl border border-amber/40 bg-amber/[0.12] px-4 py-3 text-sm text-[#8a6100]">
             <Icon name="zap" className="w-4 h-4 mt-0.5 shrink-0" />
             Offline — your changes are temporarily stored on this device. They will sync when the connection returns.
           </div>
@@ -192,7 +192,7 @@ export function Customize() {
               className={`rounded-full px-4 py-2.5 text-sm font-semibold border transition-all cursor-pointer ${
                 key === m.key
                   ? "aurora-bg text-white border-transparent shadow-[0_12px_28px_-12px_rgba(11,99,214,0.85)]"
-                  : "bg-white text-[#5b6779] border-[#0b63d6]/15 hover:border-[#0b63d6]/45"
+                  : "bg-white text-ink-muted border-brand/15 hover:border-brand/45"
               }`}
               aria-pressed={key === m.key}
             >
@@ -207,8 +207,8 @@ export function Customize() {
                   onClick={() => setSide(v)}
                   className={`rounded-full px-4 py-2 text-sm font-semibold border transition-all cursor-pointer ${
                     side === v
-                      ? "bg-[#0d1b32] text-white border-[#0d1b32]"
-                      : "bg-white text-[#5b6779] border-[#0b63d6]/15"
+                      ? "bg-navy text-white border-navy"
+                      : "bg-white text-ink-muted border-brand/15"
                   }`}
                   aria-pressed={side === v}
                 >
@@ -227,9 +227,9 @@ export function Customize() {
 
           {/* summary */}
           <aside className="lg:sticky lg:top-28 space-y-4">
-            <div className="rounded-[26px] bg-white border border-[#0b63d6]/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.55)]">
+            <div className="rounded-tile bg-white border border-brand/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.55)]">
               <h2 className="font-display font-bold text-lg flex items-center gap-2">
-                <Icon name="printer" className="w-5 h-5 text-[#0b63d6]" /> Live summary
+                <Icon name="printer" className="w-5 h-5 text-brand" /> Live summary
               </h2>
 
               <dl className="mt-4 space-y-2.5 text-sm">
@@ -243,8 +243,8 @@ export function Customize() {
                   ["Production", `${bp.days} days`],
                 ].map(([k, v]) => (
                   <div key={k as string} className="flex justify-between gap-3">
-                    <dt className="text-[#98a2b3]">{k}</dt>
-                    <dd className="text-[#0d1b32] font-medium text-end">{v}</dd>
+                    <dt className="text-ink-faint">{k}</dt>
+                    <dd className="text-navy font-medium text-end">{v}</dd>
                   </div>
                 ))}
               </dl>
@@ -276,8 +276,8 @@ export function Customize() {
                     onClick={() => setFinishId(f.id)}
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold border transition-all cursor-pointer ${
                       finishId === f.id
-                        ? "bg-[#0b63d6] text-white border-[#0b63d6]"
-                        : "bg-white text-[#5b6779] border-[#0b63d6]/15"
+                        ? "bg-brand text-white border-brand"
+                        : "bg-white text-ink-muted border-brand/15"
                     }`}
                     aria-pressed={finishId === f.id}
                   >
@@ -286,32 +286,32 @@ export function Customize() {
                 ))}
               </div>
 
-              <div className="mt-5 pt-5 border-t border-[#0b63d6]/10">
+              <div className="mt-5 pt-5 border-t border-brand/10">
                 <div className="flex items-end justify-between">
-                  <span className="text-sm text-[#5b6779]">Estimated price</span>
-                  <span className="font-display font-extrabold text-3xl text-[#0d1b32]">
+                  <span className="text-sm text-ink-muted">Estimated price</span>
+                  <span className="font-display font-extrabold text-3xl text-navy">
                     <PriceCounter value={bp.total} lang={lang} />
-                    <span className="text-sm font-normal text-[#98a2b3] ms-1.5">{t.common.mad}</span>
+                    <span className="text-sm font-normal text-ink-faint ms-1.5">{t.common.mad}</span>
                   </span>
                 </div>
-                <p className="mt-1 text-xs text-[#98a2b3] tabular-nums">
+                <p className="mt-1 text-xs text-ink-faint tabular-nums">
                   {formatMAD(bp.unit, lang)} / {L(catalogProduct.unit)}
                 </p>
               </div>
             </div>
 
             {/* print proof */}
-            <div className="rounded-[26px] bg-white border border-[#0b63d6]/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.55)]">
+            <div className="rounded-tile bg-white border border-brand/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.55)]">
               <div className="flex items-center gap-2">
-                <Badge className="!bg-[#FF2E93]/10 !text-[#c2185b] !border-[#FF2E93]/25">PRINT PROOF</Badge>
+                <Badge className="!bg-magenta/10 !text-[#c2185b] !border-magenta/25">PRINT PROOF</Badge>
                 <button
                   onClick={() => setShowProof(true)}
-                  className="text-xs font-semibold text-[#0b63d6] hover:underline cursor-pointer ms-auto"
+                  className="text-xs font-semibold text-brand hover:underline cursor-pointer ms-auto"
                 >
                   Preview
                 </button>
               </div>
-              <p className="mt-3 text-sm text-[#5b6779] leading-relaxed">
+              <p className="mt-3 text-sm text-ink-muted leading-relaxed">
                 This is a digital preview of your order.
               </p>
               <label className="mt-4 flex items-start gap-2.5 cursor-pointer">
@@ -319,18 +319,18 @@ export function Customize() {
                   type="checkbox"
                   checked={checked.placement}
                   onChange={(e) => setChecked({ ...checked, placement: e.target.checked })}
-                  className="mt-0.5 w-4 h-4 accent-[#0b63d6]"
+                  className="mt-0.5 w-4 h-4 accent-brand"
                 />
-                <span className="text-sm text-[#33445e]">I reviewed the design and placement.</span>
+                <span className="text-sm text-ink-subtle">I reviewed the design and placement.</span>
               </label>
               <label className="mt-2.5 flex items-start gap-2.5 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={checked.colors}
                   onChange={(e) => setChecked({ ...checked, colors: e.target.checked })}
-                  className="mt-0.5 w-4 h-4 accent-[#0b63d6]"
+                  className="mt-0.5 w-4 h-4 accent-brand"
                 />
-                <span className="text-sm text-[#33445e]">
+                <span className="text-sm text-ink-subtle">
                   I understand that screen colours may differ from printed colours.
                 </span>
               </label>
@@ -344,7 +344,7 @@ export function Customize() {
                 {placing ? "Sending…" : user ? "Confirm Design & Order" : "Create account & order"}
                 {!placing && <Icon name="arrow" className="w-5 h-5 rtl-flip" />}
               </Button>
-              <p className="mt-3 text-[0.72rem] text-[#98a2b3] leading-relaxed">
+              <p className="mt-3 text-caption text-ink-faint leading-relaxed">
                 By ordering you confirm you hold the rights to the artwork you upload.
               </p>
             </div>
@@ -355,7 +355,7 @@ export function Customize() {
       {/* clean preview mode */}
       {showProof && (
         <div
-          className="fixed inset-0 z-[200] bg-[#0d1b32]/92 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[200] bg-navy/92 backdrop-blur-md flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
           onClick={() => setShowProof(false)}
@@ -368,7 +368,7 @@ export function Customize() {
             <Icon name="x" className="w-5 h-5" />
           </button>
           <figure className="max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
-            <div className="relative rounded-[28px] overflow-hidden border border-white/15">
+            <div className="relative rounded-card overflow-hidden border border-white/15">
               <img src={currentMockup.image} alt="" className="w-full max-h-[72vh] object-contain bg-white" />
             </div>
             <figcaption className="mt-5 flex flex-wrap items-center justify-between gap-3">

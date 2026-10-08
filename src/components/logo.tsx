@@ -202,7 +202,7 @@ export function LogoIntro() {
       </div>
 
       <motion.p
-        className="mt-[3vmin] text-[0.72rem] font-semibold tracking-[0.42em] text-[#7b8798]"
+        className="mt-[3vmin] text-caption font-semibold tracking-[0.42em] text-[#7b8798]"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 2.3 }}

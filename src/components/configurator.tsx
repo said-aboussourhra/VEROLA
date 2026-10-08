@@ -386,7 +386,7 @@ function QtyStep() {
           className="w-full accent-cyan cursor-pointer"
           aria-label={t.order.qty}
         />
-        <div className="flex justify-between text-[0.8125rem] text-muted mt-2">
+        <div className="flex justify-between text-small text-muted mt-2">
           <span>{product.minQty.toLocaleString()}</span>
           <span>{Math.max(product.minQty * 25, 5000).toLocaleString()}</span>
         </div>
@@ -1038,7 +1038,7 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
             initial={reduced ? false : { scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="glass rounded-[32px] p-10 md:p-14"
+            className="glass rounded-panel p-10 md:p-14"
           >
             <span className="inline-flex w-16 h-16 rounded-full aurora-bg items-center justify-center text-ink mb-6 pulse-glow">
               <Icon name="check" className="w-8 h-8" />
@@ -1135,7 +1135,7 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
                 key={i}
                 onClick={() => i < c.step && c.set({ step: i })}
                 disabled={i > c.step}
-                className={`flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-full text-[0.8125rem] font-medium whitespace-nowrap transition-all cursor-pointer disabled:cursor-default ${
+                className={`flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-full text-small font-medium whitespace-nowrap transition-all cursor-pointer disabled:cursor-default ${
                   i === c.step
                     ? "aurora-bg text-ink"
                     : i < c.step
@@ -1190,14 +1190,14 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
 
           {/* CENTER: preview */}
           <div className="order-1 lg:order-2 lg:sticky lg:top-28">
-            <div className="glass rounded-[28px] p-6 md:p-8">
+            <div className="glass rounded-card p-6 md:p-8">
               <Preview3D />
             </div>
           </div>
 
           {/* RIGHT: summary */}
           <aside className="order-3 lg:sticky lg:top-28">
-            <div className="glass rounded-[28px] p-6 space-y-5">
+            <div className="glass rounded-card p-6 space-y-5">
               <h3 className="font-display font-bold text-lg flex items-center justify-between">
                 {t.order.summary}
                 <button

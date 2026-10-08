@@ -38,8 +38,8 @@ function ProductView({ slug }: { slug: string }) {
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <Reveal>
-            <TiltCard className="rounded-[32px]">
-              <div className="rounded-[32px] overflow-hidden border border-white/10">
+            <TiltCard className="rounded-panel">
+              <div className="rounded-panel overflow-hidden border border-white/10">
                 <img src={p.image} alt={L(p.name)} className="w-full aspect-[4/3] object-cover" />
               </div>
             </TiltCard>

@@ -100,7 +100,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
             >
-              <span className="inline-flex items-center gap-2.5 rounded-full bg-white/80 border border-[#0b63d6]/15 ps-2 pe-4 py-2 text-[0.82rem] font-semibold text-[#0b4fb0] shadow-[0_14px_34px_-20px_rgba(11,99,214,0.7)]">
+              <span className="inline-flex items-center gap-2.5 rounded-full bg-white/80 border border-brand/15 ps-2 pe-4 py-2 text-[0.82rem] font-semibold text-brand-deep shadow-[0_14px_34px_-20px_rgba(11,99,214,0.7)]">
                 <span className="w-6 h-6 rounded-full aurora-bg flex items-center justify-center">
                   <Icon name="sparkle" className="w-3.5 h-3.5 text-white" />
                 </span>
@@ -108,7 +108,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            <h1 className="mt-7 font-display font-extrabold leading-[0.94] tracking-[-0.035em] text-[#0d1b32]">
+            <h1 className="mt-7 font-display font-extrabold leading-[0.94] tracking-[-0.035em] text-navy">
               {t.hero.h1.split(" ").map((w, i) => (
                 <motion.span
                   key={i}
@@ -137,7 +137,7 @@ export function Hero() {
             >
               <div className="mt-6 flex items-start gap-4">
                 <span className="mt-2 w-11 h-[3px] rounded-full aurora-bg shrink-0" />
-                <p className="max-w-xl text-[1.0625rem] md:text-[1.15rem] text-[#4a5a70] leading-[1.75]">
+                <p className="max-w-xl text-[1.0625rem] md:text-lead text-[#4a5a70] leading-[1.75]">
                   {t.hero.sub}
                 </p>
               </div>
@@ -153,7 +153,7 @@ export function Hero() {
                 {t.hero.ctaPrimary}
                 <Icon name="arrow" className="w-5 h-5 rtl-flip" />
               </Button>
-              <Button href="/designs" variant="ghost" size="lg" className="!border-[#0b63d6]/25 hover:!border-[#0b63d6]">
+              <Button href="/designs" variant="ghost" size="lg" className="!border-brand/25 hover:!border-brand">
                 <Icon name="sparkle" className="w-5 h-5" />
                 {t.designs.kicker}
               </Button>
@@ -166,9 +166,9 @@ export function Hero() {
               className="mt-11 flex flex-wrap gap-x-7 gap-y-3"
             >
               {t.trust.slice(0, 4).map((x, i) => (
-                <li key={i} className="flex items-center gap-2.5 text-[0.86rem] font-semibold text-[#33445e]">
-                  <span className="w-5 h-5 rounded-full bg-[#0b63d6]/10 flex items-center justify-center">
-                    <Icon name="check" className="w-3 h-3 text-[#0b63d6]" />
+                <li key={i} className="flex items-center gap-2.5 text-[0.86rem] font-semibold text-ink-subtle">
+                  <span className="w-5 h-5 rounded-full bg-brand/10 flex items-center justify-center">
+                    <Icon name="check" className="w-3 h-3 text-brand" />
                   </span>
                   {x}
                 </li>
@@ -211,7 +211,7 @@ export function Hero() {
 
             {/* floating chips */}
             <motion.div
-              className="absolute top-[2%] end-0 w-32 h-32 rounded-[22px] overflow-hidden border-4 border-white shadow-[0_30px_60px_-26px_rgba(11,60,140,0.6)]"
+              className="absolute top-[2%] end-0 w-32 h-32 rounded-inset overflow-hidden border-4 border-white shadow-[0_30px_60px_-26px_rgba(11,60,140,0.6)]"
               initial={reduced ? false : { opacity: 0, x: 30, y: -20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.85, delay: 0.75, ease: EASE }}
@@ -226,7 +226,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-[24%] -start-2 w-36 h-28 rounded-[22px] overflow-hidden border-4 border-white shadow-[0_30px_60px_-26px_rgba(11,60,140,0.6)]"
+              className="absolute bottom-[24%] -start-2 w-36 h-28 rounded-inset overflow-hidden border-4 border-white shadow-[0_30px_60px_-26px_rgba(11,60,140,0.6)]"
               initial={reduced ? false : { opacity: 0, x: -30, y: 24 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.85, delay: 0.95, ease: EASE }}
@@ -242,7 +242,7 @@ export function Hero() {
 
             {/* price / speed chip */}
             <motion.div
-              className="absolute bottom-[2%] end-[4%] rounded-[22px] bg-white px-5 py-4 shadow-[0_36px_70px_-26px_rgba(11,60,140,0.62)] border border-[#0b63d6]/10"
+              className="absolute bottom-[2%] end-[4%] rounded-inset bg-white px-5 py-4 shadow-[0_36px_70px_-26px_rgba(11,60,140,0.62)] border border-brand/10"
               initial={reduced ? false : { opacity: 0, scale: 0.86, y: 18 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 1.15, ease: EASE }}
@@ -252,8 +252,8 @@ export function Hero() {
                   <Icon name="zap" className="w-5 h-5" />
                 </span>
                 <div>
-                  <p className="text-[0.68rem] uppercase tracking-[0.22em] text-[#98a2b3]">Express</p>
-                  <p className="font-display font-extrabold text-[#0d1b32] leading-tight">24h</p>
+                  <p className="text-micro uppercase tracking-[0.22em] text-ink-faint">Express</p>
+                  <p className="font-display font-extrabold text-navy leading-tight">24h</p>
                 </div>
               </div>
             </motion.div>
@@ -280,7 +280,7 @@ export function Band() {
     ["LABELS", "#d98b00"],
   ];
   return (
-    <div className="relative py-7 overflow-hidden border-y border-[#0b63d6]/12 bg-white">
+    <div className="relative py-7 overflow-hidden border-y border-brand/12 bg-white">
       <Marquee duration={34}>
         {words.map(([w, c], i) => (
           <span key={i} className="flex items-center gap-6 px-6">
@@ -333,11 +333,11 @@ export function Showcase() {
             <div className="max-w-2xl">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-9 h-[3px] rounded-full aurora-bg" />
-                <span className="text-[#0b63d6] text-xs font-bold tracking-[0.28em] uppercase">
+                <span className="text-brand text-xs font-bold tracking-[0.28em] uppercase">
                   {t.products.kicker}
                 </span>
               </div>
-              <h2 className="font-display font-extrabold leading-[1.02] tracking-[-0.03em] text-[#0d1b32] text-[clamp(2.15rem,5vw,4.15rem)] uppercase">
+              <h2 className="font-display font-extrabold leading-[1.02] tracking-[-0.03em] text-navy text-[clamp(2.15rem,5vw,4.15rem)] uppercase">
                 {t.products.title}
               </h2>
             </div>
@@ -357,7 +357,7 @@ export function Showcase() {
               <Reveal key={tile.id} delay={(i % 3) * 0.07} className={`${tile.span} min-w-0`}>
                 <a
                   href={`/order?product=${c.id}`}
-                  className={`group relative block rounded-[26px] overflow-hidden bg-[#0d1b32] ${tile.h} min-h-[240px] shadow-[0_28px_70px_-38px_rgba(11,60,140,0.75)] hover:shadow-[0_44px_90px_-32px_rgba(11,99,214,0.8)] transition-all duration-600 hover:-translate-y-1.5`}
+                  className={`group relative block rounded-tile overflow-hidden bg-navy ${tile.h} min-h-[240px] shadow-[0_28px_70px_-38px_rgba(11,60,140,0.75)] hover:shadow-[0_44px_90px_-32px_rgba(11,99,214,0.8)] transition-all duration-600 hover:-translate-y-1.5`}
                 >
                   <div className="absolute inset-0">
                     <img
@@ -385,7 +385,7 @@ export function Showcase() {
                           {price.toLocaleString()} {t.common.mad}
                         </strong>
                       </p>
-                      <span className="w-9 h-9 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white transition-all duration-500 group-hover:bg-white group-hover:text-[#0b63d6]">
+                      <span className="w-9 h-9 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white transition-all duration-500 group-hover:bg-white group-hover:text-brand">
                         <Icon name="arrow" className="w-4 h-4 rtl-flip" />
                       </span>
                     </div>
@@ -434,7 +434,7 @@ export function FinishBand() {
         <div className="mt-11 grid grid-cols-2 md:grid-cols-4 gap-4">
           {FINISHES.slice(0, 8).map((f, i) => (
             <Reveal key={f.id} delay={(i % 4) * 0.07}>
-              <div className="group rounded-[22px] overflow-hidden border border-white/10 bg-white/[0.04] hover:border-white/30 transition-colors duration-500">
+              <div className="group rounded-inset overflow-hidden border border-white/10 bg-white/[0.04] hover:border-white/30 transition-colors duration-500">
                 <div className={`h-28 md:h-32 relative shine-sweep ${f.mat}`}>
                   <div className="absolute inset-0 halftone opacity-25" />
                   {f.premium && (
@@ -485,23 +485,23 @@ export function Services() {
         <Reveal>
           <div className="flex items-center gap-3 mb-4">
             <span className="w-9 h-[3px] rounded-full aurora-bg" />
-            <span className="text-[#0b63d6] text-xs font-bold tracking-[0.28em] uppercase">
+            <span className="text-brand text-xs font-bold tracking-[0.28em] uppercase">
               {t.b2b.kicker}
             </span>
           </div>
-          <h2 className="font-display font-extrabold leading-[1.03] tracking-[-0.03em] text-[#0d1b32] text-[clamp(2.15rem,5vw,4.15rem)] uppercase max-w-3xl">
+          <h2 className="font-display font-extrabold leading-[1.03] tracking-[-0.03em] text-navy text-[clamp(2.15rem,5vw,4.15rem)] uppercase max-w-3xl">
             {t.b2b.title}
           </h2>
         </Reveal>
 
-        <div className="mt-10 divide-y divide-[#0b63d6]/12 border-y border-[#0b63d6]/12">
+        <div className="mt-10 divide-y divide-brand/12 border-y border-brand/12">
           {rows.map((r, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <a
                 href={SERVICE_ROWS[i].href}
                 className="group flex items-center gap-6 py-7 md:py-9 hover:ps-3 transition-all duration-500"
               >
-                <span className="font-display font-extrabold text-[#0b63d6]/25 text-3xl md:text-5xl tabular-nums shrink-0">
+                <span className="font-display font-extrabold text-brand/25 text-3xl md:text-5xl tabular-nums shrink-0">
                   {SERVICE_ROWS[i].n}
                 </span>
                 <span
@@ -513,14 +513,14 @@ export function Services() {
                   <Icon name={SERVICE_ROWS[i].icon} className="w-5 h-5 md:w-6 md:h-6" />
                 </span>
                 <span className="flex-1 min-w-0">
-                  <span className="block font-display font-extrabold text-[#0d1b32] text-xl md:text-3xl leading-tight tracking-[-0.02em]">
+                  <span className="block font-display font-extrabold text-navy text-xl md:text-3xl leading-tight tracking-[-0.02em]">
                     {r.title}
                   </span>
-                  <span className="block text-[#5b6779] mt-1.5 text-sm md:text-base leading-relaxed line-clamp-2">
+                  <span className="block text-ink-muted mt-1.5 text-sm md:text-base leading-relaxed line-clamp-2">
                     {r.body}
                   </span>
                 </span>
-                <span className="shrink-0 w-11 h-11 rounded-full border border-[#0b63d6]/25 flex items-center justify-center text-[#0b63d6] transition-all duration-500 group-hover:bg-[#0b63d6] group-hover:text-white group-hover:border-[#0b63d6]">
+                <span className="shrink-0 w-11 h-11 rounded-full border border-brand/25 flex items-center justify-center text-brand transition-all duration-500 group-hover:bg-brand group-hover:text-white group-hover:border-brand">
                   <Icon name="arrow" className="w-5 h-5 rtl-flip" />
                 </span>
               </a>
@@ -547,17 +547,17 @@ export function Steps() {
         <div className="grid md:grid-cols-3 gap-5">
           {t.how.steps.map((s, i) => (
             <Reveal key={i} delay={i * 0.12}>
-              <div className="relative rounded-[26px] bg-white border border-[#0b63d6]/12 p-8 h-full shadow-[0_26px_60px_-40px_rgba(16,42,90,0.6)]">
+              <div className="relative rounded-tile bg-white border border-brand/12 p-8 h-full shadow-[0_26px_60px_-40px_rgba(16,42,90,0.6)]">
                 <span
                   className="inline-flex items-center justify-center w-12 h-12 rounded-2xl text-white font-display font-extrabold text-lg shadow-[0_16px_30px_-14px_rgba(11,60,140,0.8)]"
                   style={{ background: ["#0b63d6", "#22c1f0", "#ff2e93"][i] }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-5 font-display font-extrabold text-xl text-[#0d1b32] tracking-[-0.02em]">
+                <h3 className="mt-5 font-display font-extrabold text-xl text-navy tracking-[-0.02em]">
                   {s.t}
                 </h3>
-                <p className="mt-3 text-[#5b6779] leading-[1.75] text-[0.95rem]">{s.d}</p>
+                <p className="mt-3 text-ink-muted leading-[1.75] text-body-sm">{s.d}</p>
               </div>
             </Reveal>
           ))}
@@ -582,7 +582,7 @@ export function Stats() {
   return (
     <section className="pb-[clamp(56px,7vw,100px)]">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <div className="relative rounded-[32px] aurora-bg p-10 md:p-14 overflow-hidden shadow-[0_50px_110px_-50px_rgba(11,99,214,0.95)]">
+        <div className="relative rounded-panel aurora-bg p-10 md:p-14 overflow-hidden shadow-[0_50px_110px_-50px_rgba(11,99,214,0.95)]">
           <div className="absolute inset-0 halftone opacity-25" aria-hidden />
           <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8">
             {items.map((n, i) => (
@@ -606,20 +606,20 @@ export function Stats() {
 
 function QuoteCard({ q, name, role, city }: { q: string; name: string; role: string; city: string }) {
   return (
-    <figure className="w-[330px] md:w-[410px] shrink-0 rounded-[26px] bg-white border border-[#0b63d6]/12 p-7 me-4 shadow-[0_26px_60px_-42px_rgba(16,42,90,0.7)]">
+    <figure className="w-[330px] md:w-[410px] shrink-0 rounded-tile bg-white border border-brand/12 p-7 me-4 shadow-[0_26px_60px_-42px_rgba(16,42,90,0.7)]">
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => (
-          <Icon key={i} name="sparkle" className="w-3.5 h-3.5 text-[#d98b00]" fill />
+          <Icon key={i} name="sparkle" className="w-3.5 h-3.5 text-warning" fill />
         ))}
       </div>
-      <blockquote className="text-[#33445e] leading-[1.8] text-[0.98rem]">“{q}”</blockquote>
+      <blockquote className="text-ink-subtle leading-[1.8] text-[0.98rem]">“{q}”</blockquote>
       <figcaption className="mt-6 flex items-center gap-3">
         <span className="w-10 h-10 rounded-full aurora-bg text-white flex items-center justify-center font-display font-bold">
           {name[0]}
         </span>
         <span>
-          <span className="block text-sm font-semibold text-[#0d1b32]">{name}</span>
-          <span className="block text-xs text-[#98a2b3]">
+          <span className="block text-sm font-semibold text-navy">{name}</span>
+          <span className="block text-xs text-ink-faint">
             {role} — {city}
           </span>
         </span>

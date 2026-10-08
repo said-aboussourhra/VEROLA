@@ -27,7 +27,7 @@ export default function AboutPage() {
                 <span className="font-display font-extrabold text-4xl aurora-text block mb-4">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-paper/80 leading-relaxed text-[0.95rem]">{p}</p>
+                <p className="text-paper/80 leading-relaxed text-body-sm">{p}</p>
               </div>
             </Reveal>
           ))}

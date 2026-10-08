@@ -356,15 +356,15 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
           initial={reduced ? false : { opacity: 0, y: 22, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-lg rounded-[32px] bg-white border border-[#0b63d6]/12 p-10 text-center shadow-[0_50px_100px_-40px_rgba(11,99,214,0.55)]"
+          className="relative w-full max-w-lg rounded-panel bg-white border border-brand/12 p-10 text-center shadow-[0_50px_100px_-40px_rgba(11,99,214,0.55)]"
         >
           <span className="mx-auto flex w-16 h-16 rounded-full aurora-bg items-center justify-center text-white pulse-glow">
             <Icon name="check" className="w-8 h-8" />
           </span>
           <h1 className="mt-6 font-display font-extrabold text-3xl">{T.done}</h1>
-          <p className="mt-3 text-[#5b6779]">{T.doneSub}</p>
-          <div className="mt-7 rounded-2xl border border-[#0b63d6]/12 bg-[#f4f7fb] p-5">
-            <p className="text-xs uppercase tracking-[0.22em] text-[#98a2b3]">{T.code}</p>
+          <p className="mt-3 text-ink-muted">{T.doneSub}</p>
+          <div className="mt-7 rounded-2xl border border-brand/12 bg-surface-soft p-5">
+            <p className="text-xs uppercase tracking-[0.22em] text-ink-faint">{T.code}</p>
             <p className="mt-1.5 font-display font-extrabold text-3xl aurora-text tracking-widest" dir="ltr">
               {code}
             </p>
@@ -404,8 +404,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
           <div className="flex items-center gap-3 mb-4">
             <VerolaMark className="w-10 h-10" />
             <div>
-              <h1 className="font-display font-extrabold text-3xl md:text-4xl text-[#101828]">{T.title}</h1>
-              <p className="text-[#5b6779] text-sm mt-0.5">{T.sub}</p>
+              <h1 className="font-display font-extrabold text-3xl md:text-4xl text-ink-strong">{T.title}</h1>
+              <p className="text-ink-muted text-sm mt-0.5">{T.sub}</p>
             </div>
           </div>
         </Reveal>
@@ -420,8 +420,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                 i === step
                   ? "aurora-bg text-white shadow-[0_12px_28px_-12px_rgba(11,99,214,0.8)]"
                   : i < step
-                    ? "bg-[#e7eef8] text-[#0b63d6]"
-                    : "bg-white text-[#98a2b3] border border-[#0b63d6]/12"
+                    ? "bg-[#e7eef8] text-brand"
+                    : "bg-white text-ink-faint border border-brand/12"
               }`}
               aria-current={i === step ? "step" : undefined}
             >
@@ -435,7 +435,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
 
         <div className="grid lg:grid-cols-[1fr_340px] gap-8 items-start">
           {/* -------- main panel -------- */}
-          <div className="rounded-[28px] bg-white border border-[#0b63d6]/12 p-6 md:p-9 shadow-[0_28px_70px_-40px_rgba(16,42,90,0.5)]">
+          <div className="rounded-card bg-white border border-brand/12 p-6 md:p-9 shadow-[0_28px_70px_-40px_rgba(16,42,90,0.5)]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={step}
@@ -454,13 +454,13 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                           onClick={() => setProduct(c.id)}
                           className={`rounded-2xl overflow-hidden border-2 text-start transition-all cursor-pointer ${
                             product === c.id
-                              ? "border-[#0b63d6] shadow-[0_16px_34px_-16px_rgba(11,99,214,0.7)]"
-                              : "border-transparent hover:border-[#0b63d6]/30"
+                              ? "border-brand shadow-[0_16px_34px_-16px_rgba(11,99,214,0.7)]"
+                              : "border-transparent hover:border-brand/30"
                           }`}
                           aria-pressed={product === c.id}
                         >
                           <img src={c.image} alt="" className="w-full aspect-[4/3] object-cover" />
-                          <span className="block px-3 py-2 text-xs font-semibold text-[#101828] truncate">
+                          <span className="block px-3 py-2 text-xs font-semibold text-ink-strong truncate">
                             {L(c.name)}
                           </span>
                         </button>
@@ -469,7 +469,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
 
                     <div className="mt-7 grid sm:grid-cols-2 gap-5">
                       <div>
-                        <p className="text-sm font-medium text-[#3d4a5c] mb-2">{T.size}</p>
+                        <p className="text-sm font-medium text-ink-body mb-2">{T.size}</p>
                         <div className="flex flex-wrap gap-2">
                           {p.sizes.map((s) => (
                             <button
@@ -477,8 +477,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                               onClick={() => setSizeId(s.id)}
                               className={`rounded-xl px-3.5 py-2 text-sm font-medium border transition-all cursor-pointer ${
                                 sizeId === s.id
-                                  ? "bg-[#0b63d6] text-white border-[#0b63d6]"
-                                  : "bg-white text-[#5b6779] border-[#0b63d6]/15 hover:border-[#0b63d6]/45"
+                                  ? "bg-brand text-white border-brand"
+                                  : "bg-white text-ink-muted border-brand/15 hover:border-brand/45"
                               }`}
                               aria-pressed={sizeId === s.id}
                             >
@@ -488,7 +488,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                         </div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-[#3d4a5c] mb-2">{T.finish}</p>
+                        <p className="text-sm font-medium text-ink-body mb-2">{T.finish}</p>
                         <div className="flex flex-wrap gap-2">
                           {FINISHES.slice(0, 5).map((f) => (
                             <button
@@ -496,8 +496,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                               onClick={() => setFinishId(f.id)}
                               className={`rounded-xl px-3.5 py-2 text-sm font-medium border transition-all cursor-pointer ${
                                 finishId === f.id
-                                  ? "bg-[#0b63d6] text-white border-[#0b63d6]"
-                                  : "bg-white text-[#5b6779] border-[#0b63d6]/15 hover:border-[#0b63d6]/45"
+                                  ? "bg-brand text-white border-brand"
+                                  : "bg-white text-ink-muted border-brand/15 hover:border-brand/45"
                               }`}
                               aria-pressed={finishId === f.id}
                             >
@@ -510,8 +510,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
 
                     <div className="mt-7">
                       <div className="flex items-end justify-between mb-2">
-                        <p className="text-sm font-medium text-[#3d4a5c]">{T.qty}</p>
-                        <p className="font-display font-extrabold text-2xl tabular-nums text-[#101828]">
+                        <p className="text-sm font-medium text-ink-body">{T.qty}</p>
+                        <p className="font-display font-extrabold text-2xl tabular-nums text-ink-strong">
                           {qty.toLocaleString()}
                         </p>
                       </div>
@@ -522,7 +522,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                         step={p.step}
                         value={qty}
                         onChange={(e) => setQty(Number(e.target.value))}
-                        className="w-full accent-[#0b63d6] cursor-pointer"
+                        className="w-full accent-brand cursor-pointer"
                         aria-label={T.qty}
                       />
                       <div className="mt-3 flex flex-wrap gap-2">
@@ -534,8 +534,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                               onClick={() => setQty(v)}
                               className={`rounded-full px-3.5 py-1.5 text-xs font-semibold border transition-all cursor-pointer ${
                                 qty === v
-                                  ? "bg-[#0b63d6] text-white border-[#0b63d6]"
-                                  : "bg-white text-[#5b6779] border-[#0b63d6]/15"
+                                  ? "bg-brand text-white border-brand"
+                                  : "bg-white text-ink-muted border-brand/15"
                               }`}
                             >
                               {v.toLocaleString()}
@@ -558,7 +558,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                           className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all cursor-pointer ${
                             tab === x.id
                               ? "aurora-bg text-white shadow-[0_12px_28px_-12px_rgba(11,99,214,0.8)]"
-                              : "bg-white text-[#5b6779] border border-[#0b63d6]/15 hover:border-[#0b63d6]/45"
+                              : "bg-white text-ink-muted border border-brand/15 hover:border-brand/45"
                           }`}
                           aria-pressed={tab === x.id}
                         >
@@ -571,7 +571,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                     <div className="mt-6">
                       {tab === "pick" && (
                         <>
-                          <p className="text-sm text-[#5b6779] mb-4">{T.pickHint}</p>
+                          <p className="text-sm text-ink-muted mb-4">{T.pickHint}</p>
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             {designs.map((d) => (
                               <button
@@ -580,10 +580,10 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                                   setDesignSlug(d.slug);
                                   toast.success(T.selected, d.title?.[lang] ?? d.slug);
                                 }}
-                                className={`relative rounded-2xl overflow-hidden border-2 bg-[#f4f7fb] transition-all cursor-pointer ${
+                                className={`relative rounded-2xl overflow-hidden border-2 bg-surface-soft transition-all cursor-pointer ${
                                   designSlug === d.slug
-                                    ? "border-[#0b63d6] shadow-[0_16px_34px_-16px_rgba(11,99,214,0.7)]"
-                                    : "border-transparent hover:border-[#0b63d6]/35"
+                                    ? "border-brand shadow-[0_16px_34px_-16px_rgba(11,99,214,0.7)]"
+                                    : "border-transparent hover:border-brand/35"
                                 }`}
                                 aria-pressed={designSlug === d.slug}
                               >
@@ -593,7 +593,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                                   loading="lazy"
                                   className="w-full h-32 object-contain p-2"
                                 />
-                                <span className="block px-2 pb-2 text-[0.7rem] font-semibold text-[#101828] truncate">
+                                <span className="block px-2 pb-2 text-[0.7rem] font-semibold text-ink-strong truncate">
                                   {d.title?.[lang] ?? d.slug}
                                 </span>
                                 {designSlug === d.slug && (
@@ -617,8 +617,8 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                               onChange={(e) => setDesc(e.target.value)}
                             />
                           </Field>
-                          <p className="mt-3 flex items-center gap-2 text-sm text-[#5b6779]">
-                            <Icon name="sparkle" className="w-4 h-4 text-[#0b63d6]" />
+                          <p className="mt-3 flex items-center gap-2 text-sm text-ink-muted">
+                            <Icon name="sparkle" className="w-4 h-4 text-brand" />
                             {T.descNote}
                           </p>
                         </>
@@ -637,24 +637,24 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                             onClick={() => fileRef.current?.click()}
                             className={`w-full rounded-2xl border-2 border-dashed p-10 text-center transition-all cursor-pointer ${
                               fileName
-                                ? "border-[#0b63d6]/60 bg-[#0b63d6]/[0.05]"
-                                : "border-[#0b63d6]/25 hover:border-[#0b63d6]/60 hover:bg-[#0b63d6]/[0.04]"
+                                ? "border-brand/60 bg-brand/[0.05]"
+                                : "border-brand/25 hover:border-brand/60 hover:bg-brand/[0.04]"
                             }`}
                           >
-                            <Icon name="upload" className="w-9 h-9 mx-auto text-[#0b63d6]" />
-                            <p className="mt-3 font-semibold text-[#101828]">{fileName ?? T.uploadTitle}</p>
-                            <p className="text-sm text-[#5b6779] mt-1">{T.uploadSub}</p>
-                            <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#0b63d6] text-white px-5 py-2.5 text-sm font-semibold">
+                            <Icon name="upload" className="w-9 h-9 mx-auto text-brand" />
+                            <p className="mt-3 font-semibold text-ink-strong">{fileName ?? T.uploadTitle}</p>
+                            <p className="text-sm text-ink-muted mt-1">{T.uploadSub}</p>
+                            <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand text-white px-5 py-2.5 text-sm font-semibold">
                               {T.uploadBtn}
                             </span>
                           </button>
                           {fileUrl && (
-                            <p className="mt-3 flex items-center gap-2 text-sm text-[#0b63d6]">
+                            <p className="mt-3 flex items-center gap-2 text-sm text-brand">
                               <Icon name="check" className="w-4 h-4" />
                               {T.uploaded}
                             </p>
                           )}
-                          {errors.desc && <p className="mt-2 text-sm text-[#e11d48]">{errors.desc}</p>}
+                          {errors.desc && <p className="mt-2 text-sm text-danger">{errors.desc}</p>}
                         </>
                       )}
                     </div>
@@ -691,7 +691,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                       </Field>
                     </div>
 
-                    <p className="mt-7 text-sm font-medium text-[#3d4a5c] mb-2">{T.pay}</p>
+                    <p className="mt-7 text-sm font-medium text-ink-body mb-2">{T.pay}</p>
                     <div className="grid grid-cols-3 gap-2">
                       {([
                         { id: "advance", label: T.payAdvance, icon: "bank", tag: "20%" },
@@ -703,12 +703,12 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                           onClick={() => setPayment(o.id)}
                           className={`rounded-2xl border-2 p-3.5 text-start transition-all cursor-pointer ${
                             payment === o.id
-                              ? "border-[#0b63d6] bg-[#0b63d6]/[0.06]"
-                              : "border-[#0b63d6]/15 hover:border-[#0b63d6]/45"
+                              ? "border-brand bg-brand/[0.06]"
+                              : "border-brand/15 hover:border-brand/45"
                           }`}
                           aria-pressed={payment === o.id}
                         >
-                          <Icon name={o.icon} className="w-5 h-5 text-[#0b63d6]" />
+                          <Icon name={o.icon} className="w-5 h-5 text-brand" />
                           <p className="mt-2 text-xs font-semibold leading-snug">{o.label}</p>
                           {o.tag && (
                             <span className="mt-1.5 inline-block rounded-full aurora-bg text-white text-[0.62rem] font-bold px-2 py-0.5">
@@ -720,11 +720,11 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                     </div>
 
                     {payment === "advance" && (
-                      <div className="mt-5 rounded-2xl border border-[#0b63d6]/18 bg-[#f4f7fb] p-5">
+                      <div className="mt-5 rounded-2xl border border-brand/18 bg-surface-soft p-5">
                         <div className="flex items-center justify-between gap-3">
                           <div>
-                            <p className="text-xs uppercase tracking-[0.18em] text-[#98a2b3]">{T.rib}</p>
-                            <p className="mt-1.5 font-mono text-sm text-[#101828] tracking-wider" dir="ltr">
+                            <p className="text-xs uppercase tracking-[0.18em] text-ink-faint">{T.rib}</p>
+                            <p className="mt-1.5 font-mono text-sm text-ink-strong tracking-wider" dir="ltr">
                               {RIB}
                             </p>
                           </div>
@@ -735,13 +735,13 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                               toast.success(T.copied, T.ribNo);
                               setTimeout(() => setCopied(false), 1800);
                             }}
-                            className="shrink-0 rounded-full bg-[#0b63d6] text-white px-4 py-2 text-xs font-semibold hover:brightness-110 transition cursor-pointer"
+                            className="shrink-0 rounded-full bg-brand text-white px-4 py-2 text-xs font-semibold hover:brightness-110 transition cursor-pointer"
                           >
                             {copied ? T.copied : T.copy}
                           </button>
                         </div>
                         <div className="mt-4 flex items-center justify-between rounded-xl bg-white px-4 py-3">
-                          <span className="text-sm text-[#5b6779]">{T.advance}</span>
+                          <span className="text-sm text-ink-muted">{T.advance}</span>
                           <span className="font-display font-extrabold text-xl tabular-nums">
                             {formatMAD(advance, lang)}
                           </span>
@@ -789,13 +789,13 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
 
           {/* -------- summary -------- */}
           <aside className="lg:sticky lg:top-28">
-            <div className="rounded-[28px] bg-white border border-[#0b63d6]/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.5)]">
+            <div className="rounded-card bg-white border border-brand/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.5)]">
               <h3 className="font-display font-bold text-lg flex items-center gap-2">
-                <Icon name="printer" className="w-5 h-5 text-[#0b63d6]" />
+                <Icon name="printer" className="w-5 h-5 text-brand" />
                 {T.summary}
               </h3>
 
-              <div className="mt-4 rounded-2xl overflow-hidden border border-[#0b63d6]/10">
+              <div className="mt-4 rounded-2xl overflow-hidden border border-brand/10">
                 <img src={p.image} alt="" className="w-full h-32 object-cover" />
               </div>
 
@@ -808,24 +808,24 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                   [T.design, designLabel],
                 ].map(([k, v]) => (
                   <li key={k as string} className="flex justify-between gap-3">
-                    <span className="text-[#98a2b3]">{k}</span>
-                    <span className="text-[#101828] font-medium text-end max-w-[60%] truncate">{v}</span>
+                    <span className="text-ink-faint">{k}</span>
+                    <span className="text-ink-strong font-medium text-end max-w-[60%] truncate">{v}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-5 pt-5 border-t border-[#0b63d6]/10">
+              <div className="mt-5 pt-5 border-t border-brand/10">
                 <div className="flex items-end justify-between">
-                  <span className="text-sm text-[#5b6779]">{T.total}</span>
-                  <span className="font-display font-extrabold text-3xl text-[#101828]">
+                  <span className="text-sm text-ink-muted">{T.total}</span>
+                  <span className="font-display font-extrabold text-3xl text-ink-strong">
                     <PriceCounter value={bp.total} lang={lang} />
-                    <span className="text-sm font-normal text-[#98a2b3] ms-1.5">{t.common.mad}</span>
+                    <span className="text-sm font-normal text-ink-faint ms-1.5">{t.common.mad}</span>
                   </span>
                 </div>
-                <p className="mt-1.5 text-xs text-[#98a2b3] tabular-nums">
+                <p className="mt-1.5 text-xs text-ink-faint tabular-nums">
                   {T.perUnit}: {formatMAD(bp.unit, lang)}
                 </p>
-                <p className="mt-3 flex items-center gap-2 text-xs font-semibold text-[#0b63d6]">
+                <p className="mt-3 flex items-center gap-2 text-xs font-semibold text-brand">
                   <Icon name="clock" className="w-4 h-4" />
                   {T.eta} {bp.days} {T.days}
                 </p>
@@ -833,7 +833,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
 
               <div className="mt-5 flex items-center gap-2">
                 {FINISHES.slice(0, 4).map((f) => (
-                  <Badge key={f.id} className="!bg-[#f4f7fb] !text-[#5b6779] !border-[#0b63d6]/12 text-[0.68rem]">
+                  <Badge key={f.id} className="!bg-surface-soft !text-ink-muted !border-brand/12 text-micro">
                     {L(f.name)}
                   </Badge>
                 ))}

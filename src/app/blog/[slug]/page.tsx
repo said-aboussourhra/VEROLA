@@ -55,7 +55,7 @@ function PostView({ slug }: { slug: string }) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className={`relative mt-10 rounded-[28px] overflow-hidden border border-white/8 blog-art ${post.art} h-56`}>
+          <div className={`relative mt-10 rounded-card overflow-hidden border border-white/8 blog-art ${post.art} h-56`}>
             <div className="absolute inset-0 halftone opacity-40" aria-hidden />
             <div
               className="absolute -bottom-16 end-6 font-display font-extrabold text-[16rem] leading-none text-ink/10 select-none"

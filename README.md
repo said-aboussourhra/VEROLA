@@ -113,7 +113,13 @@ ever exposed to the client bundle. The only client-readable values are
 
 ---
 
-## 5. Architecture notes
+## 5. Design system
+
+Tokens, components and rules live in [`DESIGN.md`](./DESIGN.md). Preview them at `/design-system`.
+
+---
+
+## 6. Architecture notes
 
 * **TypeScript strict**, App Router, server components where possible.
 * **Drizzle ORM + PostgreSQL** — relational schema: users, sessions, orders,

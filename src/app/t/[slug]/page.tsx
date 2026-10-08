@@ -62,20 +62,20 @@ export default async function TenantPage({
               </span>
             )}
             <div>
-              <p className="font-display font-extrabold text-xl leading-tight text-[#0d1b32]">{brand.name}</p>
-              <p className="text-xs text-[#5b6779]" dir="ltr">
+              <p className="font-display font-extrabold text-xl leading-tight text-navy">{brand.name}</p>
+              <p className="text-xs text-ink-muted" dir="ltr">
                 {brand.domain ?? `${brand.slug}.verola.com`}
               </p>
             </div>
           </div>
 
           <h1
-            className="mt-10 font-display font-extrabold leading-[1.02] tracking-[-0.035em] text-[#0d1b32]"
+            className="mt-10 font-display font-extrabold leading-[1.02] tracking-[-0.035em] text-navy"
             style={{ fontSize: "clamp(2.5rem, 7vw, 5.25rem)" }}
           >
             {brand.tagline}
           </h1>
-          <p className="mt-5 text-lg text-[#5b6779] max-w-xl leading-relaxed">
+          <p className="mt-5 text-lg text-ink-muted max-w-xl leading-relaxed">
             {t.catalog} — {brand.city}. {brand.phone}
           </p>
 
@@ -104,7 +104,7 @@ export default async function TenantPage({
       {/* catalog */}
       <section className="pb-24">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <h2 className="font-display font-extrabold text-3xl tracking-[-0.03em] text-[#0d1b32] uppercase">
+          <h2 className="font-display font-extrabold text-3xl tracking-[-0.03em] text-navy uppercase">
             {t.catalog}
           </h2>
           <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -120,14 +120,14 @@ export default async function TenantPage({
                 <a
                   key={c.id}
                   href={`/order?product=${c.id}`}
-                  className="group rounded-3xl overflow-hidden bg-white border border-black/8 shadow-[0_22px_54px_-40px_rgba(16,42,90,0.6)] hover:-translate-y-1.5 transition-all duration-500"
+                  className="group rounded-3xl overflow-hidden bg-white border border-black/8 shadow-lift hover:-translate-y-1.5 transition-all duration-500"
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={c.image} alt={c.name.en} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   </div>
                   <div className="p-4">
-                    <p className="font-display font-bold text-[#0d1b32]">{c.name.en}</p>
-                    <p className="text-sm text-[#5b6779] mt-1">
+                    <p className="font-display font-bold text-navy">{c.name.en}</p>
+                    <p className="text-sm text-ink-muted mt-1">
                       {t.from}{" "}
                       <strong style={{ color: brand.accent }} className="tabular-nums">
                         {formatMAD(bp.subtotal, "en")}
@@ -144,10 +144,10 @@ export default async function TenantPage({
       {/* footer strip */}
       <footer className="border-t border-black/8 py-10">
         <div className="mx-auto max-w-6xl px-4 md:px-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-sm text-[#5b6779]">
+          <p className="text-sm text-ink-muted">
             © {new Date().getFullYear()} {brand.name} — {brand.city}
           </p>
-          <p className="text-sm text-[#98a2b3]">
+          <p className="text-sm text-ink-faint">
             {t.powered}{" "}
             <a href="/" className="font-semibold" style={{ color: brand.accent }}>
               VEROLA

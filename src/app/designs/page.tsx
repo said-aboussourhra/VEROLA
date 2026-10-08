@@ -155,14 +155,14 @@ export default function DesignsPage() {
                       <Badge gold>{t.designs.member}</Badge>
                     )}
                   </span>
-                  <span className="absolute top-3 end-3 text-[0.68rem] text-muted tabular-nums">
+                  <span className="absolute top-3 end-3 text-micro text-muted tabular-nums">
                     {CATS[d.cat]?.[lang] ?? d.cat}
                   </span>
                 </div>
                 <div className="p-4">
                   <div className="flex items-center justify-between gap-2">
                     <h3 className="font-display font-bold">{L(d.title)}</h3>
-                    <span className="text-[0.68rem] text-muted tabular-nums shrink-0">
+                    <span className="text-micro text-muted tabular-nums shrink-0">
                       {d.downloads} {t.designs.downloads}
                     </span>
                   </div>
@@ -202,7 +202,7 @@ export default function DesignsPage() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="glass rounded-[28px] p-8 w-full max-w-md"
+              className="glass rounded-card p-8 w-full max-w-md"
               initial={{ scale: 0.94, y: 14 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.94, y: 14 }}

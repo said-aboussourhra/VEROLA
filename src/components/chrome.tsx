@@ -127,7 +127,7 @@ export function Navbar() {
                 </span>
                 <button
                   onClick={() => void logout()}
-                  className="text-xs text-muted hover:text-[#e11d48] transition-colors cursor-pointer"
+                  className="text-xs text-muted hover:text-danger transition-colors cursor-pointer"
                 >
                   Logout
                 </button>
@@ -403,7 +403,7 @@ export function WhatsAppFloat() {
             className="glass rounded-3xl p-4 w-72"
           >
             <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-10 rounded-full bg-[#25D366]/15 text-[#25D366] flex items-center justify-center">
+              <span className="w-10 h-10 rounded-full bg-whatsapp/15 text-whatsapp flex items-center justify-center">
                 <WhatsAppIcon className="w-5 h-5" />
               </span>
               <div>
@@ -436,7 +436,7 @@ export function WhatsAppFloat() {
         onClick={() => setOpen(!open)}
         aria-label={t.common.whatsapp}
         aria-expanded={open}
-            className="w-14 h-14 rounded-full glass flex items-center justify-center text-[#25D366] hover:scale-110 transition-transform duration-300 pulse-glow"
+            className="w-14 h-14 rounded-full glass flex items-center justify-center text-whatsapp hover:scale-110 transition-transform duration-300 pulse-glow"
       >
         {open ? <Icon name="x" className="w-6 h-6" /> : <WhatsAppIcon className="w-6 h-6" />}
       </button>
@@ -682,7 +682,7 @@ function Bell() {
                     </span>
                     <span className="min-w-0">
                       <span className="block text-xs font-semibold leading-snug">{n.title}</span>
-                      {n.body && <span className="block text-[0.68rem] text-muted leading-snug line-clamp-2">{n.body}</span>}
+                      {n.body && <span className="block text-micro text-muted leading-snug line-clamp-2">{n.body}</span>}
                     </span>
                   </a>
                 </li>

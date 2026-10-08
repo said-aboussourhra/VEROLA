@@ -19,7 +19,7 @@ export default function BlogPage() {
           {POSTS.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.08}>
               <a href={`/blog/${p.slug}`} className="block group h-full">
-                <div className={`relative rounded-[28px] overflow-hidden border border-white/8 blog-art ${p.art}`}>
+                <div className={`relative rounded-card overflow-hidden border border-white/8 blog-art ${p.art}`}>
                   <div className="h-48 relative">
                     <div className="absolute inset-0 halftone opacity-40" aria-hidden />
                     <div className="absolute -bottom-10 end-2 font-display font-extrabold text-[11rem] leading-none text-ink/10 select-none group-hover:scale-110 transition-transform duration-700 origin-bottom">

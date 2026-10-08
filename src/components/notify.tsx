@@ -108,12 +108,12 @@ function Toaster({ items, onClose }: { items: Toast[]; onClose: (id: number) => 
                 <Icon name={k.icon} className="w-4 h-4 text-white" />
               </span>
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-[0.9rem] leading-snug text-[#101828]">{t.title}</p>
-                {t.body && <p className="text-xs text-[#5b6779] mt-1 leading-relaxed">{t.body}</p>}
+                <p className="font-semibold text-[0.9rem] leading-snug text-ink-strong">{t.title}</p>
+                {t.body && <p className="text-xs text-ink-muted mt-1 leading-relaxed">{t.body}</p>}
                 {t.href && (
                   <a
                     href={t.href}
-                    className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[#0b63d6] hover:underline"
+                    className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand hover:underline"
                   >
                     {t.hrefLabel ?? "Open"}
                     <Icon name="arrow" className="w-3.5 h-3.5 rtl-flip" />
@@ -122,7 +122,7 @@ function Toaster({ items, onClose }: { items: Toast[]; onClose: (id: number) => 
               </div>
               <button
                 onClick={() => onClose(t.id)}
-                className="w-6 h-6 rounded-full flex items-center justify-center text-[#98a2b3] hover:text-[#101828] transition-colors cursor-pointer"
+                className="w-6 h-6 rounded-full flex items-center justify-center text-ink-faint hover:text-ink-strong transition-colors cursor-pointer"
                 aria-label="Close"
               >
                 <Icon name="x" className="w-3.5 h-3.5" />
@@ -254,7 +254,7 @@ function AuthPanel({
           transition={{ duration: 0.22 }}
         >
           <div
-            className="absolute inset-0 bg-[#101828]/45 backdrop-blur-sm"
+            className="absolute inset-0 bg-ink-strong/45 backdrop-blur-sm"
             onClick={() => setMode(null)}
             aria-hidden
           />
@@ -269,7 +269,7 @@ function AuthPanel({
           >
             <button
               onClick={() => setMode(null)}
-              className="absolute top-4 end-4 w-8 h-8 rounded-full flex items-center justify-center text-[#98a2b3] hover:text-[#101828] cursor-pointer"
+              className="absolute top-4 end-4 w-8 h-8 rounded-full flex items-center justify-center text-ink-faint hover:text-ink-strong cursor-pointer"
               aria-label="Close"
             >
               <Icon name="x" className="w-4 h-4" />
@@ -278,7 +278,7 @@ function AuthPanel({
             <h2 className="font-display font-extrabold text-2xl">
               {mode === "register" ? t.account.title : t.account.search.replace(t.account.searchPh, "").trim() || "Sign in"}
             </h2>
-            <p className="text-sm text-[#5b6779] mt-1">{t.account.sub}</p>
+            <p className="text-sm text-ink-muted mt-1">{t.account.sub}</p>
 
             <div className="mt-6 space-y-3">
               {mode === "register" && (
@@ -318,17 +318,17 @@ function AuthPanel({
                 onChange={(e) => setPassword(e.target.value)}
                 aria-label="Password"
               />
-              {err && <p className="text-sm text-[#e11d48]">{err}</p>}
+              {err && <p className="text-sm text-danger">{err}</p>}
               <Button onClick={() => void submit()} disabled={busy} magnetic className="w-full" size="lg">
                 {mode === "register" ? t.designs.unlock : "Sign in"}
               </Button>
             </div>
 
-            <p className="mt-5 text-center text-sm text-[#5b6779]">
+            <p className="mt-5 text-center text-sm text-ink-muted">
               {mode === "register" ? "Already have an account?" : "No account yet?"}{" "}
               <button
                 onClick={() => setMode(mode === "register" ? "login" : "register")}
-                className="font-semibold text-[#0b63d6] hover:underline cursor-pointer"
+                className="font-semibold text-brand hover:underline cursor-pointer"
               >
                 {mode === "register" ? "Sign in" : "Create one"}
               </button>

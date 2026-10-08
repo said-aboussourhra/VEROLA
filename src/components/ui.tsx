@@ -156,7 +156,42 @@ export function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) 
 
 /* ================= buttons ================= */
 
-type BtnVariant = "aurora" | "glass" | "ghost";
+export type BtnVariant = "aurora" | "primary" | "secondary" | "glass" | "ghost" | "danger" | "link";
+export type BtnSize = "sm" | "md" | "lg" | "icon";
+
+export const buttonClass = ({
+  variant = "aurora",
+  size = "md",
+  fullWidth = false,
+  className = "",
+}: {
+  variant?: BtnVariant;
+  size?: BtnSize;
+  fullWidth?: boolean;
+  className?: string;
+} = {}) => {
+  const base =
+    "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-[var(--duration-base)] select-none cursor-pointer active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-3";
+  const sizes: Record<BtnSize, string> = {
+    sm: "text-sm px-4 py-2",
+    md: "px-6 py-3",
+    lg: "text-lg px-8 py-4",
+    icon: "h-10 w-10 p-0",
+  };
+  const variants: Record<BtnVariant, string> = {
+    aurora:
+      "aurora-bg text-ink shadow-glow-aurora hover:shadow-glow-aurora-hover hover:brightness-110",
+    primary: "bg-brand text-white shadow-glow-brand hover:bg-brand-deep",
+    secondary: "bg-navy text-white hover:bg-ink-strong",
+    glass: "glass text-paper hover:bg-white/10",
+    ghost: "text-paper/80 border border-white/10 hover:border-cyan/50 hover:text-cyan",
+    danger: "bg-danger text-white hover:brightness-110",
+    link: "p-0 rounded-none text-cyan underline-offset-4 hover:underline active:scale-100",
+  };
+  const pad = variant === "link" ? "" : sizes[size];
+  const width = fullWidth ? "w-full" : "";
+  return `${base} ${pad} ${variants[variant]} ${width} ${className}`.replace(/\s+/g, " ").trim();
+};
 
 export function Button({
   children,
@@ -167,75 +202,149 @@ export function Button({
   onClick,
   type = "button",
   disabled,
+  loading = false,
+  fullWidth = false,
   magnetic,
   ariaLabel,
 }: {
   children: ReactNode;
   variant?: BtnVariant;
-  size?: "sm" | "md" | "lg";
+  size?: BtnSize;
   className?: string;
   href?: string;
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
+  loading?: boolean;
+  fullWidth?: boolean;
   magnetic?: boolean;
   ariaLabel?: string;
 }) {
-  const base =
-    "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-300 select-none cursor-pointer active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none";
-  const sizes = {
-    sm: "text-sm px-4 py-2",
-    md: "px-6 py-3",
-    lg: "text-lg px-8 py-4",
-  }[size];
-  const variants: Record<BtnVariant, string> = {
-    aurora:
-      "aurora-bg text-ink shadow-[0_8px_32px_-8px_rgba(0,240,255,0.45)] hover:shadow-[0_10px_40px_-6px_rgba(123,47,247,0.55)] hover:brightness-110",
-    glass: "glass text-paper hover:bg-white/10",
-    ghost:
-      "text-paper/80 border border-white/10 hover:border-cyan/50 hover:text-cyan",
-  };
-  const cls = `${base} ${sizes} ${variants[variant]} ${className}`;
+  const cls = buttonClass({ variant, size, fullWidth, className });
   const props = {
     className: cls,
     "data-magnetic": magnetic ? "true" : undefined,
     onClick,
     "aria-label": ariaLabel,
+    "aria-busy": loading || undefined,
   };
+  const content = (
+    <>
+      {loading && <Spinner className="w-4 h-4" />}
+      {children}
+    </>
+  );
   if (href)
     return (
       <a href={href} {...props}>
-        {children}
+        {content}
       </a>
     );
   return (
-    <button type={type} disabled={disabled} {...props}>
-      {children}
+    <button type={type} disabled={disabled || loading} {...props}>
+      {content}
     </button>
+  );
+}
+
+/* ================= spinner ================= */
+
+export function Spinner({ className = "w-5 h-5", label }: { className?: string; label?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={`animate-spin ${className}`}
+      role={label ? "status" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    >
+      <path d="M12 3a9 9 0 0 1 9 9" />
+    </svg>
   );
 }
 
 /* ================= badge / chips ================= */
 
+export type BadgeTone = "neutral" | "gold" | "brand" | "success" | "warning" | "danger" | "info";
+
+const BADGE_TONES: Record<BadgeTone, string> = {
+  neutral: "border-white/10 text-paper/70 bg-white/5",
+  gold: "border-gold/40 text-gold bg-gold/10",
+  brand: "border-brand/40 text-brand bg-brand/10",
+  success: "border-success/40 text-success bg-success/10",
+  warning: "border-warning/40 text-warning bg-warning/10",
+  danger: "border-danger/40 text-danger bg-danger/10",
+  info: "border-cyan/40 text-cyan bg-cyan/10",
+};
+
 export function Badge({
   children,
   className = "",
   gold,
+  tone,
 }: {
   children: ReactNode;
   className?: string;
+  /** @deprecated use `tone="gold"` */
   gold?: boolean;
+  tone?: BadgeTone;
 }) {
+  const t: BadgeTone = tone ?? (gold ? "gold" : "neutral");
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[0.8125rem] font-medium border ${
-        gold
-          ? "border-gold/40 text-gold bg-gold/10"
-          : "border-white/10 text-paper/70 bg-white/5"
-      } ${className}`}
+      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-small font-medium border ${BADGE_TONES[t]} ${className}`}
     >
       {children}
     </span>
+  );
+}
+
+/* ================= card / surface ================= */
+
+export function Card({
+  children,
+  className = "",
+  as: Tag = "div",
+  padded = true,
+}: {
+  children: ReactNode;
+  className?: string;
+  as?: "div" | "section" | "article";
+  padded?: boolean;
+}) {
+  return (
+    <Tag className={`glass rounded-card ${padded ? "p-6 md:p-8" : ""} ${className}`}>{children}</Tag>
+  );
+}
+
+/* ================= empty state ================= */
+
+export function EmptyState({
+  title,
+  description,
+  action,
+  icon = "box",
+  className = "",
+}: {
+  title: string;
+  description?: string;
+  action?: ReactNode;
+  icon?: string;
+  className?: string;
+}) {
+  return (
+    <div className={`flex flex-col items-center text-center gap-4 py-16 px-6 ${className}`}>
+      <span className="grid place-items-center w-14 h-14 rounded-full glass text-cyan">
+        <Icon name={icon} className="w-6 h-6" />
+      </span>
+      <h3 className="font-display text-xl text-paper">{title}</h3>
+      {description && <p className="text-muted max-w-md">{description}</p>}
+      {action}
+    </div>
   );
 }
 
@@ -427,23 +536,45 @@ export function Accordion({ items }: { items: { q: string; a: string }[] }) {
 export function Field({
   label,
   error,
+  hint,
+  required,
   children,
+  className = "",
 }: {
   label: string;
   error?: string;
+  hint?: string;
+  required?: boolean;
   children: ReactNode;
+  className?: string;
 }) {
   return (
-    <label className="block">
-      <span className="block text-sm font-medium text-paper/70 mb-2">{label}</span>
+    <label className={`block ${className}`}>
+      <span className="block text-sm font-medium text-paper/70 mb-2">
+        {label}
+        {required && (
+          <span className="text-danger ms-1" aria-hidden>
+            *
+          </span>
+        )}
+      </span>
       {children}
-      {error && <span className="block mt-1.5 text-sm text-magenta">{error}</span>}
+      {error ? (
+        <span role="alert" className="block mt-1.5 text-sm text-danger">
+          {error}
+        </span>
+      ) : (
+        hint && <span className="block mt-1.5 text-caption text-muted">{hint}</span>
+      )}
     </label>
   );
 }
 
+/** Base input class. Add `inputErrorCls` when the field is invalid. */
 export const inputCls =
-  "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-paper placeholder:text-muted/60 focus:border-cyan/60 focus:outline-none focus:ring-2 focus:ring-cyan/20 transition";
+  "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-paper placeholder:text-muted/60 focus:border-cyan/60 focus:outline-none focus:ring-2 focus:ring-cyan/20 disabled:opacity-50 disabled:cursor-not-allowed transition";
+
+export const inputErrorCls = "border-danger/70 focus:border-danger focus:ring-danger/20";
 
 /* ================= sound ================= */
 

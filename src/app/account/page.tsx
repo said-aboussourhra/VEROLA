@@ -112,7 +112,7 @@ export default function AccountPage() {
             ))}
           </div>
         ) : rows.length === 0 ? (
-          <div className="glass rounded-[28px] p-12 text-center space-y-5">
+          <div className="glass rounded-card p-12 text-center space-y-5">
             <span className="inline-flex w-14 h-14 rounded-full bg-white/5 items-center justify-center text-muted">
               <Icon name="printer" className="w-6 h-6" />
             </span>

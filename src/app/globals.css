@@ -15,6 +15,51 @@
   --font-body: var(--font-inter), "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
 
   --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Brand & print palette (light surfaces, configurator, admin) ── */
+  --color-brand: #0b63d6;
+  --color-brand-deep: #0b4fb0;
+  --color-brand-sky: #22c1f0;
+  --color-navy: #0d1b32;
+  --color-surface-soft: #f4f7fb;
+
+  /* ── Neutral text scale on light surfaces ── */
+  --color-ink-strong: #101828;
+  --color-ink-body: #3d4a5c;
+  --color-ink-subtle: #33445e;
+  --color-ink-muted: #5b6779;
+  --color-ink-faint: #98a2b3;
+
+  /* ── Status ── */
+  --color-success: #25d366;
+  --color-warning: #d98b00;
+  --color-danger: #e11d48;
+  --color-amber: #ffc400;
+  --color-whatsapp: #25d366;
+
+  /* ── Type scale (named steps for the small sizes used across the app) ── */
+  --text-micro: 0.68rem;
+  --text-caption: 0.72rem;
+  --text-small: 0.8125rem;
+  --text-body-sm: 0.95rem;
+  --text-lead: 1.15rem;
+
+  /* ── Radii (exact values already used in the UI) ── */
+  --radius-inset: 22px;
+  --radius-tile: 26px;
+  --radius-card: 28px;
+  --radius-panel: 32px;
+
+  /* ── Elevation & glow ── */
+  --shadow-lift: 0 22px 54px -40px rgba(16, 42, 90, 0.6);
+  --shadow-glow-aurora: 0 8px 32px -8px rgba(0, 240, 255, 0.45);
+  --shadow-glow-aurora-hover: 0 10px 40px -6px rgba(123, 47, 247, 0.55);
+  --shadow-glow-brand: 0 10px 30px -10px rgba(11, 99, 214, 0.55);
+
+  /* ── Motion ── */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
 }
 
 :root {

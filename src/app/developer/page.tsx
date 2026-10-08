@@ -226,7 +226,7 @@ export default function DeveloperPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55 }}
               >
-                <span className="inline-flex items-center gap-2.5 rounded-full bg-white/85 border border-[#0b63d6]/16 ps-2 pe-4 py-2 text-[0.82rem] font-semibold text-[#0b4fb0] shadow-[0_14px_34px_-20px_rgba(11,99,214,0.7)]">
+                <span className="inline-flex items-center gap-2.5 rounded-full bg-white/85 border border-brand/16 ps-2 pe-4 py-2 text-[0.82rem] font-semibold text-brand-deep shadow-[0_14px_34px_-20px_rgba(11,99,214,0.7)]">
                   <span className="w-6 h-6 rounded-full aurora-bg flex items-center justify-center">
                     <Icon name="sparkle" className="w-3.5 h-3.5 text-white" />
                   </span>
@@ -238,7 +238,7 @@ export default function DeveloperPage() {
                 initial={reduced ? false : { opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.12, ease: EASE }}
-                className="mt-7 font-display font-extrabold leading-[0.92] tracking-[-0.045em] text-[#0d1b32]"
+                className="mt-7 font-display font-extrabold leading-[0.92] tracking-[-0.045em] text-navy"
                 style={{ fontSize: "clamp(3.25rem, 11vw, 9rem)" }}
               >
                 {p.name}
@@ -260,7 +260,7 @@ export default function DeveloperPage() {
                 className="mt-7 flex items-start gap-4"
               >
                 <span className="mt-2 w-11 h-[3px] rounded-full aurora-bg shrink-0" />
-                <p className="max-w-2xl text-[1.0625rem] md:text-[1.15rem] text-[#4a5a70] leading-[1.8]">
+                <p className="max-w-2xl text-[1.0625rem] md:text-lead text-[#4a5a70] leading-[1.8]">
                   {p.about}
                 </p>
               </motion.div>
@@ -300,7 +300,7 @@ export default function DeveloperPage() {
               transition={{ duration: 1, delay: 0.28, ease: EASE }}
               className="relative"
             >
-              <div className="relative rounded-[32px] overflow-hidden shadow-[0_60px_120px_-45px_rgba(11,60,140,0.8)] aspect-[4/5]">
+              <div className="relative rounded-panel overflow-hidden shadow-[0_60px_120px_-45px_rgba(11,60,140,0.8)] aspect-[4/5]">
                 {p.photo ? (
                   <img src={p.photo} alt={p.name} className="w-full h-full object-cover" />
                 ) : (
@@ -334,10 +334,10 @@ export default function DeveloperPage() {
               </div>
 
               {/* floating stat card */}
-              <div className="absolute -bottom-6 -start-4 md:-start-8 rounded-2xl bg-white px-5 py-4 shadow-[0_30px_64px_-26px_rgba(11,60,140,0.7)] border border-[#0b63d6]/12">
-                <p className="text-[0.68rem] uppercase tracking-[0.22em] text-[#98a2b3]">Built</p>
-                <p className="font-display font-extrabold text-[#0d1b32] text-xl leading-tight">VEROLA</p>
-                <p className="text-xs text-[#5b6779]">Full printing platform</p>
+              <div className="absolute -bottom-6 -start-4 md:-start-8 rounded-2xl bg-white px-5 py-4 shadow-[0_30px_64px_-26px_rgba(11,60,140,0.7)] border border-brand/12">
+                <p className="text-micro uppercase tracking-[0.22em] text-ink-faint">Built</p>
+                <p className="font-display font-extrabold text-navy text-xl leading-tight">VEROLA</p>
+                <p className="text-xs text-ink-muted">Full printing platform</p>
               </div>
             </motion.div>
           </div>
@@ -346,9 +346,9 @@ export default function DeveloperPage() {
           <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4">
             {STATS.map((s, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div className="rounded-3xl bg-white border border-[#0b63d6]/12 p-6 shadow-[0_22px_54px_-40px_rgba(16,42,90,0.6)]">
+                <div className="rounded-3xl bg-white border border-brand/12 p-6 shadow-lift">
                   <p className="font-display font-extrabold text-4xl aurora-text leading-none">{s.v}</p>
-                  <p className="mt-2 text-sm text-[#5b6779]">{s.l}</p>
+                  <p className="mt-2 text-sm text-ink-muted">{s.l}</p>
                 </div>
               </Reveal>
             ))}
@@ -357,7 +357,7 @@ export default function DeveloperPage() {
       </section>
 
       {/* ================= STACK MARQUEE ================= */}
-      <div className="relative py-7 overflow-hidden border-y border-[#0b63d6]/12 bg-white">
+      <div className="relative py-7 overflow-hidden border-y border-brand/12 bg-white">
         <Marquee duration={38}>
           {STACK.map((s, i) => (
             <span key={i} className="flex items-center gap-5 px-5">
@@ -367,7 +367,7 @@ export default function DeveloperPage() {
               >
                 {s}
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0b63d6]/30" />
+              <span className="w-1.5 h-1.5 rounded-full bg-brand/30" />
             </span>
           ))}
         </Marquee>
@@ -377,7 +377,7 @@ export default function DeveloperPage() {
       {edit && (
         <section className="py-12">
           <div className="mx-auto max-w-3xl px-4 md:px-6">
-            <div className="rounded-[26px] bg-white border border-[#0b63d6]/12 p-7">
+            <div className="rounded-tile bg-white border border-brand/12 p-7">
               <h3 className="font-display font-bold text-xl">Edit developer profile</h3>
               <div className="mt-5 space-y-3">
                 <input className={inputCls} value={p.name} placeholder="Name" onChange={(e) => setP({ ...p, name: e.target.value })} />
@@ -415,15 +415,15 @@ export default function DeveloperPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {CAPABILITIES.map((s, i) => (
               <Reveal key={s.title} delay={(i % 4) * 0.07}>
-                <div className="rounded-3xl bg-white border border-[#0b63d6]/12 p-6 h-full shadow-[0_22px_54px_-40px_rgba(16,42,90,0.6)] hover:-translate-y-1.5 hover:shadow-[0_36px_80px_-34px_rgba(11,99,214,0.6)] transition-all duration-500">
+                <div className="rounded-3xl bg-white border border-brand/12 p-6 h-full shadow-lift hover:-translate-y-1.5 hover:shadow-[0_36px_80px_-34px_rgba(11,99,214,0.6)] transition-all duration-500">
                   <span
                     className="w-12 h-12 rounded-2xl flex items-center justify-center text-white"
                     style={{ background: s.c }}
                   >
                     <Icon name={s.icon} className="w-5 h-5" />
                   </span>
-                  <h3 className="mt-4 font-display font-bold text-[#0d1b32] leading-tight">{s.title}</h3>
-                  <p className="mt-2 text-sm text-[#5b6779] leading-relaxed">{s.d}</p>
+                  <h3 className="mt-4 font-display font-bold text-navy leading-tight">{s.title}</h3>
+                  <p className="mt-2 text-sm text-ink-muted leading-relaxed">{s.d}</p>
                 </div>
               </Reveal>
             ))}
@@ -462,7 +462,7 @@ export default function DeveloperPage() {
           <div className="mt-11 grid sm:grid-cols-2 gap-5">
             {WORK.map((w, i) => (
               <Reveal key={w.title} delay={(i % 2) * 0.1}>
-                <div className="rounded-[26px] border border-white/12 bg-white/[0.05] p-7 h-full hover:border-white/30 hover:bg-white/[0.08] transition-all duration-500">
+                <div className="rounded-tile border border-white/12 bg-white/[0.05] p-7 h-full hover:border-white/30 hover:bg-white/[0.08] transition-all duration-500">
                   <span
                     className="w-12 h-12 rounded-2xl flex items-center justify-center text-white"
                     style={{ background: w.c }}
@@ -477,7 +477,7 @@ export default function DeveloperPage() {
                     {w.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/18 px-3 py-1 text-[0.72rem] font-semibold text-white/80"
+                        className="rounded-full border border-white/18 px-3 py-1 text-caption font-semibold text-white/80"
                       >
                         {tag}
                       </span>
@@ -499,17 +499,17 @@ export default function DeveloperPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {PROCESS.map((s, i) => (
               <Reveal key={s.t} delay={i * 0.1}>
-                <div className="relative rounded-3xl bg-white border border-[#0b63d6]/12 p-7 h-full shadow-[0_22px_54px_-40px_rgba(16,42,90,0.6)]">
+                <div className="relative rounded-3xl bg-white border border-brand/12 p-7 h-full shadow-lift">
                   <span
                     className="inline-flex items-center justify-center w-11 h-11 rounded-2xl text-white font-display font-extrabold"
                     style={{ background: ["#0b63d6", "#22c1f0", "#ff2e93", "#d98b00"][i] }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 font-display font-extrabold text-xl text-[#0d1b32] tracking-[-0.02em]">
+                  <h3 className="mt-4 font-display font-extrabold text-xl text-navy tracking-[-0.02em]">
                     {s.t}
                   </h3>
-                  <p className="mt-2.5 text-[#5b6779] leading-[1.75] text-[0.95rem]">{s.d}</p>
+                  <p className="mt-2.5 text-ink-muted leading-[1.75] text-body-sm">{s.d}</p>
                 </div>
               </Reveal>
             ))}

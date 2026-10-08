@@ -25,7 +25,7 @@ export function TrackClient({ code, data }: { code: string; data: TrackData | nu
   if (!data || !state) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4 pt-24">
-        <div className="max-w-md w-full text-center glass rounded-[32px] p-12">
+        <div className="max-w-md w-full text-center glass rounded-panel p-12">
           <span className="inline-flex w-16 h-16 rounded-full bg-white/5 items-center justify-center text-magenta mb-6">
             <Icon name="pin" className="w-7 h-7" />
           </span>
@@ -87,7 +87,7 @@ export function TrackClient({ code, data }: { code: string; data: TrackData | nu
         <SectionHeading kicker={`${t.track.kicker} — ${code}`} title={t.track.title} />
 
         {/* timeline */}
-        <div className="glass rounded-[28px] p-8 md:p-12 mb-8">
+        <div className="glass rounded-card p-8 md:p-12 mb-8">
           <div className="relative mb-10">
             <div className="absolute top-[22px] inset-x-6 h-1 bg-white/10 rounded-full" aria-hidden />
             <motion.div
@@ -120,7 +120,7 @@ export function TrackClient({ code, data }: { code: string; data: TrackData | nu
                       )}
                     </span>
                     <span
-                      className={`text-[0.68rem] md:text-xs font-medium text-center leading-tight ${
+                      className={`text-micro md:text-xs font-medium text-center leading-tight ${
                         done || current ? "text-paper" : "text-muted"
                       }`}
                     >
@@ -161,7 +161,7 @@ export function TrackClient({ code, data }: { code: string; data: TrackData | nu
 
         {/* details */}
         <div className="grid md:grid-cols-2 gap-5">
-          <div className="glass rounded-[28px] p-8">
+          <div className="glass rounded-card p-8">
             <h3 className="font-display font-bold text-lg mb-5">{t.track.details}</h3>
             <ul className="space-y-3 text-sm">
               {[
@@ -183,7 +183,7 @@ export function TrackClient({ code, data }: { code: string; data: TrackData | nu
               </li>
             </ul>
           </div>
-          <div className="glass rounded-[28px] p-8 flex flex-col justify-between gap-6">
+          <div className="glass rounded-card p-8 flex flex-col justify-between gap-6">
             <div>
               <h3 className="font-display font-bold text-lg mb-2">
                 {delivered ? "✓" : ""}

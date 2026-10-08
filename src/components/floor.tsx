@@ -24,7 +24,7 @@ function MachineCard({ m, i }: { m: MachineState; i: number }) {
 
   return (
     <Reveal delay={i * 0.08}>
-      <div className="glass rounded-[28px] p-6 h-full relative overflow-hidden">
+      <div className="glass rounded-card p-6 h-full relative overflow-hidden">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="font-display font-bold text-lg leading-tight">{m.name}</p>
@@ -68,19 +68,19 @@ function MachineCard({ m, i }: { m: MachineState; i: number }) {
         <div className="mt-6 grid grid-cols-4 gap-3 text-center">
           <div>
             <p className="font-display font-extrabold text-xl tabular-nums">{m.speed.toLocaleString()}</p>
-            <p className="text-[0.68rem] text-muted mt-0.5">{t.floor.speed}</p>
+            <p className="text-micro text-muted mt-0.5">{t.floor.speed}</p>
           </div>
           <div>
             <p className="font-display font-extrabold text-xl tabular-nums">{m.ink}%</p>
-            <p className="text-[0.68rem] text-muted mt-0.5">{t.floor.ink}</p>
+            <p className="text-micro text-muted mt-0.5">{t.floor.ink}</p>
           </div>
           <div>
             <p className="font-display font-extrabold text-xl tabular-nums">{m.temp}°</p>
-            <p className="text-[0.68rem] text-muted mt-0.5">{t.floor.temp}</p>
+            <p className="text-micro text-muted mt-0.5">{t.floor.temp}</p>
           </div>
           <div>
             <p className="font-display font-extrabold text-xl tabular-nums">{m.uptime}%</p>
-            <p className="text-[0.68rem] text-muted mt-0.5">{t.floor.uptime}</p>
+            <p className="text-micro text-muted mt-0.5">{t.floor.uptime}</p>
           </div>
         </div>
 
@@ -205,7 +205,7 @@ export function FloorDashboard() {
           ))}
           {!snap &&
             [0, 1, 2].map((i) => (
-              <div key={i} className="glass rounded-[28px] p-6 animate-pulse">
+              <div key={i} className="glass rounded-card p-6 animate-pulse">
                 <div className="h-4 w-32 rounded bg-white/10" />
                 <div className="h-2.5 w-full rounded bg-white/5 mt-8" />
                 <div className="h-3 w-24 rounded bg-white/5 mt-6" />
@@ -215,7 +215,7 @@ export function FloorDashboard() {
 
         <div className="grid lg:grid-cols-2 gap-5">
           {/* queue */}
-          <div className="glass rounded-[28px] p-6">
+          <div className="glass rounded-card p-6">
             <h3 className="font-display font-bold text-lg mb-5 flex items-center gap-3">
               <Icon name="clock" className="w-5 h-5 text-cyan" />
               {t.floor.queue}
@@ -252,7 +252,7 @@ export function FloorDashboard() {
           </div>
 
           {/* gateway */}
-          <div className="glass rounded-[28px] p-6">
+          <div className="glass rounded-card p-6">
             <h3 className="font-display font-bold text-lg mb-2 flex items-center gap-3">
               <Icon name="zap" className="w-5 h-5 text-cyan" />
               {t.floor.gateway}

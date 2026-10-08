@@ -32,7 +32,7 @@ export default function LegalPage() {
             <Reveal key={i} delay={i * 0.08}>
               <section className="glass rounded-3xl p-8">
                 <h3 className="font-display font-bold text-xl mb-3">{s.h}</h3>
-                <p className="text-muted leading-relaxed text-[0.95rem]">{s.b}</p>
+                <p className="text-muted leading-relaxed text-body-sm">{s.b}</p>
               </section>
             </Reveal>
           ))}

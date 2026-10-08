@@ -154,14 +154,14 @@ export default function AdminPage() {
         </Reveal>
 
         {user?.role !== "admin" ? (
-          <div className="mx-auto max-w-md rounded-[28px] bg-white border border-[#0b63d6]/12 p-10 text-center shadow-[0_30px_70px_-46px_rgba(16,42,90,0.6)]">
+          <div className="mx-auto max-w-md rounded-card bg-white border border-brand/12 p-10 text-center shadow-[0_30px_70px_-46px_rgba(16,42,90,0.6)]">
             <span className="mx-auto flex w-14 h-14 rounded-full aurora-bg items-center justify-center text-white">
               <Icon name="shield" className="w-6 h-6" />
             </span>
-            <h2 className="mt-5 font-display font-extrabold text-2xl text-[#0d1b32]">
+            <h2 className="mt-5 font-display font-extrabold text-2xl text-navy">
               SA ID — Control Room
             </h2>
-            <p className="mt-2 text-[#5b6779] text-sm">
+            <p className="mt-2 text-ink-muted text-sm">
               Enter the administrator access code to open the CMS.
             </p>
 
@@ -180,28 +180,28 @@ export default function AdminPage() {
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="••••••••"
                 aria-label="Administrator access code"
-                className="w-full rounded-2xl border border-[#0b63d6]/18 px-5 py-4 text-center text-xl tracking-[0.5em] font-mono focus:border-[#0b63d6] focus:outline-none focus:ring-2 focus:ring-[#0b63d6]/15"
+                className="w-full rounded-2xl border border-brand/18 px-5 py-4 text-center text-xl tracking-[0.5em] font-mono focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15"
               />
-              {codeErr && <p className="text-sm text-[#e11d48]">{codeErr}</p>}
+              {codeErr && <p className="text-sm text-danger">{codeErr}</p>}
               <Button type="submit" magnetic size="lg" className="w-full" disabled={codeBusy}>
                 {codeBusy ? "Checking…" : "Unlock"}
                 {!codeBusy && <Icon name="arrow" className="w-5 h-5 rtl-flip" />}
               </Button>
             </form>
 
-            <div className="mt-6 flex items-center gap-3 text-[0.72rem] text-[#98a2b3]">
-              <span className="flex-1 h-px bg-[#0b63d6]/12" />
+            <div className="mt-6 flex items-center gap-3 text-caption text-ink-faint">
+              <span className="flex-1 h-px bg-brand/12" />
               SA ID · Web Developer
-              <span className="flex-1 h-px bg-[#0b63d6]/12" />
+              <span className="flex-1 h-px bg-brand/12" />
             </div>
             <button
               onClick={() => openAuth("login")}
-              className="mt-4 text-xs text-[#0b63d6] hover:underline cursor-pointer"
+              className="mt-4 text-xs text-brand hover:underline cursor-pointer"
             >
               or sign in with a customer account
             </button>
-            <p className="mt-3 text-[0.72rem] text-[#98a2b3]">
-              Access code: <span className="font-mono tracking-widest text-[#5b6779]">SAID2002</span>
+            <p className="mt-3 text-caption text-ink-faint">
+              Access code: <span className="font-mono tracking-widest text-ink-muted">SAID2002</span>
             </p>
           </div>
         ) : (
@@ -212,8 +212,8 @@ export default function AdminPage() {
                   <Icon name="shield" className="w-5 h-5" />
                 </span>
                 <div>
-                  <p className="font-display font-bold text-[#0d1b32] leading-tight">BAOUCOUS</p>
-                  <p className="text-xs text-[#98a2b3]">Administrator</p>
+                  <p className="font-display font-bold text-navy leading-tight">BAOUCOUS</p>
+                  <p className="text-xs text-ink-faint">Administrator</p>
                 </div>
               </div>
               <button
@@ -222,7 +222,7 @@ export default function AdminPage() {
                   await fetch("/api/auth/logout", { method: "POST" }).catch(() => undefined);
                   window.location.reload();
                 }}
-                className="rounded-full border border-[#e11d48]/25 px-4 py-2 text-xs font-semibold text-[#e11d48] hover:bg-[#e11d48] hover:text-white transition cursor-pointer"
+                className="rounded-full border border-danger/25 px-4 py-2 text-xs font-semibold text-danger hover:bg-danger hover:text-white transition cursor-pointer"
               >
                 Lock control room
               </button>
@@ -236,9 +236,9 @@ export default function AdminPage() {
                 { v: formatMAD(stats.advances, lang), l: t.studio.sAdvances },
                 { v: stats.members, l: t.studio.sMembers },
               ].map((s, i) => (
-                <div key={i} className="rounded-3xl bg-white border border-[#0b63d6]/12 p-5 shadow-[0_22px_54px_-40px_rgba(16,42,90,0.6)]">
+                <div key={i} className="rounded-3xl bg-white border border-brand/12 p-5 shadow-lift">
                   <p className="font-display font-extrabold text-2xl aurora-text tabular-nums truncate">{s.v}</p>
-                  <p className="text-xs text-[#98a2b3] mt-1.5">{s.l}</p>
+                  <p className="text-xs text-ink-faint mt-1.5">{s.l}</p>
                 </div>
               ))}
             </div>
@@ -252,7 +252,7 @@ export default function AdminPage() {
                   className={`rounded-full px-5 py-2.5 text-sm font-semibold border transition-all cursor-pointer ${
                     tab === x
                       ? "aurora-bg text-white border-transparent"
-                      : "bg-white text-[#5b6779] border-[#0b63d6]/15 hover:border-[#0b63d6]/45"
+                      : "bg-white text-ink-muted border-brand/15 hover:border-brand/45"
                   }`}
                   aria-pressed={tab === x}
                 >
@@ -264,7 +264,7 @@ export default function AdminPage() {
             {/* HERO & MEDIA */}
             {tab === "Hero & Media" && (
               <div className="mt-7 grid lg:grid-cols-[1fr_1.2fr] gap-6">
-                <div className="rounded-[26px] bg-white border border-[#0b63d6]/12 p-6">
+                <div className="rounded-tile bg-white border border-brand/12 p-6">
                   <h3 className="font-display font-bold text-lg">Add / update image</h3>
                   <div className="mt-4 space-y-3">
                     <input className={inputCls} placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
@@ -280,11 +280,11 @@ export default function AdminPage() {
                     </div>
                     <div className="flex flex-wrap gap-4">
                       <label className="flex items-center gap-2 text-sm cursor-pointer">
-                        <input type="checkbox" className="w-4 h-4 accent-[#0b63d6]" checked={form.featured} onChange={(e) => setForm({ ...form, featured: e.target.checked })} />
+                        <input type="checkbox" className="w-4 h-4 accent-brand" checked={form.featured} onChange={(e) => setForm({ ...form, featured: e.target.checked })} />
                         Featured
                       </label>
                       <label className="flex items-center gap-2 text-sm cursor-pointer">
-                        <input type="checkbox" className="w-4 h-4 accent-[#0b63d6]" checked={form.enabled} onChange={(e) => setForm({ ...form, enabled: e.target.checked })} />
+                        <input type="checkbox" className="w-4 h-4 accent-brand" checked={form.enabled} onChange={(e) => setForm({ ...form, enabled: e.target.checked })} />
                         Enabled
                       </label>
                     </div>
@@ -292,33 +292,33 @@ export default function AdminPage() {
                       <Icon name="check" className="w-4 h-4" /> Save to site
                     </Button>
                     {!isAdmin && (
-                      <p className="text-xs text-[#d98b00]">
+                      <p className="text-xs text-warning">
                         You are signed in but not an administrator — saving will be rejected server-side.
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div className="rounded-[26px] bg-white border border-[#0b63d6]/12 p-6">
+                <div className="rounded-tile bg-white border border-brand/12 p-6">
                   <h3 className="font-display font-bold text-lg">Live media ({media.length})</h3>
                   {media.length === 0 ? (
-                    <p className="mt-4 text-sm text-[#98a2b3]">
+                    <p className="mt-4 text-sm text-ink-faint">
                       No CMS media yet. The hero falls back to the built-in VEROLA artwork until you add one.
                     </p>
                   ) : (
                     <ul className="mt-4 space-y-2.5">
                       {media.map((m) => (
-                        <li key={m.id} className="flex items-center gap-3 rounded-2xl border border-[#0b63d6]/10 p-3">
+                        <li key={m.id} className="flex items-center gap-3 rounded-2xl border border-brand/10 p-3">
                           <img src={m.url} alt="" className="w-14 h-14 rounded-xl object-cover" />
                           <div className="flex-1 min-w-0">
                             <p className="font-semibold text-sm truncate">{m.title}</p>
-                            <p className="text-xs text-[#98a2b3] truncate">
+                            <p className="text-xs text-ink-faint truncate">
                               {m.category} · #{m.position} {m.featured && "· featured"} {!m.enabled && "· hidden"}
                             </p>
                           </div>
                           <button
                             onClick={() => void removeMedia(m.id)}
-                            className="w-8 h-8 rounded-full border border-[#e11d48]/25 text-[#e11d48] flex items-center justify-center hover:bg-[#e11d48] hover:text-white transition cursor-pointer"
+                            className="w-8 h-8 rounded-full border border-danger/25 text-danger flex items-center justify-center hover:bg-danger hover:text-white transition cursor-pointer"
                             aria-label="Delete"
                           >
                             <Icon name="x" className="w-4 h-4" />
@@ -333,7 +333,7 @@ export default function AdminPage() {
 
             {/* ORDERS */}
             {tab === "Orders" && (
-              <div className="mt-7 rounded-[26px] bg-white border border-[#0b63d6]/12 p-6">
+              <div className="mt-7 rounded-tile bg-white border border-brand/12 p-6">
                 <div className="flex flex-wrap items-center gap-3">
                   <input
                     className={`${inputCls} max-w-xs`}
@@ -344,40 +344,40 @@ export default function AdminPage() {
                   <Badge>{filtered.length} results</Badge>
                 </div>
                 {filtered.length === 0 ? (
-                  <p className="mt-6 text-sm text-[#98a2b3] text-center py-10">{t.studio.empty}</p>
+                  <p className="mt-6 text-sm text-ink-faint text-center py-10">{t.studio.empty}</p>
                 ) : (
                   <ul className="mt-5 space-y-3">
                     {filtered.map((o) => (
-                      <li key={o.code} className="rounded-2xl border border-[#0b63d6]/10 p-4">
+                      <li key={o.code} className="rounded-2xl border border-brand/10 p-4">
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                           <span className="font-display font-bold aurora-text tracking-widest" dir="ltr">#{o.code}</span>
-                          {o.job && <span className="font-mono text-xs text-[#0b63d6]">{o.job}</span>}
-                          <span className="text-sm text-[#33445e]">
+                          {o.job && <span className="font-mono text-xs text-brand">{o.job}</span>}
+                          <span className="text-sm text-ink-subtle">
                             {CATALOG.find((c) => c.id === o.product) ? L(CATALOG.find((c) => c.id === o.product)!.name) : o.product} · {o.quantity.toLocaleString()}
                           </span>
                           <span className="ms-auto font-display font-bold tabular-nums">{formatMAD(o.total, lang)}</span>
                         </div>
-                        <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#5b6779]">
+                        <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-muted">
                           <span>{o.name}</span>
                           <span dir="ltr">{o.phone}</span>
                           {o.city && <span>{o.city}</span>}
                           <span>{o.payment}</span>
                           {o.advanceAmount > 0 && (
-                            <span className="text-[#0b63d6] font-semibold">advance {formatMAD(o.advanceAmount, lang)}</span>
+                            <span className="text-brand font-semibold">advance {formatMAD(o.advanceAmount, lang)}</span>
                           )}
-                          <a href={`/track/${o.code}`} className="text-[#0b63d6] font-semibold hover:underline ms-auto">
+                          <a href={`/track/${o.code}`} className="text-brand font-semibold hover:underline ms-auto">
                             Track →
                           </a>
                           <a
                             href={`https://wa.me/${o.phone.replace(/[^0-9]/g, "")}`}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-[#25D366] font-semibold hover:underline"
+                            className="text-whatsapp font-semibold hover:underline"
                           >
                             WhatsApp
                           </a>
                         </div>
-                        {o.note && <p className="mt-2 text-xs text-[#5b6779] italic">“{o.note}”</p>}
+                        {o.note && <p className="mt-2 text-xs text-ink-muted italic">“{o.note}”</p>}
                       </li>
                     ))}
                   </ul>
@@ -387,9 +387,9 @@ export default function AdminPage() {
 
             {/* NOTIFICATIONS */}
             {tab === "Notifications" && (
-              <div className="mt-7 rounded-[26px] bg-white border border-[#0b63d6]/12 p-6 max-w-2xl">
+              <div className="mt-7 rounded-tile bg-white border border-brand/12 p-6 max-w-2xl">
                 <h3 className="font-display font-bold text-lg">Broadcast a notification</h3>
-                <p className="mt-1.5 text-sm text-[#5b6779]">
+                <p className="mt-1.5 text-sm text-ink-muted">
                   It lands instantly in the navbar bell for signed-in customers.
                 </p>
                 <div className="mt-4 space-y-3">
@@ -413,9 +413,9 @@ export default function AdminPage() {
 
             {/* DEVELOPER */}
             {tab === "Developer" && (
-              <div className="mt-7 rounded-[26px] bg-white border border-[#0b63d6]/12 p-8 max-w-2xl">
+              <div className="mt-7 rounded-tile bg-white border border-brand/12 p-8 max-w-2xl">
                 <h3 className="font-display font-bold text-lg">Developer page — BAOUCOUS</h3>
-                <p className="mt-2 text-sm text-[#5b6779] leading-relaxed">
+                <p className="mt-2 text-sm text-ink-muted leading-relaxed">
                   Name, role, about, photo and contact links (WhatsApp · Instagram · Gmail) are stored in the
                   database and editable directly on the developer page when signed in as an administrator.
                   Nothing is hardcoded — change the identity any time.

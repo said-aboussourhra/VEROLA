@@ -91,7 +91,7 @@ export function Hero() {
       </div>
 
       <div className="absolute bottom-6 inset-x-0 flex justify-center" aria-hidden>
-        <div className="flex flex-col items-center gap-2 text-muted text-[0.8125rem] tracking-[0.25em] uppercase">
+        <div className="flex flex-col items-center gap-2 text-muted text-small tracking-[0.25em] uppercase">
           {t.hero.scroll}
           <div className="w-px h-8 bg-gradient-to-b from-cyan to-transparent animate-pulse" />
         </div>
@@ -328,7 +328,7 @@ export function ConfigTeaser() {
   return (
     <section className="py-[clamp(96px,12vw,180px)]">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="relative rounded-[32px] border border-white/10 overflow-hidden bg-ink-2">
+        <div className="relative rounded-panel border border-white/10 overflow-hidden bg-ink-2">
           <div className="absolute inset-0 aurora-bg opacity-[0.07]" aria-hidden />
           <div className="relative grid lg:grid-cols-2 gap-10 p-8 md:p-14">
             <div>
@@ -419,17 +419,17 @@ export function DesignsTeaser() {
             <div className="max-w-2xl">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-9 h-[3px] rounded-full aurora-bg" />
-                <span className="text-[#0b63d6] text-xs font-bold tracking-[0.28em] uppercase">
+                <span className="text-brand text-xs font-bold tracking-[0.28em] uppercase">
                   {t.designs.kicker}
                 </span>
               </div>
-              <h2 className="font-display font-extrabold leading-[1.03] tracking-[-0.03em] text-[#0d1b32] text-[clamp(2.15rem,5vw,4.15rem)] uppercase">
+              <h2 className="font-display font-extrabold leading-[1.03] tracking-[-0.03em] text-navy text-[clamp(2.15rem,5vw,4.15rem)] uppercase">
                 {t.designs.title}
               </h2>
             </div>
             <Link
               href="/designs"
-              className="inline-flex items-center gap-2 rounded-full border border-[#0b63d6]/25 px-5 py-2.5 text-sm font-semibold text-[#0b63d6] hover:bg-[#0b63d6] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-brand/25 px-5 py-2.5 text-sm font-semibold text-brand hover:bg-brand hover:text-white transition-colors"
             >
               /designs
               <Icon name="arrow" className="w-4 h-4 rtl-flip" />
@@ -441,7 +441,7 @@ export function DesignsTeaser() {
             <Reveal key={d.slug} delay={i * 0.08}>
               <Link
                 href="/designs"
-                className="group block rounded-[26px] overflow-hidden bg-white border border-[#0b63d6]/12 shadow-[0_26px_62px_-40px_rgba(16,42,90,0.65)] hover:shadow-[0_40px_84px_-34px_rgba(11,99,214,0.7)] hover:-translate-y-1.5 transition-all duration-500"
+                className="group block rounded-tile overflow-hidden bg-white border border-brand/12 shadow-[0_26px_62px_-40px_rgba(16,42,90,0.65)] hover:shadow-[0_40px_84px_-34px_rgba(11,99,214,0.7)] hover:-translate-y-1.5 transition-all duration-500"
               >
                 <div className="relative h-52 overflow-hidden" style={{ background: "linear-gradient(160deg,#f2f7fd,#e6eef9)" }}>
                   <img
@@ -452,17 +452,17 @@ export function DesignsTeaser() {
                   />
                   <div className="absolute top-4 start-4">
                     {d.access === "free" ? (
-                      <Badge className="!bg-white/85 !text-[#0b4fb0] !border-white/60">{t.designs.free}</Badge>
+                      <Badge className="!bg-white/85 !text-brand-deep !border-white/60">{t.designs.free}</Badge>
                     ) : (
                       <Badge gold>{t.designs.member}</Badge>
                     )}
                   </div>
                 </div>
                 <div className="p-5 flex items-center justify-between gap-3">
-                  <h3 className="font-display font-bold text-[#0d1b32] group-hover:text-[#0b63d6] transition-colors">
+                  <h3 className="font-display font-bold text-navy group-hover:text-brand transition-colors">
                     {L(d.title)}
                   </h3>
-                  <span className="w-9 h-9 rounded-full border border-[#0b63d6]/25 flex items-center justify-center text-[#0b63d6] transition-all duration-500 group-hover:bg-[#0b63d6] group-hover:text-white">
+                  <span className="w-9 h-9 rounded-full border border-brand/25 flex items-center justify-center text-brand transition-all duration-500 group-hover:bg-brand group-hover:text-white">
                     <Icon name="download" className="w-4 h-4" />
                   </span>
                 </div>
@@ -640,7 +640,7 @@ function QuoteCard({ q, name, role, city }: { q: string; name: string; role: str
           <Icon key={i} name="sparkle" className="w-3.5 h-3.5 text-cyan" fill />
         ))}
       </div>
-      <blockquote className="text-paper/85 leading-relaxed text-[0.95rem]">{q}</blockquote>
+      <blockquote className="text-paper/85 leading-relaxed text-body-sm">{q}</blockquote>
       <figcaption className="mt-5 flex items-center gap-3">
         <span className="w-9 h-9 rounded-full aurora-bg flex items-center justify-center font-display font-bold text-ink text-sm">
           {name[0]}

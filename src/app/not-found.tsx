@@ -23,11 +23,11 @@ export default function NotFound() {
           404
         </p>
 
-        <h1 className="mt-2 font-display font-bold text-2xl md:text-3xl text-[#0d1b32]">
+        <h1 className="mt-2 font-display font-bold text-2xl md:text-3xl text-navy">
           هذه الصفحة خرجت من الطباعة.
         </h1>
-        <p className="mt-2 text-[#5b6779]">Cette page n&apos;est pas encore imprimée.</p>
-        <p className="mt-1 text-sm text-[#98a2b3]">
+        <p className="mt-2 text-ink-muted">Cette page n&apos;est pas encore imprimée.</p>
+        <p className="mt-1 text-sm text-ink-faint">
           This page is not printed yet.
         </p>
 
@@ -43,7 +43,7 @@ export default function NotFound() {
           </a>
           <a
             href="/customize"
-            className="inline-flex items-center gap-2 rounded-full border border-[#0b63d6]/25 px-7 py-3.5 font-semibold text-[#0b63d6] hover:border-[#0b63d6] transition"
+            className="inline-flex items-center gap-2 rounded-full border border-brand/25 px-7 py-3.5 font-semibold text-brand hover:border-brand transition"
           >
             Print customizer
           </a>

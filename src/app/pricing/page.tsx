@@ -63,7 +63,7 @@ function TierCalc() {
   const tier = tierFor(q);
 
   return (
-    <div className="glass rounded-[28px] p-6 md:p-10">
+    <div className="glass rounded-card p-6 md:p-10">
       <div className="flex flex-wrap gap-2 mb-8">
         {CATALOG.map((c) => (
           <button
@@ -141,7 +141,7 @@ function TierCalc() {
               </>
             )}
           </svg>
-          <div className="flex justify-between text-[0.68rem] text-muted mt-2" dir="ltr">
+          <div className="flex justify-between text-micro text-muted mt-2" dir="ltr">
             <span>1</span>
             <span>500</span>
             <span>1k</span>
@@ -170,7 +170,7 @@ export default function PricingPage() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-10 glass rounded-[28px] overflow-hidden">
+          <div className="mt-10 glass rounded-card overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[640px] text-sm">
                 <thead>

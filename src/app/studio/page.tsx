@@ -80,7 +80,7 @@ export default function StudioPage() {
         {!data ? (
           <div className="glass rounded-3xl p-10 animate-pulse text-center text-muted">…</div>
         ) : data.orders.length === 0 ? (
-          <div className="glass rounded-[28px] p-12 text-center text-muted">{t.studio.empty}</div>
+          <div className="glass rounded-card p-12 text-center text-muted">{t.studio.empty}</div>
         ) : (
           <div className="space-y-4">
             {data.orders.map((o, i) => {
@@ -109,7 +109,7 @@ export default function StudioPage() {
                         })}
                       </span>
                       <span className="ms-auto text-end">
-                        <span className="block text-[0.68rem] text-muted">{t.studio.total}</span>
+                        <span className="block text-micro text-muted">{t.studio.total}</span>
                         <span className="font-display font-bold tabular-nums">{formatMAD(o.total, lang)}</span>
                       </span>
                     </div>

@@ -91,7 +91,7 @@ export function BrandLogo({
 export function BrandPreview({ brand }: { brand: Brand }) {
   return (
     <div
-      className="rounded-3xl overflow-hidden border border-[#0b63d6]/12"
+      className="rounded-3xl overflow-hidden border border-brand/12"
       style={{
         background: `linear-gradient(135deg, ${brand.brand1} 0%, ${brand.brand2} 52%, ${brand.brand3} 100%)`,
       }}
