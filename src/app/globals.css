@@ -592,3 +592,8 @@ html[data-theme="light"] .glass {
 [dir="rtl"] .drawer-panel {
   animation: drawer-in-rtl 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* intro plays once per browser session */
+html[data-intro-seen] .verola-intro {
+  display: none !important;
+}

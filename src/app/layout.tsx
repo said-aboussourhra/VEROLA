@@ -67,7 +67,7 @@ export default async function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: shopCss() }} />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("verola-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("verola-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}try{if(sessionStorage.getItem(\"verola-intro-seen\"))document.documentElement.dataset.introSeen=\"1\"}catch(e){}})();`,
           }}
         />
       </head>
