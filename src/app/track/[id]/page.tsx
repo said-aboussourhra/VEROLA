@@ -3,7 +3,7 @@ import { orders } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { TrackClient } from "@/components/track";
 
-export const metadata = { title: "Track your order — VÉLORA" };
+export const metadata = { title: "Track your order — VEROLA" };
 
 export interface TrackData {
   id: number;

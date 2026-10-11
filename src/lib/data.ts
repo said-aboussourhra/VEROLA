@@ -50,8 +50,8 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     q: {
-      en: "The holographic stickers on our water bottles sell out before they land. Vélora's foil line is a cheat code.",
-      fr: "Nos stickers holographiques se vendent avant même d'arriver au magasin. Le foil de Vélora, c'est une triche autorisée.",
+      en: "The holographic stickers on our water bottles sell out before they land. VEROLA's foil line is a cheat code.",
+      fr: "Nos stickers holographiques se vendent avant même d'arriver au magasin. Le foil de VEROLA, c'est une triche autorisée.",
       ar: "ملصقاتنا الهولوغرافية تنفد قبل وصولها للمتجر. خط الفويل عندهم سلاح سري.",
     },
     name: "Mehdi A.",
@@ -116,7 +116,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     ratio: "aspect-square",
     cat: "editorial",
     title: { en: "Ink Study 07 — CMYK macro", fr: "Étude d'encre 07 — macro CMJN", ar: "دراسة حبر 07 — التقاط مقرب" },
-    client: "VÉLORA Lab",
+    client: "VEROLA Lab",
     year: "2025",
   },
   {
@@ -202,4 +202,4 @@ export const NUMBERS = [
 
 export const WHATSAPP_URL =
   "https://wa.me/212661000000?text=" +
-  encodeURIComponent("Hello VÉLORA — I want to talk about a print job.");
+  encodeURIComponent("Hello VEROLA — I want to talk about a print job.");

@@ -231,7 +231,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: "VÉLORA cart order",
+            name: "VEROLA cart order",
             phone: "+212661000000",
             city: "Casablanca",
             address: "Cart checkout",
@@ -556,7 +556,7 @@ export function Footer() {
 
       <div className="border-t border-white/8">
         <div className="mx-auto max-w-7xl px-4 md:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted">
-          <span>© {new Date().getFullYear()} VÉLORA. {t.footer.rights}</span>
+          <span>© {new Date().getFullYear()} VEROLA. {t.footer.rights}</span>
           <span className="flex items-center gap-2">
             <Icon name="droplet" className="w-3.5 h-3.5 text-violet" />
             {t.footer.made} —{" "}

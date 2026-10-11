@@ -24,7 +24,7 @@ export default function LegalPage() {
     <div className="pt-32 pb-24 min-h-screen">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
         <SectionHeading
-          kicker="VÉLORA"
+          kicker="VEROLA"
           title={lang === "ar" ? "الشروط والخصوصية" : lang === "fr" ? "Mentions légales" : "Legal"}
         />
         <div className="space-y-8">
@@ -38,7 +38,7 @@ export default function LegalPage() {
           ))}
         </div>
         <p className="mt-12 text-sm text-muted">
-          VÉLORA SARL — Derb Ghallef 21, Casablanca · hello@velora.ma · {t.footer.rights}
+          VEROLA SARL — Derb Ghallef 21, Casablanca · hello@velora.ma · {t.footer.rights}
         </p>
       </div>
     </div>

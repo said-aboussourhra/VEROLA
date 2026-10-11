@@ -1,7 +1,7 @@
 /* ============================================================
    Single-shop configuration.
 
-   VÉLORA is one printing shop. Everything shop-specific (name,
+   VEROLA is one printing shop. Everything shop-specific (name,
    contact, address, colours, currency) lives here so it can be
    changed in one place.
    ============================================================ */
@@ -29,9 +29,9 @@ export interface Shop {
 }
 
 export const SHOP: Shop = {
-  name: "VÉLORA",
+  name: "VEROLA",
   tagline: "Print the Unimaginable",
-  legalName: "VÉLORA SARL",
+  legalName: "VEROLA SARL",
   address: "Derb Ghallef 21, Casablanca",
   city: "Casablanca",
   country: "MA",

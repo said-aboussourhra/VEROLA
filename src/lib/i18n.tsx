@@ -259,7 +259,7 @@ const en = {
   about: {
     kicker: "About the studio",
     title: "SIX ROOMS, FOUR PRESS ROLLS, ONE STANDARD",
-    p1: "VÉLORA started in 2019 with a used HP Indigo in a garage in Derb Ghallef and one rule: treat every file like it's going on a museum wall. The garage became a studio. The rule didn't change.",
+    p1: "VEROLA started in 2019 with a used HP Indigo in a garage in Derb Ghallef and one rule: treat every file like it's going on a museum wall. The garage became a studio. The rule didn't change.",
     p2: "Today we run four presses, a finishing room with foil, emboss and die-cut lines, and a design bench that takes free preflight for everyone — clients included, even when they're not printing with us.",
     p3: "Soy-based inks. FSC-certified paper only. 60% solar power on the roof. The planet is a long-term customer, so we print for it accordingly.",
     machines: [
@@ -295,7 +295,7 @@ const en = {
     unlocking: "Sending…",
     unlocked: "You're in. Every premium design is unlocked on this device.",
     downloads: "downloads",
-    by: "VÉLORA bench",
+    by: "VEROLA bench",
     featured: "Studio pick",
     svgNote: "Vector file — prints crisp at any size.",
   },
@@ -677,7 +677,7 @@ const fr: typeof en = {
   about: {
     kicker: "Le studio",
     title: "SIX PIÈCES, QUATRE PRESSES, UNE EXIGENCE",
-    p1: "VÉLORA commence en 2019 avec une HP Indigo d'occasion dans un garage à Derb Ghallef et une règle : traiter chaque fichier comme s'il allait sur un mur de musée. Le garage est devenu un studio. La règle, elle, n'a pas bougé.",
+    p1: "VEROLA commence en 2019 avec une HP Indigo d'occasion dans un garage à Derb Ghallef et une règle : traiter chaque fichier comme s'il allait sur un mur de musée. Le garage est devenu un studio. La règle, elle, n'a pas bougé.",
     p2: "Aujourd'hui nous tournons quatre presses, une salle de finition avec lignes de foil, d'embossage et de découpe, et un banc de design qui fait gratuitement le preflight de tout le monde — clients compris, même quand ils n'impriment pas chez nous.",
     p3: "Encres végétales. Papiers 100 % FSC. 60 % de solaire sur le toit. La planète est une cliente de long terme, on imprime pour elle en conséquence.",
     machines: [
@@ -713,7 +713,7 @@ const fr: typeof en = {
     unlocking: "Envoi…",
     unlocked: "Vous êtes dedans. Tous les designs premium sont débloqués sur cet appareil.",
     downloads: "téléchargements",
-    by: "Atelier VÉLORA",
+    by: "Atelier VEROLA",
     featured: "Choix du studio",
     svgNote: "Fichier vectoriel — net à toutes les tailles.",
   },
@@ -1095,7 +1095,7 @@ const ar: typeof en = {
   about: {
     kicker: "عن الاستوديو",
     title: "ست غرف، أربعة مكابس، معيار واحد",
-    p1: "بدأت VÉLORA في 2019 بمكبس HP Indigo مستعمل في كراج بدرب غلف، وقاعدة واحدة: عامل كل ملف كأنه سيُعلَّق في متحف. الكراج صار استوديو. والقاعدة لم تتغيّر.",
+    p1: "بدأت VEROLA في 2019 بمكبس HP Indigo مستعمل في كراج بدرب غلف، وقاعدة واحدة: عامل كل ملف كأنه سيُعلَّق في متحف. الكراج صار استوديو. والقاعدة لم تتغيّر.",
     p2: "اليوم نشغّل أربعة مكابس، وغرفة تشطيب بخطوط فويل ونقش وقصّ، وطاولة تصميم تفحص ملفات الجميع مجاناً — حتى من لا يطبعون معنا.",
     p3: "حبر صويا. ورق FSC حصراً. 60% طاقة شمسية على السطح. الكوكب عميل طويل الأمد، فنطبع له على هذا الأساس.",
     machines: [
@@ -1131,7 +1131,7 @@ const ar: typeof en = {
     unlocking: "جارٍ الإرسال…",
     unlocked: "أنت بيننا. كل التصاميم المميّزة مفتوحة على هذا الجهاز.",
     downloads: "تحميل",
-    by: "طاولتنا في VÉLORA",
+    by: "طاولتنا في VEROLA",
     featured: "اختيار الاستوديو",
     svgNote: "ملف متجهي — حاد بأي مقاس.",
   },

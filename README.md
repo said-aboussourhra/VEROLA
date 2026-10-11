@@ -1,6 +1,6 @@
 # VEROLA — Print what you imagine
 
-The online storefront and production platform for **VÉLORA**, a single printing shop in Casablanca: a real browser design canvas,
+The online storefront and production platform for **VEROLA**, a single printing shop in Casablanca: a real browser design canvas,
 a branded catalogue with a live pricing engine, a live press floor and a complete order pipeline.
 
 Built by **Said — Web Developer & Digital Creator**.

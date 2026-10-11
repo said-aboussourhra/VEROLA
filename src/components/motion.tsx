@@ -445,7 +445,7 @@ export function PressLoader() {
   const content = (
     <div className="absolute inset-x-0 top-0 h-1/2 flex flex-col items-center justify-end pb-16" dir={dir}>
       <div className="font-display font-extrabold text-3xl md:text-5xl tracking-[-0.02em] text-paper">
-        VÉLORA
+        VEROLA
       </div>
       <div className="mt-2 text-small tracking-[0.3em] text-muted">{t.loader.studio}</div>
       <div className="mt-10 w-full max-w-md px-6 space-y-4" dir="ltr">

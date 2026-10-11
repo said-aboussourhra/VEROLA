@@ -56,7 +56,7 @@ ${halftone(430, 60, 8, 10, 16, 3.4, 5, "#00F0FF", 1)}
 <text x="52" y="640" font-family="${SYNE}" font-weight="800" font-size="104" fill="url(#ap)">AURORA</text>
 <text x="54" y="690" font-family="${INTER}" font-size="17" letter-spacing="9" fill="#F7F5F0" opacity="0.85">PRINT THE UNIMAGINABLE</text>
 <line x1="52" y1="800" x2="568" y2="800" stroke="#F7F5F0" stroke-opacity="0.2"/>
-<text x="52" y="830" font-family="${INTER}" font-size="12" letter-spacing="3" fill="#8A8A99">VELORA PRINT STUDIO</text>
+<text x="52" y="830" font-family="${INTER}" font-size="12" letter-spacing="3" fill="#8A8A99">VEROLA PRINT STUDIO</text>
 <text x="568" y="830" text-anchor="end" font-family="${INTER}" font-size="12" letter-spacing="3" fill="#8A8A99">620 × 877 MM — A3+</text>
 ${[...Array(14)].map((_, i) => `<rect x="${480 + i * 8}" y="794" width="${i % 3 === 0 ? 4 : 2}" height="10" fill="#F7F5F0" opacity="0.5"/>`).join("")}`),
   },
@@ -110,7 +110,7 @@ ${[...Array(6)].map((_, i) => `<circle cx="${940}" cy="${90 + i * 22}" r="4" fil
 <text x="310" y="562" text-anchor="middle" font-family="${INTER}" font-size="14" letter-spacing="3" fill="#8A8A99">GRAND RIAD — CASABLANCA</text>
 <circle cx="310" cy="680" r="34" fill="none" stroke="url(#gc)" stroke-width="1.4"/>
 <text x="310" y="688" text-anchor="middle" font-family="${SYNE}" font-weight="800" font-size="24" fill="url(#gc)">V</text>
-<text x="310" y="800" text-anchor="middle" font-family="${INTER}" font-size="11" letter-spacing="5" fill="#8A8A99">VELORA · SOFT-TOUCH 350G · GOLD FOIL</text>`),
+<text x="310" y="800" text-anchor="middle" font-family="${INTER}" font-size="11" letter-spacing="5" fill="#8A8A99">VEROLA · SOFT-TOUCH 350G · GOLD FOIL</text>`),
   },
   {
     slug: "halftone-cover",
@@ -131,7 +131,7 @@ ${halftone(40, 40, 14, 12, 40, 12, 14, "#0A0A0F", 1)}
 <text x="478" y="750" font-family="${INTER}" font-size="12" letter-spacing="2" fill="#F7F5F0">A PAPER</text>
 <text x="478" y="768" font-family="${INTER}" font-size="12" letter-spacing="2" fill="#F7F5F0">STUDY</text>
 <line x1="40" y1="820" x2="580" y2="820" stroke="#0A0A0F" stroke-width="2"/>
-<text x="40" y="848" font-family="${INTER}" font-size="12" letter-spacing="3" fill="#5C5C68">VELORA — 4-COLOR OFFSET + FOIL</text>
+<text x="40" y="848" font-family="${INTER}" font-size="12" letter-spacing="3" fill="#5C5C68">VEROLA — 4-COLOR OFFSET + FOIL</text>
 <text x="580" y="848" text-anchor="end" font-family="${INTER}" font-size="12" letter-spacing="3" fill="#5C5C68">2025</text>`),
   },
   {
@@ -153,7 +153,7 @@ ${halftone(40, 40, 14, 12, 40, 12, 14, "#0A0A0F", 1)}
 <text x="70" y="330" font-family="${SYNE}" font-weight="800" font-size="120" fill="none" stroke="#00F0FF" stroke-width="2">WAVE</text>
 <text x="74" y="390" font-family="${INTER}" font-size="17" letter-spacing="8" fill="#F7F5F0" opacity="0.8">SUMMER FESTIVAL — CASABLANCA 2026</text>
 <rect x="74" y="556" width="210" height="2" fill="#00F0FF"/>
-<text x="74" y="584" font-family="${INTER}" font-size="13" letter-spacing="3" fill="#8A8A99">VELORA · 120×200 CM · PP 440G</text>`),
+<text x="74" y="584" font-family="${INTER}" font-size="13" letter-spacing="3" fill="#8A8A99">VEROLA · 120×200 CM · PP 440G</text>`),
   },
   {
     slug: "mono-grid",
@@ -176,7 +176,7 @@ ${halftone(40, 40, 14, 12, 40, 12, 14, "#0A0A0F", 1)}
 <rect x="46" y="700" width="170" height="90" fill="#0A0A0F"/>
 <text x="62" y="738" font-family="${INTER}" font-size="12" letter-spacing="2" fill="#F7F5F0">EXHIBITION</text>
 <text x="62" y="762" font-family="${INTER}" font-size="12" letter-spacing="2" fill="#F7F5F0">FEB — APR 2026</text>
-<text x="46" y="840" font-family="${INTER}" font-size="11" letter-spacing="4" fill="#8A8A99">A5 · 135G · MATTE · VELORA</text>`);
+<text x="46" y="840" font-family="${INTER}" font-size="11" letter-spacing="4" fill="#8A8A99">A5 · 135G · MATTE · VEROLA</text>`);
     },
   },
   {
@@ -218,7 +218,7 @@ ${[...Array(26)].map((_, i) => `<rect x="0" y="${i * 24}" width="1050" height="1
 <text x="270" y="330" text-anchor="middle" font-family="${SYNE}" font-weight="800" font-size="44" fill="#0A0A0F">LABEL</text>
 <text x="270" y="368" text-anchor="middle" font-family="${INTER}" font-size="12" letter-spacing="4" fill="#3E2F1D">EST. 2019</text>
 <text x="620" y="230" font-family="${INTER}" font-size="16" letter-spacing="5" fill="#0A0A0F">SMALL BATCH — HAND FINISHED</text>
-<text x="620" y="270" font-family="${INTER}" font-size="16" letter-spacing="5" fill="#3E2F1D">VELORA PRINT STUDIO</text>
+<text x="620" y="270" font-family="${INTER}" font-size="16" letter-spacing="5" fill="#3E2F1D">VEROLA PRINT STUDIO</text>
 <rect x="620" y="300" width="330" height="2" fill="#0A0A0F"/>
 <text x="620" y="350" font-family="${INTER}" font-size="14" fill="#0A0A0F">LOT No. 0042</text>
 <text x="620" y="382" font-family="${INTER}" font-size="14" fill="#0A0A0F">CASABLANCA — MOROCCO</text>

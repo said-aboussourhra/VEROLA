@@ -24,7 +24,7 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      name: "VÉLORA",
+      name: "VEROLA",
       url: "https://velora.ma",
       logo: "https://velora.ma/logo.png",
       description:
@@ -41,7 +41,7 @@ const jsonLd = {
     },
     {
       "@type": "LocalBusiness",
-      name: "VÉLORA Print Studio",
+      name: "VEROLA Print Studio",
     },
     {
       "@type": "FAQPage",

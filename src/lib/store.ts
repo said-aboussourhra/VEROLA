@@ -56,7 +56,7 @@ const initial = {
   artworkUrl: null,
   artworkSource: null as ConfigState["artworkSource"],
   autofixed: false,
-  design: { headline: "VÉLORA", subline: "Print the unimaginable", accent: "#7B2FF7" },
+  design: { headline: "VEROLA", subline: "Print the unimaginable", accent: "#7B2FF7" },
 };
 
 export const useConfig = create<ConfigState>((set) => ({

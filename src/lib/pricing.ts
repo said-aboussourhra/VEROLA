@@ -1,5 +1,5 @@
 /**
- * VÉLORA pricing engine — pure, deterministic, no side effects.
+ * VEROLA pricing engine — pure, deterministic, no side effects.
  * JSON matrix: product × size × paper × finish × quantity tier,
  * plus express multiplier and delivery zones. All amounts in MAD.
  */

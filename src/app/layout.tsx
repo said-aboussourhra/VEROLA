@@ -31,7 +31,7 @@ const arabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "VÉLORA — Print the Unimaginable | Studio d'imprimerie premium, Maroc",
+  title: "VEROLA — Print the Unimaginable | Studio d'imprimerie premium, Maroc",
   description:
     "Premium digital printing studio in Morocco. Upload or design online, configure paper & finish, pay, and get it delivered in 24–48h. Print the unimaginable.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "استوديو طباعة",
   ],
   openGraph: {
-    title: "VÉLORA — Print the Unimaginable",
+    title: "VEROLA — Print the Unimaginable",
     description:
       "The printing studio that feels like a design studio. 24h express, FSC papers, premium finishes.",
     locale: "en_US",

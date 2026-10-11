@@ -138,7 +138,7 @@ function Preview3D() {
           {c.artworkSource === "designer" ? (
             <div className="absolute inset-0 flex flex-col justify-between p-5" style={{ background: c.design.accent }}>
               <div className="flex items-center justify-between">
-                <span className="font-display font-extrabold text-ink text-sm tracking-tight">VÉLORA</span>
+                <span className="font-display font-extrabold text-ink text-sm tracking-tight">VEROLA</span>
                 <span className="w-6 h-6 rounded-full bg-ink/80" />
               </div>
               <div>
@@ -185,7 +185,7 @@ function Preview3D() {
           }}
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
-            <span className="font-display font-extrabold text-2xl opacity-20" dir="ltr">VÉLORA</span>
+            <span className="font-display font-extrabold text-2xl opacity-20" dir="ltr">VEROLA</span>
             <div className="w-28 h-10 flex flex-col justify-center gap-1 opacity-20">
               <span className="h-px bg-ink w-full" />
               <span className="h-1 bg-ink w-2/3 self-center" />
@@ -1105,7 +1105,7 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
       <div className="print-sheet fixed inset-0 z-[300] p-10">
         <div className="max-w-2xl mx-auto" dir="ltr">
           <div className="flex items-center justify-between border-b-2 border-black pb-4">
-            <span className="font-bold text-2xl">VÉLORA</span>
+            <span className="font-bold text-2xl">VEROLA</span>
             <span className="text-sm">Print quote — {new Date().toLocaleDateString()}</span>
           </div>
           <table className="w-full mt-6 text-sm">
@@ -1144,7 +1144,7 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
               </tr>
             </tbody>
           </table>
-          <p className="mt-10 text-xs">VÉLORA — Made with ink in Morocco · hello@velora.ma · +212 661 000 000</p>
+          <p className="mt-10 text-xs">VEROLA — Made with ink in Morocco · hello@velora.ma · +212 661 000 000</p>
         </div>
       </div>
 

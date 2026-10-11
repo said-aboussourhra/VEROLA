@@ -16,7 +16,7 @@ export function useShop(): Shop {
   return useContext(ShopCtx);
 }
 
-/** Shop logo: the VÉLORA mark and wordmark. */
+/** Shop logo: the VEROLA mark and wordmark. */
 export function ShopLogo({
   size = "md",
   showWordmark = true,

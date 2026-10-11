@@ -268,7 +268,7 @@ export function LogoIntro() {
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <p className="absolute bottom-10 inset-x-0 text-center text-white/85 text-caption font-semibold tracking-[0.42em]">
-                VÉLORA
+                VEROLA
               </p>
             </>
           )}

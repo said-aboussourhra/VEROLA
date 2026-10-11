@@ -65,7 +65,7 @@ function PostView({ slug }: { slug: string }) {
             </div>
             <div className="absolute bottom-4 start-5">
               <span className="font-display font-bold text-sm tracking-[0.3em] text-ink/60" dir="ltr">
-                VÉLORA — {t.blog.kicker.toUpperCase()}
+                VEROLA — {t.blog.kicker.toUpperCase()}
               </span>
             </div>
           </div>
