@@ -204,7 +204,7 @@ export function LogoIntro() {
       {phase !== "done" && (
         <motion.div
           key="intro"
-          className="verola-intro fixed inset-0 z-[300] flex flex-col items-center justify-center overflow-hidden"
+          className="verola-intro pointer-events-none fixed inset-0 z-[300] flex flex-col items-center justify-center overflow-hidden"
           style={{ background: "radial-gradient(115% 85% at 50% 8%, #ffffff 0%, #f2f7fd 48%, #e4edf9 100%)" }}
           exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}

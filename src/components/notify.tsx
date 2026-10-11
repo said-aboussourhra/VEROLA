@@ -197,7 +197,7 @@ function AuthPanel({
   setMode: (m: null | "login" | "register") => void;
   onUser: (u: AccountUser | null) => void;
 }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const toast = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -277,9 +277,17 @@ function AuthPanel({
             </button>
 
             <h2 className="font-display font-extrabold text-2xl">
-              {mode === "register" ? t.account.title : t.account.search.replace(t.account.searchPh, "").trim() || "Sign in"}
+              {mode === "register" ? t.account.title : "Sign in"}
             </h2>
-            <p className="text-sm text-ink-muted mt-1">{t.account.sub}</p>
+            <p className="text-sm text-ink-muted mt-1">
+              {mode === "register"
+                ? t.account.sub
+                : lang === "ar"
+                  ? "ادخل إلى حسابك لمتابعة طلباتك وإعادة الطلب بضغطة واحدة."
+                  : lang === "fr"
+                    ? "Connectez-vous pour suivre vos commandes et recommander en un clic."
+                    : "Sign in to follow your orders and reorder in one click."}
+            </p>
 
             <div className="mt-6 space-y-3">
               {mode === "register" && (
