@@ -37,6 +37,7 @@ export function Navbar() {
   }, [open, cartOpen]);
 
   const links = [
+    { href: "/design-studio", label: lang === "ar" ? "استوديو التصميم" : lang === "fr" ? "Studio de design" : "Design studio" },
     { href: "/customize", label: "Customizer" },
     { href: "/#products", label: t.nav.products },
     { href: "/order", label: t.nav.configurator },
