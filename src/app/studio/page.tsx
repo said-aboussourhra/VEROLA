@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, formatMAD } from "@/lib/pricing";
+import { formatMAD } from "@/lib/pricing";
 import { Button, Icon, SectionHeading, Reveal, Badge } from "@/components/ui";
+import { useCatalog } from "@/components/catalog";
 
 interface StudioOrder {
   code: string;
@@ -33,6 +34,7 @@ interface StudioData {
 }
 
 export default function StudioPage() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const [data, setData] = useState<StudioData | null>(null);
 

@@ -3,12 +3,13 @@
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, FINISHES, calculatePrice, formatMAD, type FinishId } from "@/lib/pricing";
+import { FINISHES, calculatePrice, formatMAD, type FinishId, findOrFirst } from "@/lib/pricing";
 import { Button, Icon, Badge, Field, inputCls, Reveal, PriceCounter, playPressClick, useSound } from "@/components/ui";
 import { useToast } from "@/components/notify";
 import { useAuth } from "@/components/notify";
 import { pushDeviceCode } from "@/lib/store";
 import type { MockupProduct } from "@/components/canvas/PrintEditor";
+import { useCatalog } from "@/components/catalog";
 
 /* the editor is heavy — only downloaded on this page */
 const PrintEditor = dynamic(
@@ -38,6 +39,7 @@ const MOCKUPS: (MockupProduct & { key: string; label: string; productId: string 
 const VIEWS = ["front", "back"] as const;
 
 export function Customize() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const toast = useToast();
   const { user, open: openAuth } = useAuth();
@@ -45,7 +47,7 @@ export function Customize() {
 
   const [key, setKey] = useState(MOCKUPS[0].key);
   const mockup = useMemo(() => MOCKUPS.find((m) => m.key === key)!, [key]);
-  const catalogProduct = CATALOG.find((c) => c.id === mockup.productId)!;
+  const catalogProduct = findOrFirst(CATALOG, (c) => c.id === mockup.productId)!;
 
   const [qty, setQty] = useState(catalogProduct.minQty);
   const [sizeId, setSizeId] = useState(catalogProduct.sizes[0].id);
@@ -81,7 +83,7 @@ export function Customize() {
     paperId: catalogProduct.papers[0].id,
     finishId,
     qty,
-  });
+  }, CATALOG);
 
   const currentMockup: MockupProduct = { ...mockup, view: side };
 

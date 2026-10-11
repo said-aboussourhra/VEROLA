@@ -3,7 +3,7 @@
 The online storefront and production platform for **VÉLORA**, a single printing shop in Casablanca: a real browser design canvas,
 a branded catalogue with a live pricing engine, a live press floor and a complete order pipeline.
 
-Built by **BAOUCOUS — Web Developer & Digital Creator**.
+Built by **Said — Web Developer & Digital Creator**.
 
 ---
 
@@ -13,13 +13,15 @@ Built by **BAOUCOUS — Web Developer & Digital Creator**.
 |---|---|---|
 | Print customizer | `/customize` | Fabric.js canvas · layers · undo/redo · snapping · DPI preflight · print areas · print proof |
 | Press floor | `/floor` | live machine telemetry over Server-Sent Events |
-| Admin CMS | `/admin` | hero, media, orders, notifications, branding, developer page |
+| Admin CMS | `/admin` | hero, media, **products** (add, edit, hide, delete; live on the site), orders, notifications, developer page |
 | Auth | `/login` · `/signup` | scrypt password hashing, server sessions, admin access code |
 | Design library | `/designs` | free + subscription vector designs (SVG) |
 | Order tracking | `/track/[code]` | glowing production timeline |
 | Developer page | `/developer` | fully editable identity |
 
-**Admin access:** set `ADMIN_CODE` in `.env` (local development falls back to `SAID2002`; production never does). Enter it at `/login` → *Administrator access*.
+**Owner admin:** `s01said@outlook.fr` signs in as administrator by default. Set `ADMIN_EMAILS` (comma separated) to change it.
+
+**Admin access code:** set `ADMIN_CODE` in `.env` (local development falls back to `SAID2002`; production never does). Enter it at `/login` → *Administrator access*.
 
 ---
 
@@ -132,4 +134,4 @@ Tokens, components and rules live in [`DESIGN.md`](./DESIGN.md). Preview them at
 ---
 
 © VEROLA — All Rights Reserved
-Designed & Developed by **BAOUCOUS**
+Designed & Developed by **Said**

@@ -13,15 +13,8 @@ export interface Localized {
   ar: string;
 }
 
-export type ProductId =
-  | "business-cards"
-  | "flyers"
-  | "posters"
-  | "stickers"
-  | "packaging"
-  | "tshirts"
-  | "roll-ups"
-  | "menus";
+/** Product slugs are managed in the database, so any string is valid. */
+export type ProductId = string;
 
 export type FinishId =
   | "matte"
@@ -179,7 +172,8 @@ const p = (
   papers: PaperOption[],
 ): Product => ({ id, name, tagline, base, minQty, step, unit, image, sizes, papers });
 
-export const CATALOG: Product[] = [
+/** Built-in catalogue: the seed for the database and the offline fallback. */
+export const DEFAULT_CATALOG: Product[] = [
   p(
     "business-cards",
     { en: "Business Cards", fr: "Cartes de visite", ar: "بطاقات العمل" },
@@ -417,8 +411,8 @@ export function tierFor(qty: number): Tier {
   return current;
 }
 
-export function calculatePrice(input: PriceInput): PriceBreakdown {
-  const product = CATALOG.find((c) => c.id === input.product);
+export function calculatePrice(input: PriceInput, catalog: Product[] = DEFAULT_CATALOG): PriceBreakdown {
+  const product = catalog.find((c) => c.id === input.product);
   if (!product) throw new Error(`Unknown product: ${input.product}`);
   const size = product.sizes.find((s) => s.id === input.sizeId) ?? product.sizes[0];
   const paper = product.papers.find((s) => s.id === input.paperId) ?? product.papers[0];
@@ -440,8 +434,13 @@ export function calculatePrice(input: PriceInput): PriceBreakdown {
   };
 }
 
-export function fromPrice(productId: ProductId): number {
-  const product = CATALOG.find((c) => c.id === productId)!;
+/** Finds a product, falling back to the first one (e.g. when an old cart item's product was removed). */
+export function findOrFirst(list: Product[], match: (p: Product) => boolean): Product {
+  return list.find(match) ?? list[0];
+}
+
+export function fromPrice(productId: ProductId, catalog: Product[] = DEFAULT_CATALOG): number {
+  const product = catalog.find((c) => c.id === productId) ?? catalog[0];
   return round2(
     product.base * Math.max(product.minQty, product.step) * Math.min(...TIERS.map((t) => t.min <= Math.max(product.minQty, product.step) ? t.factor : 1)),
   );

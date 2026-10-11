@@ -6,7 +6,10 @@ import {
   boolean,
   timestamp,
   doublePrecision,
+  jsonb,
 } from "drizzle-orm/pg-core";
+
+import type { Localized, SizeOption, PaperOption } from "@/lib/pricing";
 
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
@@ -185,3 +188,24 @@ export const sessions = pgTable("sessions", {
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
+
+/** Printing products sold on the site. Managed from the admin. */
+export const products = pgTable("products", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  name: jsonb("name").$type<Localized>().notNull(),
+  tagline: jsonb("tagline").$type<Localized>().notNull(),
+  unit: jsonb("unit").$type<Localized>().notNull(),
+  base: doublePrecision("base").notNull(),
+  minQty: integer("min_qty").notNull().default(1),
+  step: integer("step").notNull().default(1),
+  image: text("image").notNull().default(""),
+  sizes: jsonb("sizes").$type<SizeOption[]>().notNull(),
+  papers: jsonb("papers").$type<PaperOption[]>().notNull(),
+  position: integer("position").notNull().default(0),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export type ProductRow = typeof products.$inferSelect;
+

@@ -43,7 +43,7 @@ export interface SessionUser {
   role: string;
 }
 
-/* ---- admin unlock code (SA ID) ---- */
+/* ---- admin unlock code (Said) ---- */
 /**
  * Admin access code. Must be set via ADMIN_CODE in production; the local
  * development fallback is never used in production builds.
@@ -57,14 +57,22 @@ export function adminCodeHash(): string {
 }
 
 /** Role gate for the admin CMS. Configured with env, never client-side. */
+/** Owner account: admin by default. Override with ADMIN_EMAILS (comma separated). */
+export const DEFAULT_ADMIN_EMAIL = "s01said@outlook.fr";
+
+export function adminEmails(): string[] {
+  const env = (process.env.ADMIN_EMAILS ?? "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+  return env.length ? env : [DEFAULT_ADMIN_EMAIL];
+}
+
+function adminEmail(): string {
+  return adminEmails()[0];
+}
+
 export function isAdmin(u: SessionUser | null): boolean {
   if (!u) return false;
   if (u.role === "admin") return true;
-  const list = (process.env.ADMIN_EMAILS ?? "")
-    .split(",")
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean);
-  return list.includes(u.email.toLowerCase());
+  return adminEmails().includes(u.email.toLowerCase());
 }
 
 export async function currentUser(): Promise<SessionUser | null> {
@@ -74,7 +82,7 @@ export async function currentUser(): Promise<SessionUser | null> {
     // admin unlock code grants a full admin identity
     const gate = jar.get(ADMIN_COOKIE)?.value;
     if (gate && gate === adminCodeHash()) {
-      return { id: 0, name: "SA ID", email: "admin@verola.local", phone: null, role: "admin" };
+      return { id: 0, name: "Said", email: adminEmail(), phone: "+212719274535", role: "admin" };
     }
 
     const token = jar.get(SESSION_COOKIE)?.value;

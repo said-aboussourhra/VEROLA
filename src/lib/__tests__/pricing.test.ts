@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { CATALOG, FINISHES, ZONES, TIERS, calculatePrice, fromPrice, tierFor, VAT_RATE, EXPRESS_MULTIPLIER } from "../pricing";
+import { DEFAULT_CATALOG, FINISHES, ZONES, TIERS, calculatePrice, fromPrice, tierFor, VAT_RATE, EXPRESS_MULTIPLIER } from "../pricing";
 
 const base = {
-  product: CATALOG[0].id,
-  sizeId: CATALOG[0].sizes[0].id,
-  paperId: CATALOG[0].papers[0].id,
+  product: DEFAULT_CATALOG[0].id,
+  sizeId: DEFAULT_CATALOG[0].sizes[0].id,
+  paperId: DEFAULT_CATALOG[0].papers[0].id,
   finishId: FINISHES[0].id,
   qty: 1,
 };
@@ -58,8 +58,8 @@ describe("calculatePrice", () => {
       finishId: "nope" as never,
       zoneId: "nope",
     });
-    expect(p.size).toBe(CATALOG[0].sizes[0]);
-    expect(p.paper).toBe(CATALOG[0].papers[0]);
+    expect(p.size).toBe(DEFAULT_CATALOG[0].sizes[0]);
+    expect(p.paper).toBe(DEFAULT_CATALOG[0].papers[0]);
     expect(p.zone).toBe(ZONES[0]);
   });
 
@@ -70,6 +70,6 @@ describe("calculatePrice", () => {
 
 describe("fromPrice", () => {
   it("returns a positive starting price for every product", () => {
-    for (const p of CATALOG) expect(fromPrice(p.id)).toBeGreaterThan(0);
+    for (const p of DEFAULT_CATALOG) expect(fromPrice(p.id)).toBeGreaterThan(0);
   });
 });

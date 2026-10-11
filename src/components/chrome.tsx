@@ -6,9 +6,10 @@ import { useI18n } from "@/lib/i18n";
 import { Button, Icon, WhatsAppIcon, useSound } from "./ui";
 import { VerolaMark, VerolaWordmark } from "./logo";
 import { useAuth, useToast } from "./notify";
-import { CATALOG, FINISHES, calculatePrice, formatMAD } from "@/lib/pricing";
+import { FINISHES, calculatePrice, formatMAD, findOrFirst } from "@/lib/pricing";
 import { useCart, pushDeviceCode, type CartItem } from "@/lib/store";
 import { WHATSAPP_URL } from "@/lib/data";
+import { useCatalog } from "@/components/catalog";
 
 /* ================= NAVBAR ================= */
 
@@ -200,13 +201,14 @@ export function Navbar() {
 /* ================= CART DRAWER ================= */
 
 export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const { items, remove, clear } = useCart();
   const [checking, setChecking] = useState(false);
   const [codes, setCodes] = useState<string[]>([]);
 
   const totals = items.map((it) => {
-    const product = CATALOG.find((c) => c.id === it.product)!;
+    const product = findOrFirst(CATALOG, (c) => c.id === it.product)!;
     const bp = calculatePrice({
       product: it.product,
       sizeId: it.sizeId,
@@ -215,7 +217,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
       qty: it.qty,
       express: it.express,
       zoneId: it.zoneId,
-    });
+    }, CATALOG);
     return { item: it, product, bp };
   });
   const grand = totals.reduce((s, x) => s + x.bp.total, 0);
@@ -447,6 +449,7 @@ export function WhatsAppFloat() {
 /* ================= FOOTER ================= */
 
 export function Footer() {
+  const CATALOG = useCatalog();
   const { t, L } = useI18n();
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
@@ -506,7 +509,7 @@ export function Footer() {
             <li><a href="/login" className="text-paper/70 hover:text-cyan transition-colors">Sign in / Sign up</a></li>
             <li><a href="/studio" className="text-paper/70 hover:text-cyan transition-colors">{t.studio.kicker}</a></li>
             <li><a href="/admin" className="text-paper/70 hover:text-cyan transition-colors">Admin CMS</a></li>
-            <li><a href="/developer" className="text-paper/70 hover:text-cyan transition-colors">BAOUCOUS</a></li>
+            <li><a href="/developer" className="text-paper/70 hover:text-cyan transition-colors">Said</a></li>
             <li><a href="/legal" className="text-paper/70 hover:text-cyan transition-colors">{t.footer.rights}</a></li>
           </ul>
         </div>
@@ -558,7 +561,7 @@ export function Footer() {
             <Icon name="droplet" className="w-3.5 h-3.5 text-violet" />
             {t.footer.made} —{" "}
             <a href="/developer" className="font-semibold text-paper/70 hover:text-cyan transition-colors" dir="ltr">
-              Designed &amp; Developed by BAOUCOUS
+              Designed &amp; Developed by Said
             </a>
           </span>
         </div>

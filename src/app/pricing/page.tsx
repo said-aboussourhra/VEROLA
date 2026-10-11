@@ -2,13 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, calculatePrice, formatMAD, tierFor } from "@/lib/pricing";
+import { calculatePrice, formatMAD, tierFor, findOrFirst } from "@/lib/pricing";
 import { Button, Icon, SectionHeading, Reveal, PriceCounter } from "@/components/ui";
+import { useCatalog } from "@/components/catalog";
 
 function TierCalc() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const [pid, setPid] = useState<string>("business-cards");
-  const product = CATALOG.find((c) => c.id === pid)!;
+  const product = findOrFirst(CATALOG, (c) => c.id === pid)!;
   const [qty, setQty] = useState(1000);
   const q = Math.max(product.minQty, Math.round(qty / product.step) * product.step || product.minQty);
 
@@ -18,14 +20,14 @@ function TierCalc() {
     paperId: product.papers[0].id,
     finishId: "matte",
     qty: q,
-  });
+  }, CATALOG);
   const baseUnit = calculatePrice({
     product: pid as (typeof CATALOG)[number]["id"],
     sizeId: product.sizes[0].id,
     paperId: product.papers[0].id,
     finishId: "matte",
     qty: Math.max(1, product.minQty),
-  }).unit;
+  }, CATALOG).unit;
   const saving = Math.round((1 - bp.unit / baseUnit) * 100);
 
   const pts = useMemo(() => {
@@ -39,7 +41,7 @@ function TierCalc() {
         paperId: product.papers[0].id,
         finishId: "matte",
         qty: qq,
-      }).unit;
+      }, CATALOG).unit;
     });
     const min = Math.min(...units);
     const max = Math.max(...units);
@@ -155,6 +157,7 @@ function TierCalc() {
 }
 
 export default function PricingPage() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
 
   return (
@@ -190,21 +193,21 @@ export default function PricingPage() {
                       paperId: c.papers[0].id,
                       finishId: "matte",
                       qty: c.minQty,
-                    });
+                    }, CATALOG);
                     const k1 = calculatePrice({
                       product: c.id,
                       sizeId: c.sizes[0].id,
                       paperId: c.papers[0].id,
                       finishId: "matte",
                       qty: Math.max(1000, c.minQty),
-                    });
+                    }, CATALOG);
                     const k5 = calculatePrice({
                       product: c.id,
                       sizeId: c.sizes[0].id,
                       paperId: c.papers[0].id,
                       finishId: "matte",
                       qty: Math.max(5000, c.minQty),
-                    });
+                    }, CATALOG);
                     return (
                       <tr key={c.id} className="border-b border-white/6 last:border-0 hover:bg-white/[0.03] transition-colors">
                         <td className="px-6 py-4">

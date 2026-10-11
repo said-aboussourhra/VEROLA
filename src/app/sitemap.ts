@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SHOP } from "@/lib/shop";
-import { CATALOG } from "@/lib/pricing";
+import { getCatalog } from "@/lib/catalog";
 import { POSTS } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const catalog = await getCatalog();
   const base = SHOP.siteUrl.replace(/\/$/, "");
   const now = new Date();
   return [
@@ -16,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     { url: `${base}/legal`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
-    ...CATALOG.map((p) => ({
+    ...catalog.map((p) => ({
       url: `${base}/products/${p.id}`,
       lastModified: now,
       changeFrequency: "monthly" as const,

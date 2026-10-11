@@ -413,7 +413,7 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
                     {field(T.name, name, setName, {
                       err: errs.name,
                       autoComplete: "name",
-                      ph: "SA ID",
+                      ph: "Said",
                     })}
                     {field(T.phone, phone, setPhone, {
                       dir: "ltr",

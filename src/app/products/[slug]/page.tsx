@@ -3,9 +3,10 @@
 import { use } from "react";
 import { notFound } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, FINISHES, calculatePrice, formatMAD } from "@/lib/pricing";
+import { FINISHES, calculatePrice, formatMAD } from "@/lib/pricing";
 import { Button, Icon, Badge, SectionHeading, Reveal } from "@/components/ui";
 import { TiltCard } from "@/components/motion";
+import { useCatalog } from "@/components/catalog";
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -13,6 +14,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 }
 
 function ProductView({ slug }: { slug: string }) {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const product = CATALOG.find((c) => c.id === slug);
   if (!product) notFound();
@@ -23,7 +25,7 @@ function ProductView({ slug }: { slug: string }) {
     paperId: p.papers[0].id,
     finishId: "matte",
     qty: p.minQty,
-  });
+  }, CATALOG);
 
   return (
     <div className="pt-32 pb-24 min-h-screen relative overflow-hidden">

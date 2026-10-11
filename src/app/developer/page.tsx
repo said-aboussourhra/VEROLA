@@ -21,14 +21,14 @@ interface DevProfile {
 }
 
 const DEFAULT: DevProfile = {
-  name: "BAOUCOUS",
+  name: "Said",
   role: "Web Developer & Digital Creator",
   about:
     "I design and engineer premium digital products end to end — from the design system and the interaction layer down to the database, the API and the infrastructure. VEROLA is the proof: a real print customizer, a branded storefront for a real print shop, a live production floor and a complete order pipeline — built to be used by real printing companies.",
   photo: null,
-  whatsapp: "+212600000000",
-  instagram: "baoucous.dev",
-  email: "baoucous@verola.ma",
+  whatsapp: "+212719274535",
+  instagram: null,
+  email: "s01said@outlook.fr",
   skills: null,
 };
 
@@ -317,10 +317,10 @@ export default function DeveloperPage() {
                         className="font-display font-extrabold text-white leading-none"
                         style={{ fontSize: "clamp(3.5rem, 11vw, 7rem)" }}
                       >
-                        B
+                        S
                       </span>
                       <span className="mt-3 text-white/75 text-xs tracking-[0.42em] uppercase">
-                        BAOUCOUS
+                        Said
                       </span>
                     </div>
                   </div>

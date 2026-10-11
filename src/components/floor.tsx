@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG } from "@/lib/pricing";
+
 import { Button, Icon, Reveal } from "./ui";
 import type { FloorSnapshot, MachineState } from "@/lib/floor/engine";
+import { useCatalog } from "@/components/catalog";
 
 const ROLE_LABEL: Record<string, { en: string; fr: string; ar: string }> = {
   print: { en: "Press", fr: "Impression", ar: "طباعة" },
@@ -13,6 +14,7 @@ const ROLE_LABEL: Record<string, { en: string; fr: string; ar: string }> = {
 };
 
 function MachineCard({ m, i }: { m: MachineState; i: number }) {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const product = CATALOG.find((c) => c.id === m.product);
   const statusCls =
@@ -96,6 +98,7 @@ function MachineCard({ m, i }: { m: MachineState; i: number }) {
 }
 
 export function FloorDashboard() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const [snap, setSnap] = useState<FloorSnapshot | null>(null);
   const [live, setLive] = useState(false);

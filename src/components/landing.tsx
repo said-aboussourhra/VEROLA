@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, FINISHES, calculatePrice } from "@/lib/pricing";
+import { FINISHES, calculatePrice, findOrFirst } from "@/lib/pricing";
 import { TESTIMONIALS } from "@/lib/data";
 import { Button, Icon, SectionHeading, Reveal, CountUp, Badge } from "./ui";
 import { Marquee } from "./motion";
 import { VerolaMark } from "./logo";
 import { DesignsTeaser, Faq } from "./home";
+import { useCatalog } from "@/components/catalog";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -303,16 +304,17 @@ export function Band() {
    ============================================================ */
 
 export function Showcase() {
+  const CATALOG = useCatalog();
   const { t, L } = useI18n();
   const p = (id: string) => {
-    const c = CATALOG.find((x) => x.id === id)!;
+    const c = findOrFirst(CATALOG, (x) => x.id === id)!;
     const bp = calculatePrice({
       product: c.id,
       sizeId: c.sizes[0].id,
       paperId: c.papers[0].id,
       finishId: "matte",
       qty: c.minQty,
-    });
+    }, CATALOG);
     return { c, price: bp.subtotal };
   };
 

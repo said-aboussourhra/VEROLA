@@ -3,18 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import {
-  CATALOG,
-  FINISHES,
-  calculatePrice,
-  formatMAD,
-  type ProductId,
-  type FinishId,
-} from "@/lib/pricing";
+import { FINISHES, calculatePrice, formatMAD, type ProductId, type FinishId, findOrFirst } from "@/lib/pricing";
 import { Button, Icon, Badge, PriceCounter, Field, inputCls, useSound, playPressClick, Reveal } from "./ui";
 import { useToast } from "./notify";
 import { VerolaMark } from "./logo";
 import { pushDeviceCode } from "@/lib/store";
+import { useCatalog } from "@/components/catalog";
 
 const TXT = {
   en: {
@@ -192,6 +186,7 @@ const CITIES = ["Casablanca", "Rabat", "Marrakech", "Tangier", "Agadir", "Fes", 
 type Tab = "pick" | "describe" | "upload";
 
 export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const T = TXT[lang] ?? TXT.en;
   const toast = useToast();
@@ -204,7 +199,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
       ? (initialProduct as ProductId)
       : "business-cards",
   );
-  const p = CATALOG.find((c) => c.id === product)!;
+  const p = findOrFirst(CATALOG, (c) => c.id === product)!;
   const [sizeId, setSizeId] = useState(p.sizes[0].id);
   const [finishId, setFinishId] = useState<FinishId>("matte");
   const [qty, setQty] = useState(p.minQty);
@@ -238,7 +233,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
   }, []);
 
   useEffect(() => {
-    const np = CATALOG.find((c) => c.id === product)!;
+    const np = findOrFirst(CATALOG, (c) => c.id === product)!;
     setSizeId(np.sizes[0].id);
     setQty(np.minQty);
   }, [product]);
@@ -251,7 +246,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
     qty,
     express: false,
     zoneId: "a",
-  });
+  }, CATALOG);
   const advance = Math.round(bp.total * 0.2 * 100) / 100;
 
   const designLabel = useMemo(() => {

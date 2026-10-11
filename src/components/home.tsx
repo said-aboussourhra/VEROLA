@@ -9,11 +9,12 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, FINISHES, calculatePrice, type Product } from "@/lib/pricing";
+import { FINISHES, calculatePrice, type Product, findOrFirst } from "@/lib/pricing";
 import { PORTFOLIO, TESTIMONIALS, NUMBERS, WHATSAPP_URL } from "@/lib/data";
 import { POSTS } from "@/lib/blog";
 import { Button, Icon, Badge, SectionHeading, Reveal, PriceCounter, CountUp, Accordion, inputCls } from "./ui";
 import { AuroraBlob, Marquee, TiltCard, KineticHeading, PressLoader } from "./motion";
+import { useCatalog } from "@/components/catalog";
 
 /* ================= HERO ================= */
 
@@ -103,6 +104,7 @@ export function Hero() {
 /* ================= PRODUCTS ================= */
 
 export function ProductsGrid() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   return (
     <section id="products" className="relative py-[clamp(96px,12vw,180px)]">
@@ -119,7 +121,7 @@ export function ProductsGrid() {
               paperId: c.papers[0].id,
               finishId: "matte",
               qty: c.minQty,
-            });
+            }, CATALOG);
             return (
               <Reveal key={c.id} delay={(i % 4) * 0.08}>
                 <a href={`/order?product=${c.id}`} className="block group">
@@ -312,9 +314,10 @@ export function HowItWorks() {
 /* ================= LIVE CONFIGURATOR TEASER ================= */
 
 export function ConfigTeaser() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const [pid, setPid] = useState<Product["id"]>("business-cards");
-  const product = CATALOG.find((c) => c.id === pid)!;
+  const product = findOrFirst(CATALOG, (c) => c.id === pid)!;
   const [qty, setQty] = useState(100);
   const q = Math.max(product.minQty, Math.round(qty / product.step) * product.step || product.minQty);
   const bp = calculatePrice({
@@ -323,7 +326,7 @@ export function ConfigTeaser() {
     paperId: product.papers[0].id,
     finishId: "matte",
     qty: q,
-  });
+  }, CATALOG);
 
   return (
     <section className="py-[clamp(96px,12vw,180px)]">

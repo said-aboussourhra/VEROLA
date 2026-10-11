@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, formatMAD, type ProductId, type FinishId } from "@/lib/pricing";
+import { formatMAD, type ProductId, type FinishId } from "@/lib/pricing";
 import { deviceCodes, useConfig } from "@/lib/store";
 import { statusIndex, hoursSince, etaDate } from "@/lib/status";
 import { Button, Icon, SectionHeading, Reveal, inputCls } from "@/components/ui";
+import { useCatalog } from "@/components/catalog";
 
 interface Row {
   code: string;
@@ -18,6 +19,7 @@ interface Row {
 }
 
 export default function AccountPage() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const router = useRouter();
   const cfg = useConfig();

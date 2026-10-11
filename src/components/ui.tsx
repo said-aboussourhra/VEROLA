@@ -170,8 +170,10 @@ export const buttonClass = ({
   fullWidth?: boolean;
   className?: string;
 } = {}) => {
-  const base =
-    "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-[var(--duration-base)] select-none cursor-pointer active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-3";
+  // Callers that set their own visibility (e.g. "hidden md:inline-flex") must not be
+  // overridden by the default display class, so it is only added when no "hidden" is given.
+  const display = /\bhidden\b/.test(className) ? "" : "inline-flex";
+  const base = `${display} items-center justify-center gap-2 whitespace-nowrap font-semibold rounded-full transition-all duration-[var(--duration-base)] select-none cursor-pointer active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-3`;
   const sizes: Record<BtnSize, string> = {
     sm: "text-sm px-4 py-2",
     md: "px-6 py-3",

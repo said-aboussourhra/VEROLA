@@ -3,6 +3,8 @@ import { Syne, Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { shopCss } from "@/lib/shop";
 import { ShopProvider } from "@/components/shop";
+import { CatalogProvider } from "@/components/catalog";
+import { getCatalog } from "@/lib/catalog";
 import { I18nProvider } from "@/lib/i18n";
 import { Navbar, Footer, WhatsAppFloat } from "@/components/chrome";
 import { BrandyCursor } from "@/components/cursor";
@@ -52,9 +54,13 @@ export const viewport: Viewport = {
   themeColor: "#0A0A0F",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const products = await getCatalog();
+
   return (
     <html lang="en" dir="ltr" className={`${syne.variable} ${inter.variable} ${arabic.variable}`} suppressHydrationWarning>
       <head>
@@ -68,6 +74,7 @@ export default async function RootLayout({
       <body className="grain font-body">
         <I18nProvider>
           <ShopProvider>
+          <CatalogProvider products={products}>
             <ToastProvider>
               <AuthProvider>
                 <LogoIntro />
@@ -78,6 +85,7 @@ export default async function RootLayout({
                 <WhatsAppFloat />
               </AuthProvider>
             </ToastProvider>
+                    </CatalogProvider>
           </ShopProvider>
         </I18nProvider>
       </body>

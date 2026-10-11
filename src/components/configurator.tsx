@@ -3,19 +3,10 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import {
-  CATALOG,
-  FINISHES,
-  ZONES,
-  TIERS,
-  calculatePrice,
-  tierFor,
-  formatMAD,
-  type Product,
-  type Finish,
-} from "@/lib/pricing";
+import { FINISHES, ZONES, TIERS, calculatePrice, tierFor, formatMAD, type Product, type Finish, findOrFirst } from "@/lib/pricing";
 import { useConfig, useCart, pushDeviceCode } from "@/lib/store";
 import { Button, Icon, Badge, PriceCounter, Field, inputCls, useSound, Logo, playPressClick } from "./ui";
+import { useCatalog } from "@/components/catalog";
 
 /* paper preview tints */
 const PAPER_TINTS: Record<string, string> = {
@@ -50,10 +41,11 @@ const CITIES = [
 /* ================= 3D PREVIEW ================= */
 
 function Preview3D() {
+  const CATALOG = useCatalog();
   const { L, lang } = useI18n();
   const c = useConfig();
   const reduced = useReducedMotion();
-  const product = CATALOG.find((p) => p.id === c.product)!;
+  const product = findOrFirst(CATALOG, (p) => p.id === c.product)!;
   const finish = FINISHES.find((f) => f.id === c.finishId)!;
   const paper = product.papers.find((p) => p.id === c.paperId) ?? product.papers[0];
   const [face, setFace] = useState<"front" | "back">("front");
@@ -265,6 +257,7 @@ function OptionCard({
 }
 
 function ProductStep() {
+  const CATALOG = useCatalog();
   const { L } = useI18n();
   const c = useConfig();
   return (
@@ -296,9 +289,10 @@ function ProductStep() {
 }
 
 function SizeStep() {
+  const CATALOG = useCatalog();
   const { L, lang } = useI18n();
   const c = useConfig();
-  const product = CATALOG.find((p) => p.id === c.product)!;
+  const product = findOrFirst(CATALOG, (p) => p.id === c.product)!;
   return (
     <div className="grid gap-3">
       {product.sizes.map((s) => (
@@ -317,9 +311,10 @@ function SizeStep() {
 }
 
 function PaperStep() {
+  const CATALOG = useCatalog();
   const { lang } = useI18n();
   const c = useConfig();
-  const product = CATALOG.find((p) => p.id === c.product)!;
+  const product = findOrFirst(CATALOG, (p) => p.id === c.product)!;
   return (
     <div className="grid gap-3">
       {product.papers.map((pp) => (
@@ -356,9 +351,10 @@ function FinishStep() {
 }
 
 function QtyStep() {
+  const CATALOG = useCatalog();
   const { t, L } = useI18n();
   const c = useConfig();
-  const product = CATALOG.find((p) => p.id === c.product)!;
+  const product = findOrFirst(CATALOG, (p) => p.id === c.product)!;
   const presets = useMemo(
     () =>
       [1, 2, 5, 10, 25]
@@ -952,6 +948,7 @@ function ReviewStep({
 /* ================= MAIN ================= */
 
 export function Configurator({ initialProduct }: { initialProduct?: string }) {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const c = useConfig();
   const [placed, setPlaced] = useState<string | null>(null);
@@ -961,13 +958,13 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
 
   useEffect(() => {
     if (initialProduct && CATALOG.some((p) => p.id === initialProduct)) {
-      const p = CATALOG.find((x) => x.id === initialProduct)!;
+      const p = findOrFirst(CATALOG, (x) => x.id === initialProduct)!;
       c.set({ product: p.id, sizeId: p.sizes[0].id, paperId: p.papers[0].id });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialProduct]);
 
-  const product = CATALOG.find((p) => p.id === c.product)!;
+  const product = findOrFirst(CATALOG, (p) => p.id === c.product)!;
   const bp = calculatePrice({
     product: c.product,
     sizeId: c.sizeId,
@@ -976,7 +973,7 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
     qty: c.qty,
     express: c.express,
     zoneId: c.zoneId,
-  });
+  }, CATALOG);
 
   const cartAdd = useCart((s) => s.add);
   const [added, setAdded] = useState(false);
@@ -1176,7 +1173,7 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
                 <Button
                   magnetic
                   onClick={() => {
-                    const p = CATALOG.find((x) => x.id === c.product)!;
+                    const p = findOrFirst(CATALOG, (x) => x.id === c.product)!;
                     if (c.qty < p.minQty) c.set({ qty: p.minQty });
                     c.set({ step: c.step + 1 });
                   }}

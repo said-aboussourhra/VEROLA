@@ -2,12 +2,8 @@ import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { orders, jobs } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import {
-  CATALOG,
-  calculatePrice,
-  FINISHES,
-  type FinishId,
-} from "@/lib/pricing";
+import { calculatePrice, FINISHES, type FinishId } from "@/lib/pricing";
+import { getCatalog } from "@/lib/catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +28,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "name and phone are required" }, { status: 400 });
     }
 
-    const product = CATALOG.find((c) => c.id === cfg.product);
+    const catalog = await getCatalog();
+    const product = catalog.find((c) => c.id === cfg.product);
     if (!product) {
       return NextResponse.json({ error: "unknown product" }, { status: 400 });
     }
@@ -46,7 +43,7 @@ export async function POST(req: Request) {
     const zoneId = ["a", "b", "c"].includes(cfg.zoneId) ? cfg.zoneId : "a";
     const express = !!cfg.express;
 
-    const bp = calculatePrice({ product: product.id, sizeId, paperId, finishId, qty, express, zoneId });
+    const bp = calculatePrice({ product: product.id, sizeId, paperId, finishId, qty, express, zoneId }, catalog);
     const advanceAmount =
       payment === "advance" ? Math.round(bp.total * 0.2 * 100) / 100 : 0;
     if (payment === "advance" && !ribSender) {

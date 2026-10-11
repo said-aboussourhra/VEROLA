@@ -4,11 +4,13 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, FINISHES, formatMAD, ZONES } from "@/lib/pricing";
+import { FINISHES, formatMAD, ZONES } from "@/lib/pricing";
 import { Button, Icon, SectionHeading } from "./ui";
 import type { TrackData } from "@/app/track/[id]/page";
+import { useCatalog } from "@/components/catalog";
 
 export function TrackClient({ code, data }: { code: string; data: TrackData | null }) {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const reduced = useReducedMotion();
   const router = useRouter();

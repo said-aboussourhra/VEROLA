@@ -37,7 +37,7 @@ export async function PUT(req: Request) {
   try {
     const b = await req.json().catch(() => null);
     const values = {
-      name: String(b?.name ?? "SA ID").slice(0, 120),
+      name: String(b?.name ?? "Said").slice(0, 120),
       role: String(b?.role ?? "Web Developer & Digital Creator").slice(0, 160),
       about: b?.about ? String(b.about).slice(0, 2000) : null,
       photo: b?.photo ? String(b.photo).slice(0, 400) : null,

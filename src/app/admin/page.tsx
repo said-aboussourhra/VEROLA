@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { CATALOG, formatMAD } from "@/lib/pricing";
+import { formatMAD } from "@/lib/pricing";
 import { Icon, Button, Badge, Reveal, SectionHeading, inputCls } from "@/components/ui";
 import { useAuth, useToast } from "@/components/notify";
+import { useCatalog } from "@/components/catalog";
+import { ProductsAdmin } from "@/components/products-admin";
 
 interface MediaItem {
   id: number;
@@ -33,9 +35,10 @@ interface AdminOrder {
   createdAt: string;
 }
 
-const TABS = ["Hero & Media", "Orders", "Notifications", "Developer"] as const;
+const TABS = ["Hero & Media", "Products", "Orders", "Notifications", "Developer"] as const;
 
 export default function AdminPage() {
+  const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const { user, open: openAuth } = useAuth();
   const toast = useToast();
@@ -158,7 +161,7 @@ export default function AdminPage() {
               <Icon name="shield" className="w-6 h-6" />
             </span>
             <h2 className="mt-5 font-display font-extrabold text-2xl text-navy">
-              SA ID — Control Room
+              Said — Control Room
             </h2>
             <p className="mt-2 text-ink-muted text-sm">
               Enter the administrator access code to open the CMS.
@@ -190,7 +193,7 @@ export default function AdminPage() {
 
             <div className="mt-6 flex items-center gap-3 text-caption text-ink-faint">
               <span className="flex-1 h-px bg-brand/12" />
-              SA ID · Web Developer
+              Said · Web Developer
               <span className="flex-1 h-px bg-brand/12" />
             </div>
             <button
@@ -208,7 +211,7 @@ export default function AdminPage() {
                   <Icon name="shield" className="w-5 h-5" />
                 </span>
                 <div>
-                  <p className="font-display font-bold text-navy leading-tight">BAOUCOUS</p>
+                  <p className="font-display font-bold text-navy leading-tight">Said</p>
                   <p className="text-xs text-ink-faint">Administrator</p>
                 </div>
               </div>
@@ -328,6 +331,8 @@ export default function AdminPage() {
             )}
 
             {/* ORDERS */}
+            {tab === "Products" && <ProductsAdmin />}
+
             {tab === "Orders" && (
               <div className="mt-7 rounded-tile bg-white border border-brand/12 p-6">
                 <div className="flex flex-wrap items-center gap-3">
@@ -409,7 +414,7 @@ export default function AdminPage() {
             {/* DEVELOPER */}
             {tab === "Developer" && (
               <div className="mt-7 rounded-tile bg-white border border-brand/12 p-8 max-w-2xl">
-                <h3 className="font-display font-bold text-lg">Developer page — BAOUCOUS</h3>
+                <h3 className="font-display font-bold text-lg">Developer page</h3>
                 <p className="mt-2 text-sm text-ink-muted leading-relaxed">
                   Name, role, about, photo and contact links (WhatsApp · Instagram · Gmail) are stored in the
                   database and editable directly on the developer page when signed in as an administrator.
