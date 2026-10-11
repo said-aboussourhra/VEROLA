@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { ADMIN_CODE, ADMIN_COOKIE, adminCodeHash } from "@/lib/auth";
+import { sessionCookieOptions } from "@/lib/cookies";
 
 export const dynamic = "force-dynamic";
 
@@ -39,12 +40,7 @@ export async function POST(req: Request) {
 
   attempts.delete(ip);
   const res = NextResponse.json({ ok: true, role: "admin" });
-  res.cookies.set(ADMIN_COOKIE, adminCodeHash(), {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 7,
-  });
+  res.cookies.set(ADMIN_COOKIE, adminCodeHash(), sessionCookieOptions(req, 60 * 60 * 24 * 7));
   return res;
 }
 

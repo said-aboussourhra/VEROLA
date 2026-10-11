@@ -1,3 +1,4 @@
+import { sessionCookieOptions } from "@/lib/cookies";
 import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
@@ -31,12 +32,7 @@ export async function POST(req: Request) {
 
     const token = await createSession(u.id);
     const res = NextResponse.json({ ok: true, user: u });
-    res.cookies.set(SESSION_COOKIE, token, {
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30,
-    });
+    res.cookies.set(SESSION_COOKIE, token, sessionCookieOptions(req, 60 * 60 * 24 * 30));
     return res;
   } catch (e) {
     console.error("register", e);
