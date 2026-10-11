@@ -29,6 +29,7 @@ function useMember() {
   useEffect(() => {
     try {
       const raw = localStorage.getItem("velora-member");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
       if (raw) setMember(JSON.parse(raw));
     } catch {
       /* ignore */

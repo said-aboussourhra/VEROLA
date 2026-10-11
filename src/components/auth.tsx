@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -309,10 +310,10 @@ export function AuthPage({ initialMode = "login" }: { initialMode?: Mode }) {
           <div className="absolute inset-0 halftone opacity-25" />
         </div>
 
-        <a href="/" className="relative inline-flex items-center gap-3">
+        <Link href="/" className="relative inline-flex items-center gap-3">
           <VerolaMark className="w-11 h-11" />
           <VerolaWordmark className="h-6 w-auto" mono />
-        </a>
+        </Link>
 
         <div className="relative py-10">
           <motion.p

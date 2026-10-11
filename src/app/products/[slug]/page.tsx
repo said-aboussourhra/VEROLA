@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { use } from "react";
 import { notFound } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
@@ -33,10 +34,10 @@ function ProductView({ slug }: { slug: string }) {
       <div className="absolute inset-0" aria-hidden style={{ background: "var(--ink-glow)" }} />
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <Reveal>
-          <a href="/#products" className="inline-flex items-center gap-2 text-sm text-muted hover:text-cyan transition-colors mb-10">
+          <Link href="/#products" className="inline-flex items-center gap-2 text-sm text-muted hover:text-cyan transition-colors mb-10">
             <Icon name="arrow" className="w-4 h-4 rotate-180 rtl-flip" />
             {t.product.back}
-          </a>
+          </Link>
         </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">

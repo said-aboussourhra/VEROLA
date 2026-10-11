@@ -208,6 +208,7 @@ function AuthPanel({
 
   useEffect(() => {
     if (mode) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
       setErr("");
       setBusy(false);
     }

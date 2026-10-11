@@ -2,10 +2,15 @@ import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { orders, members, jobs } from "@/db/schema";
 import { desc, sql } from "drizzle-orm";
+import { currentUser, isAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  // customer data (phones, addresses, bank references): staff only
+  if (!isAdmin(await currentUser())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   try {
     const [orderRows, memberRows, agg] = await Promise.all([
       db.select().from(orders).orderBy(desc(orders.createdAt)).limit(40),

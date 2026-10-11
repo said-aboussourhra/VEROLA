@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
@@ -23,6 +24,7 @@ export function Navbar() {
   const cartCount = useCart((s) => s.items.length);
   const { user, open: openAuth, logout } = useAuth();
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -58,10 +60,10 @@ export function Navbar() {
           }`}
           aria-label="Main"
         >
-          <a href="/" className="flex items-center gap-2.5" aria-label="VEROLA home">
+          <Link href="/" className="flex items-center gap-2.5" aria-label="VEROLA home">
             <VerolaMark className="w-9 h-9" />
             <VerolaWordmark className="h-[22px] w-auto" />
-          </a>
+          </Link>
 
           <div className="hidden lg:flex items-center gap-7">
             {links.map((l) => (
@@ -170,9 +172,9 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a href="/account" onClick={() => setOpen(false)} className="font-display uppercase text-4xl py-3 text-paper hover:text-cyan transition-colors">
+            <Link href="/account" onClick={() => setOpen(false)} className="font-display uppercase text-4xl py-3 text-paper hover:text-cyan transition-colors">
               {t.account.kicker}
-            </a>
+            </Link>
             <div className="flex items-center gap-3 mt-8">
               {(["ar", "fr", "en"] as const).map((l) => (
                 <button
@@ -460,10 +462,10 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px aurora-bg opacity-60" />
       <div className="mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-20 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <a href="/" className="inline-flex items-center gap-3">
+          <Link href="/" className="inline-flex items-center gap-3">
             <VerolaMark className="w-12 h-12" />
             <VerolaWordmark className="h-7 w-auto" />
-          </a>
+          </Link>
           <p className="mt-4 text-muted max-w-sm">{t.footer.tagline}</p>
           <div className="mt-8">
             <p className="text-sm font-semibold text-paper/80 mb-3">{t.footer.newsTitle}</p>
@@ -500,18 +502,18 @@ export function Footer() {
         <div className="md:col-span-2">
           <h3 className="text-sm font-semibold tracking-[0.2em] uppercase text-muted mb-5">{t.footer.colStudio}</h3>
           <ul className="space-y-3 text-sm">
-            <li><a href="/about" className="text-paper/70 hover:text-cyan transition-colors">{t.nav.about}</a></li>
-            <li><a href="/portfolio" className="text-paper/70 hover:text-cyan transition-colors">{t.nav.portfolio}</a></li>
-            <li><a href="/pricing" className="text-paper/70 hover:text-cyan transition-colors">{t.nav.pricing}</a></li>
-            <li><a href="/designs" className="text-paper/70 hover:text-cyan transition-colors">{t.designs.kicker}</a></li>
-            <li><a href="/floor" className="text-paper/70 hover:text-cyan transition-colors">{t.floor.kicker}</a></li>
-            <li><a href="/blog" className="text-paper/70 hover:text-cyan transition-colors">{t.blog.kicker}</a></li>
-            <li><a href="/account" className="text-paper/70 hover:text-cyan transition-colors">{t.account.kicker}</a></li>
-            <li><a href="/login" className="text-paper/70 hover:text-cyan transition-colors">Sign in / Sign up</a></li>
-            <li><a href="/studio" className="text-paper/70 hover:text-cyan transition-colors">{t.studio.kicker}</a></li>
-            <li><a href="/admin" className="text-paper/70 hover:text-cyan transition-colors">Admin CMS</a></li>
-            <li><a href="/developer" className="text-paper/70 hover:text-cyan transition-colors">Said</a></li>
-            <li><a href="/legal" className="text-paper/70 hover:text-cyan transition-colors">{t.footer.rights}</a></li>
+            <li><Link href="/about" className="text-paper/70 hover:text-cyan transition-colors">{t.nav.about}</Link></li>
+            <li><Link href="/portfolio" className="text-paper/70 hover:text-cyan transition-colors">{t.nav.portfolio}</Link></li>
+            <li><Link href="/pricing" className="text-paper/70 hover:text-cyan transition-colors">{t.nav.pricing}</Link></li>
+            <li><Link href="/designs" className="text-paper/70 hover:text-cyan transition-colors">{t.designs.kicker}</Link></li>
+            <li><Link href="/floor" className="text-paper/70 hover:text-cyan transition-colors">{t.floor.kicker}</Link></li>
+            <li><Link href="/blog" className="text-paper/70 hover:text-cyan transition-colors">{t.blog.kicker}</Link></li>
+            <li><Link href="/account" className="text-paper/70 hover:text-cyan transition-colors">{t.account.kicker}</Link></li>
+            <li><Link href="/login" className="text-paper/70 hover:text-cyan transition-colors">Sign in / Sign up</Link></li>
+            <li><Link href="/studio" className="text-paper/70 hover:text-cyan transition-colors">{t.studio.kicker}</Link></li>
+            <li><Link href="/admin" className="text-paper/70 hover:text-cyan transition-colors">Admin CMS</Link></li>
+            <li><Link href="/developer" className="text-paper/70 hover:text-cyan transition-colors">Said</Link></li>
+            <li><Link href="/legal" className="text-paper/70 hover:text-cyan transition-colors">{t.footer.rights}</Link></li>
           </ul>
         </div>
 
@@ -531,9 +533,9 @@ export function Footer() {
         <div className="md:col-span-2">
           <h3 className="text-sm font-semibold tracking-[0.2em] uppercase text-muted mb-5">{t.footer.colHelp}</h3>
           <ul className="space-y-3 text-sm">
-            <li><a href="/#faq" className="text-paper/70 hover:text-cyan transition-colors">FAQ</a></li>
-            <li><a href="/track" className="text-paper/70 hover:text-cyan transition-colors">{t.search.title}</a></li>
-            <li><a href="/track/VLR-2847" className="text-paper/70 hover:text-cyan transition-colors">VLR-2847</a></li>
+            <li><Link href="/#faq" className="text-paper/70 hover:text-cyan transition-colors">FAQ</Link></li>
+            <li><Link href="/track" className="text-paper/70 hover:text-cyan transition-colors">{t.search.title}</Link></li>
+            <li><Link href="/track/VLR-2847" className="text-paper/70 hover:text-cyan transition-colors">VLR-2847</Link></li>
             <li>
               <a
                 href={WHATSAPP_URL}
@@ -561,9 +563,9 @@ export function Footer() {
           <span className="flex items-center gap-2">
             <Icon name="droplet" className="w-3.5 h-3.5 text-violet" />
             {t.footer.made} —{" "}
-            <a href="/developer" className="font-semibold text-paper/70 hover:text-cyan transition-colors" dir="ltr">
+            <Link href="/developer" className="font-semibold text-paper/70 hover:text-cyan transition-colors" dir="ltr">
               Designed &amp; Developed by Said
-            </a>
+            </Link>
           </span>
         </div>
       </div>

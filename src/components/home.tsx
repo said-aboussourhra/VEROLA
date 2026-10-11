@@ -758,10 +758,10 @@ export function Journal() {
               <span className="w-8 h-px aurora-bg" />
               <span className="text-cyan text-sm font-semibold tracking-[0.2em] uppercase">{t.blog.kicker}</span>
             </div>
-            <a href="/blog" className="flex items-center gap-1.5 text-sm text-muted hover:text-cyan transition-colors">
+            <Link href="/blog" className="flex items-center gap-1.5 text-sm text-muted hover:text-cyan transition-colors">
               {t.blog.back}
               <Icon name="arrow" className="w-4 h-4 rtl-flip" />
-            </a>
+            </Link>
           </div>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-5">

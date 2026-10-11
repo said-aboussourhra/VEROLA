@@ -1279,6 +1279,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("velora-lang") as Lang | null;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     if (saved && DICTS[saved]) setLangState(saved);
     const savedTheme = localStorage.getItem("velora-theme");
     if (savedTheme === "dark" || savedTheme === "light") setTheme(savedTheme);

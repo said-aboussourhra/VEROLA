@@ -1,3 +1,4 @@
+import { currentUser, isAdmin } from "@/lib/auth";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { members } from "@/db/schema";
@@ -25,6 +26,10 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
+  // member names and phones: staff only
+  if (!isAdmin(await currentUser())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   try {
     const rows = await db.select().from(members).orderBy(desc(members.createdAt)).limit(100);
     return NextResponse.json({

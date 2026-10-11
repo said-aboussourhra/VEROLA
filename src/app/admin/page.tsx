@@ -95,11 +95,13 @@ export default function AdminPage() {
       })
       .catch(() => undefined);
 
+  // staff data is only requested once the signed-in user is an admin
   useEffect(() => {
+    if (!isAdmin) return;
     loadMedia();
     loadOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAdmin]);
 
   const saveMedia = async () => {
     const res = await fetch("/api/media", {

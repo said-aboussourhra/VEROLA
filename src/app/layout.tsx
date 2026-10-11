@@ -31,6 +31,7 @@ const arabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
+  manifest: "/manifest.json",
   title: "VEROLA — Print the Unimaginable | Studio d'imprimerie premium, Maroc",
   description:
     "Premium digital printing studio in Morocco. Upload or design online, configure paper & finish, pay, and get it delivered in 24–48h. Print the unimaginable.",

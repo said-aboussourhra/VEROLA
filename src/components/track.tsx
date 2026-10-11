@@ -18,6 +18,7 @@ export function TrackClient({ code, data }: { code: string; data: TrackData | nu
 
   const state = useMemo(() => {
     if (!data) return null;
+    // eslint-disable-next-line react-hooks/purity -- time-based status derived from the order timestamp; recomputed when data loads
     const hours = (Date.now() - new Date(data.createdAt).getTime()) / 3.6e6;
     const idx = hours < 1 ? 0 : hours < 4 ? 1 : hours < 20 ? 2 : hours < 26 ? 3 : hours < 30 ? 4 : hours < 40 ? 5 : 6;
     const eta = new Date(new Date(data.createdAt).getTime() + (data.express ? 1 : 2) * 864e5);

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
@@ -55,6 +56,7 @@ function Preview3D() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     setFace("front");
   }, [c.product]);
 
@@ -1151,10 +1153,10 @@ export function Configurator({ initialProduct }: { initialProduct?: string }) {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         {/* steps bar */}
         <div className="flex items-center justify-between gap-4 mb-8">
-          <a href="/" className="flex items-center gap-2 text-sm text-muted hover:text-cyan transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-sm text-muted hover:text-cyan transition-colors">
             <Icon name="arrow" className="w-4 h-4 rotate-180 rtl-flip" />
             {t.order.back}
-          </a>
+          </Link>
           <div className="flex items-center gap-1 md:gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="list" aria-label={t.order.kicker}>
             {t.order.steps.map((s, i) => (
               <button

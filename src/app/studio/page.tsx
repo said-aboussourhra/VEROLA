@@ -37,10 +37,14 @@ export default function StudioPage() {
   const CATALOG = useCatalog();
   const { t, L, lang } = useI18n();
   const [data, setData] = useState<StudioData | null>(null);
+  const [denied, setDenied] = useState(false);
 
   useEffect(() => {
     fetch("/api/studio")
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (r.status === 403) setDenied(true);
+        return r.ok ? r.json() : null;
+      })
       .then((d) => d && setData(d))
       .catch(() => undefined);
   }, []);
@@ -55,6 +59,16 @@ export default function StudioPage() {
         <Reveal>
           <SectionHeading kicker={t.studio.kicker} title={t.studio.title} sub={t.studio.sub} />
         </Reveal>
+
+        {denied && (
+          <div className="glass rounded-card p-6 mb-8 text-sm text-muted">
+            {lang === "ar"
+              ? "هذه الصفحة مخصصة لفريق المطبعة فقط. سجّل الدخول بحساب المدير لعرض الطلبات."
+              : lang === "fr"
+                ? "Cette page est réservée à l'équipe de l'atelier. Connectez-vous en tant qu'administrateur pour voir les commandes."
+                : "This page is for the print-shop team only. Sign in as an administrator to see orders."}
+          </div>
+        )}
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {[

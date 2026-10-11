@@ -611,6 +611,7 @@ export function playPressClick() {
 export function useSound() {
   const [enabled, setEnabled] = useState(false);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     setEnabled(localStorage.getItem("velora-sound") === "1");
   }, []);
   const toggle = useCallback(() => {

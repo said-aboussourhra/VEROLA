@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { VerolaMark } from "@/components/logo";
 
 export default function NotFound() {
@@ -32,7 +33,7 @@ export default function NotFound() {
         </p>
 
         <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 rounded-full aurora-bg text-white px-7 py-3.5 font-semibold shadow-[0_22px_48px_-18px_rgba(11,99,214,0.85)] hover:brightness-110 transition"
           >
@@ -40,13 +41,13 @@ export default function NotFound() {
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <path d="M4 12h16m0 0-6-6m6 6-6 6" />
             </svg>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/customize"
             className="inline-flex items-center gap-2 rounded-full border border-brand/25 px-7 py-3.5 font-semibold text-brand hover:border-brand transition"
           >
             Print customizer
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -140,6 +140,7 @@ export function ProductsAdmin() {
   }, [toast]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     load();
   }, [load]);
 

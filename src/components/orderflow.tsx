@@ -234,6 +234,7 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
 
   useEffect(() => {
     const np = findOrFirst(CATALOG, (c) => c.id === product)!;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     setSizeId(np.sizes[0].id);
     setQty(np.minQty);
   }, [product]);

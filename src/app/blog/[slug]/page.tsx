@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { use } from "react";
 import { notFound } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
@@ -22,13 +23,13 @@ function PostView({ slug }: { slug: string }) {
       <div className="absolute inset-0" aria-hidden style={{ background: "var(--ink-glow)" }} />
       <div className="relative mx-auto max-w-3xl px-4 md:px-6">
         <Reveal>
-          <a
+          <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-sm text-muted hover:text-cyan transition-colors mb-10"
           >
             <Icon name="arrow" className="w-4 h-4 rotate-180 rtl-flip" />
             {t.blog.back}
-          </a>
+          </Link>
         </Reveal>
 
         <Reveal delay={0.05}>

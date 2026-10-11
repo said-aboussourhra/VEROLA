@@ -68,6 +68,7 @@ export function Customize() {
     const off = () => setOffline(true);
     window.addEventListener("online", on);
     window.addEventListener("offline", off);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     setOffline(!navigator.onLine);
     return () => {
       window.removeEventListener("online", on);
@@ -76,6 +77,7 @@ export function Customize() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reads browser-only state after mount; avoids server/client markup mismatch
     setQty(catalogProduct.minQty);
     setSizeId(catalogProduct.sizes[0].id);
   }, [catalogProduct]);

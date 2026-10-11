@@ -111,12 +111,15 @@ export function PrintEditor({
 
       // NOTE: the print-area boundary is drawn as a DOM overlay so the canvas
       // stays a clean, serialisable design surface.
+      // eslint-disable-next-line react-hooks/immutability -- Fabric.js canvas is a mutable imperative object kept in a ref; intentional
       c.on("selection:created", () => syncSel());
       c.on("selection:updated", () => syncSel());
       c.on("selection:cleared", () => setSel(null));
+      // eslint-disable-next-line react-hooks/immutability -- Fabric.js canvas is a mutable imperative object kept in a ref; intentional
       c.on("object:moving", (e) => onMove(e));
       c.on("object:modified", () => {
         syncSel();
+        // eslint-disable-next-line react-hooks/immutability -- Fabric.js canvas is a mutable imperative object kept in a ref; intentional
         snapshot();
       });
       c.on("object:scaling", () => syncSel());
@@ -167,6 +170,7 @@ export function PrintEditor({
     undoStack.current.push(json);
     if (undoStack.current.length > 60) undoStack.current.shift();
     redoStack.current = [];
+    // eslint-disable-next-line react-hooks/immutability -- Fabric.js canvas is a mutable imperative object kept in a ref; intentional
     refreshLayers();
     setSaved("saving");
     if (saveTimer.current) clearTimeout(saveTimer.current);
@@ -587,12 +591,14 @@ export function PrintEditor({
           {guides.v !== null && (
             <div
               className="absolute top-0 bottom-0 w-[1.5px] bg-magenta pointer-events-none"
+              // eslint-disable-next-line react-hooks/refs -- Fabric.js canvas size is read from its ref for overlay positioning; intentional
               style={{ left: `${product.area.x + (guides.v / (canvasRef.current?.getWidth() || 1)) * product.area.w}%` }}
             />
           )}
           {guides.h !== null && (
             <div
               className="absolute start-0 end-0 h-[1.5px] bg-magenta pointer-events-none"
+              // eslint-disable-next-line react-hooks/refs -- Fabric.js canvas size is read from its ref for overlay positioning; intentional
               style={{ top: `${product.area.y + (guides.h / (canvasRef.current?.getHeight() || 1)) * product.area.h}%` }}
             />
           )}
