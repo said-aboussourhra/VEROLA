@@ -343,6 +343,66 @@ export const DEFAULT_CATALOG: Product[] = [
       { id: "luxe", name: { en: "Linen 250g", fr: "Lin 250 g", ar: "كتان 250غ" }, spec: "250 g", factor: 1.5 },
     ],
   ),
+  p(
+    "dtf",
+    { en: "DTF Transfers", fr: "Transferts DTF", ar: "طباعة DTF للنسيج" },
+    {
+      en: "Full colour transfers for any fabric.",
+      fr: "Transferts couleur pour tout textile.",
+      ar: "نقوش ملونة بالكامل لأي قماش.",
+    },
+    12, 10, 5,
+    { en: "transfers", fr: "transferts", ar: "نقش" },
+    "/images/products/dtf.jpg",
+    [
+      { id: "a4", name: { en: "A4", fr: "A4", ar: "A4" }, dim: "210×297 mm", factor: 1 },
+      { id: "a3", name: { en: "A3", fr: "A3", ar: "A3" }, dim: "297×420 mm", factor: 1.8 },
+    ],
+    [
+      { id: "pet-matte", name: { en: "PET film matte", fr: "Film PET mat", ar: "فيلم PET مطفي" }, spec: "75 µ", factor: 1 },
+      { id: "pet-gloss", name: { en: "PET film gloss", fr: "Film PET brillant", ar: "فيلم PET لامع" }, spec: "75 µ", factor: 1.1 },
+    ],
+  ),
+  p(
+    "signage",
+    { en: "Advertising Banners", fr: "Bâches publicitaires", ar: "بانوات إشهارية" },
+    {
+      en: "Outdoor and shopfront banners that get noticed.",
+      fr: "Bâches extérieures qui se font remarquer.",
+      ar: "بانوات خارجية ومحلية تلفت الانتباه.",
+    },
+    95, 1, 1,
+    { en: "m²", fr: "m²", ar: "م²" },
+    "/images/products/signage.jpg",
+    [
+      { id: "1x2", name: { en: "1 × 2 m", fr: "1 × 2 m", ar: "1 × 2 م" }, dim: "100×200 cm", factor: 1 },
+      { id: "2x3", name: { en: "2 × 3 m", fr: "2 × 3 m", ar: "2 × 3 م" }, dim: "200×300 cm", factor: 1 },
+    ],
+    [
+      { id: "vinyl510", name: { en: "Vinyl 510g", fr: "Vinyle 510 g", ar: "فينيل 510غ" }, spec: "510 g", factor: 1 },
+      { id: "backlit", name: { en: "Backlit 340g", fr: "Rétroéclairé 340 g", ar: "شفاف للإضاءة 340غ" }, spec: "340 g", factor: 1.2 },
+    ],
+  ),
+  p(
+    "mugs",
+    { en: "Mugs & Gifts", fr: "Mugs & Cadeaux", ar: "أكواب وهدايا" },
+    {
+      en: "Your message, every morning.",
+      fr: "Votre message, chaque matin.",
+      ar: "رسالتك كل صباح.",
+    },
+    65, 6, 6,
+    { en: "mugs", fr: "mugs", ar: "كوب" },
+    "/images/products/mugs.jpg",
+    [
+      { id: "330", name: { en: "330 ml", fr: "330 ml", ar: "330 مل" }, dim: "Ø 8 × 9.5 cm", factor: 1 },
+      { id: "440", name: { en: "440 ml", fr: "440 ml", ar: "440 مل" }, dim: "Ø 8.5 × 11 cm", factor: 1.2 },
+    ],
+    [
+      { id: "ceramic-white", name: { en: "White ceramic", fr: "Céramique blanche", ar: "سيراميك أبيض" }, spec: "Gloss", factor: 1 },
+      { id: "ceramic-black", name: { en: "Black ceramic", fr: "Céramique noire", ar: "سيراميك أسود" }, spec: "Matte", factor: 1.25 },
+    ],
+  ),
 ];
 
 /* ---------------------------------- tiers & zones ---------------------------------- */

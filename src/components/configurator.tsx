@@ -50,6 +50,7 @@ function Preview3D() {
   const paper = product.papers.find((p) => p.id === c.paperId) ?? product.papers[0];
   const [face, setFace] = useState<"front" | "back">("front");
   const [light, setLight] = useState(true);
+  const [tintOverride, setTintOverride] = useState<string | null>(null);
   const [imgUrl, setImgUrl] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -71,7 +72,7 @@ function Preview3D() {
     ref.current.style.transform = `rotateY(${base}deg) rotateX(0deg)`;
   };
 
-  const tint = PAPER_TINTS[paper.id] ?? "#d9d3c5";
+  const tint = tintOverride ?? PAPER_TINTS[paper.id] ?? "#d9d3c5";
   const dieCut = c.finishId === "die-cut";
 
   const finishOverlay = (() => {
@@ -196,7 +197,35 @@ function Preview3D() {
         </div>
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-3">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-2" role="radiogroup" aria-label={lang === "ar" ? "لون الخلفية" : "Background colour"}>
+        {[
+          { hex: "", label: { en: "Paper", fr: "Papier", ar: "الورق" } },
+          { hex: "#ffffff", label: { en: "White", fr: "Blanc", ar: "أبيض" } },
+          { hex: "#f3ead6", label: { en: "Ivory", fr: "Ivoire", ar: "عاجي" } },
+          { hex: "#0B63D6", label: { en: "Blue", fr: "Bleu", ar: "أزرق" } },
+          { hex: "#FF2E93", label: { en: "Pink", fr: "Rose", ar: "وردي" } },
+          { hex: "#FFC400", label: { en: "Gold", fr: "Or", ar: "ذهبي" } },
+          { hex: "#111111", label: { en: "Black", fr: "Noir", ar: "أسود" } },
+        ].map((sw) => (
+          <button
+            key={sw.label.en}
+            type="button"
+            role="radio"
+            aria-checked={(tintOverride ?? "") === sw.hex}
+            aria-label={L(sw.label)}
+            title={L(sw.label)}
+            onClick={() => setTintOverride(sw.hex || null)}
+            className={`h-8 min-w-8 px-2 rounded-full border text-xs cursor-pointer transition-transform ${
+              (tintOverride ?? "") === sw.hex ? "border-cyan scale-110" : "border-white/20"
+            }`}
+            style={{ background: sw.hex || "transparent" }}
+          >
+            {sw.hex ? "" : <span className="text-muted">{L(sw.label)}</span>}
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center justify-center gap-3">
         <button
           onClick={() => setFace(face === "front" ? "back" : "front")}
           className="flex items-center gap-2 text-sm text-muted hover:text-cyan transition-colors cursor-pointer"

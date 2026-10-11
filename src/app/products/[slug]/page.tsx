@@ -7,6 +7,7 @@ import { FINISHES, calculatePrice, formatMAD } from "@/lib/pricing";
 import { Button, Icon, Badge, SectionHeading, Reveal } from "@/components/ui";
 import { TiltCard } from "@/components/motion";
 import { useCatalog } from "@/components/catalog";
+import { ColorPreview } from "@/components/color-preview";
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -41,9 +42,7 @@ function ProductView({ slug }: { slug: string }) {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <Reveal>
             <TiltCard className="rounded-panel">
-              <div className="rounded-panel overflow-hidden border border-white/10">
-                <img src={p.image} alt={L(p.name)} className="w-full aspect-[4/3] object-cover" />
-              </div>
+              <ColorPreview image={p.image} alt={L(p.name)} href="/customize" />
             </TiltCard>
           </Reveal>
 

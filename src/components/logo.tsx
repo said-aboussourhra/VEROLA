@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 /* ============================================================
    VEROLA — vector identity
@@ -141,87 +141,130 @@ export function VerolaWordmark({ className = "", mono = false }: { className?: s
 
 /* ================= 5-second opening ceremony ================= */
 
+/* Showcase frames shown after the logo. Each one is a real product or portfolio shot. */
+const INTRO_FRAMES = [
+  "/images/portfolio/flatlay.jpg",
+  "/images/products/tshirts.jpg",
+  "/images/portfolio/ink-macro.jpg",
+  "/images/products/posters.jpg",
+  "/images/products/signage.jpg",
+];
+const LOGO_MS = 2400;
+const FRAME_MS = 800;
+
+/**
+ * Opening sequence: logo first, then a short run of photos, then the site.
+ * Any click, tap, or key press skips straight to the site.
+ * Reduced-motion visitors skip the sequence entirely.
+ */
 export function LogoIntro() {
   const reduced = useReducedMotion();
-  const [done, setDone] = useState(reduced);
+  const [phase, setPhase] = useState<"logo" | "frames" | "done">(reduced ? "done" : "logo");
+  const [frame, setFrame] = useState(0);
 
   useEffect(() => {
-    if (reduced) return;
-    const t = setTimeout(() => setDone(true), 5000);
+    if (phase === "done") return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const finish = () => setPhase("done");
+    window.addEventListener("pointerdown", finish, { once: true });
+    window.addEventListener("keydown", finish, { once: true });
     return () => {
-      clearTimeout(t);
       document.body.style.overflow = prev;
+      window.removeEventListener("pointerdown", finish);
+      window.removeEventListener("keydown", finish);
     };
-  }, [reduced]);
+  }, [phase]);
 
-  if (done) return null;
+  useEffect(() => {
+    if (phase === "logo") {
+      const t = setTimeout(() => setPhase("frames"), LOGO_MS);
+      return () => clearTimeout(t);
+    }
+    if (phase === "frames") {
+      const t = setTimeout(() => {
+        if (frame >= INTRO_FRAMES.length - 1) setPhase("done");
+        else setFrame((f) => f + 1);
+      }, FRAME_MS);
+      return () => clearTimeout(t);
+    }
+  }, [phase, frame]);
 
   return (
-    <motion.div
-      className="fixed inset-0 z-[300] flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "radial-gradient(115% 85% at 50% 8%, #ffffff 0%, #f2f7fd 48%, #e4edf9 100%)" }}
-      exit={{ opacity: 0, scale: 1.08, filter: "blur(10px)" }}
-      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-      aria-hidden
-    >
-      <motion.div
-        className="absolute w-[86vmin] h-[86vmin] rounded-full"
-        style={{
-          background:
-            "conic-gradient(from 200deg, rgba(11,99,214,0.20), rgba(34,193,240,0.18), rgba(255,46,147,0.16), rgba(255,196,0,0.16), rgba(11,99,214,0.20))",
-          filter: "blur(70px)",
-        }}
-        initial={{ scale: 0.45, opacity: 0, rotate: -40 }}
-        animate={{ scale: 1.1, opacity: 1, rotate: 25 }}
-        transition={{ duration: 2.6, ease: [0.16, 1, 0.3, 1] }}
-      />
-
-      <motion.div
-        initial={{ scale: 0.72, opacity: 0, y: 26 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1] }}
-      >
+    <AnimatePresence>
+      {phase !== "done" && (
         <motion.div
-          animate={{ y: [0, -14, 0], rotate: [0, -1.2, 0] }}
-          transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+          key="intro"
+          className="fixed inset-0 z-[300] flex flex-col items-center justify-center overflow-hidden"
+          style={{ background: "radial-gradient(115% 85% at 50% 8%, #ffffff 0%, #f2f7fd 48%, #e4edf9 100%)" }}
+          exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          aria-hidden
         >
-          <VerolaMark className="w-[42vmin] h-[42vmin] drop-shadow-[0_36px_70px_rgba(18,80,190,0.30)]" />
+          {phase === "logo" ? (
+            <>
+              <motion.div
+                className="absolute w-[86vmin] h-[86vmin] rounded-full"
+                style={{
+                  background:
+                    "conic-gradient(from 200deg, rgba(11,99,214,0.20), rgba(34,193,240,0.18), rgba(255,46,147,0.16), rgba(255,196,0,0.16), rgba(11,99,214,0.20))",
+                  filter: "blur(70px)",
+                }}
+                initial={{ scale: 0.45, opacity: 0, rotate: -40 }}
+                animate={{ scale: 1.1, opacity: 1, rotate: 25 }}
+                transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+              />
+              <motion.div
+                initial={{ scale: 0.72, opacity: 0, y: 26 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <VerolaMark className="w-[42vmin] h-[42vmin] drop-shadow-[0_36px_70px_rgba(18,80,190,0.30)]" />
+              </motion.div>
+              <div className="mt-[3vmin] overflow-hidden px-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 46, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <VerolaWordmark className="h-[10vmin] w-auto" />
+                </motion.div>
+              </div>
+              <motion.div
+                className="absolute bottom-16 h-[3px] rounded-full overflow-hidden"
+                style={{ width: "min(340px, 58vw)", background: "rgba(16,24,40,0.08)" }}
+              >
+                <motion.div
+                  className="h-full rounded-full"
+                  style={{ background: "linear-gradient(90deg,#0B63D6,#22C1F0,#FF2E93,#FFC400)" }}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: LOGO_MS / 1000, ease: "linear" }}
+                />
+              </motion.div>
+            </>
+          ) : (
+            <>
+              <AnimatePresence mode="sync">
+                <motion.img
+                  key={INTRO_FRAMES[Math.min(frame, INTRO_FRAMES.length - 1)]}
+                  src={INTRO_FRAMES[Math.min(frame, INTRO_FRAMES.length - 1)]}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  initial={{ opacity: 0, scale: 1.12 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <p className="absolute bottom-10 inset-x-0 text-center text-white/85 text-caption font-semibold tracking-[0.42em]">
+                VÉLORA
+              </p>
+            </>
+          )}
         </motion.div>
-      </motion.div>
-
-      <div className="mt-[3vmin] overflow-hidden px-2">
-        <motion.div
-          initial={{ opacity: 0, y: 46, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1, delay: 1.35, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <VerolaWordmark className="h-[10vmin] w-auto" />
-        </motion.div>
-      </div>
-
-      <motion.p
-        className="mt-[3vmin] text-caption font-semibold tracking-[0.42em] text-[#7b8798]"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 2.3 }}
-      >
-        PRINT · CUT · DELIVER
-      </motion.p>
-
-      <motion.div
-        className="absolute bottom-16 h-[3px] rounded-full overflow-hidden"
-        style={{ width: "min(340px, 58vw)", background: "rgba(16,24,40,0.08)" }}
-      >
-        <motion.div
-          className="h-full rounded-full"
-          style={{ background: "linear-gradient(90deg,#0B63D6,#22C1F0,#FF2E93,#FFC400)" }}
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 5, ease: "linear" }}
-        />
-      </motion.div>
-    </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

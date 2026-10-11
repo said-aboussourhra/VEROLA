@@ -34,6 +34,9 @@ const MOCKUPS: (MockupProduct & { key: string; label: string; productId: string 
   { key: "poster", label: "Poster", productId: "posters", id: "poster", name: "Poster", view: "front", image: "/images/products/posters.jpg", area: { x: 8, y: 8, w: 84, h: 84 }, maxWidthCm: 60, maxHeightCm: 90, minWidthDpi: 150, formats: "png,jpg,jpeg,svg,pdf" },
   { key: "box", label: "Packaging Box", productId: "packaging", id: "box", name: "Packaging Box", view: "front", image: "/images/products/packaging.jpg", area: { x: 16, y: 20, w: 58, h: 52 }, maxWidthCm: 18, maxHeightCm: 12, minWidthDpi: 300, formats: "png,jpg,jpeg,svg,pdf" },
   { key: "banner", label: "Roll-up Banner", productId: "roll-ups", id: "banner", name: "Roll-up Banner", view: "front", image: "/images/products/roll-ups.jpg", area: { x: 12, y: 10, w: 76, h: 72 }, maxWidthCm: 85, maxHeightCm: 200, minWidthDpi: 150, formats: "png,jpg,jpeg,svg,pdf" },
+  { key: "dtf", label: "DTF Transfer", productId: "dtf", id: "dtf", name: "DTF Transfer", view: "front", image: "/images/products/dtf.jpg", area: { x: 10, y: 12, w: 80, h: 76 }, maxWidthCm: 29.7, maxHeightCm: 42, minWidthDpi: 150, formats: "png,jpg,jpeg,pdf" },
+  { key: "signage", label: "Advertising Banner", productId: "signage", id: "signage", name: "Advertising Banner", view: "front", image: "/images/products/signage.jpg", area: { x: 8, y: 14, w: 84, h: 72 }, maxWidthCm: 300, maxHeightCm: 300, minWidthDpi: 100, formats: "png,jpg,jpeg,pdf" },
+  { key: "mug", label: "Mug", productId: "mugs", id: "mug", name: "Mug", view: "front", image: "/images/products/mugs.jpg", area: { x: 10, y: 22, w: 30, h: 52 }, maxWidthCm: 25, maxHeightCm: 11, minWidthDpi: 200, formats: "png,jpg,jpeg,pdf" },
 ];
 
 const VIEWS = ["front", "back"] as const;
@@ -221,14 +224,14 @@ export function Customize() {
           )}
         </div>
 
-        <div className="mt-7 grid lg:grid-cols-[1.35fr_0.65fr] gap-8 items-start">
+        <div className="mt-7 grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] gap-8 items-start">
           {/* editor */}
           <div>
             <PrintEditor product={currentMockup} />
           </div>
 
           {/* summary */}
-          <aside className="lg:sticky lg:top-28 space-y-4">
+          <aside className="min-w-0 lg:sticky lg:top-28 space-y-4">
             <div className="rounded-tile bg-white border border-brand/12 p-6 shadow-[0_28px_70px_-42px_rgba(16,42,90,0.55)]">
               <h2 className="font-display font-bold text-lg flex items-center gap-2">
                 <Icon name="printer" className="w-5 h-5 text-brand" /> Live summary

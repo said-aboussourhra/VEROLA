@@ -17,6 +17,9 @@ export async function GET(_req: Request, ctx: { params: Promise<{ name: string }
         "Content-Type": contentTypeFor(name),
         "Cache-Control": "private, max-age=86400",
         "X-Content-Type-Options": "nosniff",
+        // uploaded files must never run scripts when opened directly
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data: blob:; sandbox",
+        "Content-Disposition": "inline",
       },
     });
   } catch {

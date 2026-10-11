@@ -4,10 +4,14 @@ import { orders, jobs } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { calculatePrice, FINISHES, type FinishId } from "@/lib/pricing";
 import { getCatalog } from "@/lib/catalog";
+import { clientIp, rateLimited } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
+  if (rateLimited(`order:${clientIp(req)}`, 20, 60_000)) {
+    return NextResponse.json({ error: "Too many orders. Please wait a minute." }, { status: 429 });
+  }
   try {
     const b = await req.json().catch(() => null);
     if (!b) return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
