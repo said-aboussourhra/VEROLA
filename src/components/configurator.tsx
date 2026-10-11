@@ -84,20 +84,20 @@ function Preview3D() {
         return <div className="absolute inset-0" style={{ background: "radial-gradient(45% 38% at 64% 36%, rgba(255,255,255,0.45), transparent 70%)" }} />;
       case "holo-foil":
         return (
-          <span className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-[7rem] holo bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(0,240,255,0.4)]">
+          <span className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-[clamp(3.5rem,18vw,7rem)] holo bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(0,240,255,0.4)]">
             V
           </span>
         );
       case "gold-foil":
         return (
-          <span className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-[7rem] text-gold drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" style={{ textShadow: "0 1px 0 #fff5, 0 -1px 0 #0008" }}>
+          <span className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-[clamp(3.5rem,18vw,7rem)] text-gold drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" style={{ textShadow: "0 1px 0 #fff5, 0 -1px 0 #0008" }}>
             V
           </span>
         );
       case "emboss":
         return (
           <span
-            className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-[7rem]"
+            className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-[clamp(3.5rem,18vw,7rem)]"
             style={{ color: "rgba(0,0,0,0.18)", textShadow: "0 2px 3px rgba(0,0,0,0.5), 0 -1px 1px rgba(255,255,255,0.35)" }}
           >
             V
