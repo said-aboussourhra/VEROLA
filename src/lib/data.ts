@@ -191,6 +191,24 @@ export const PORTFOLIO: PortfolioItem[] = [
     client: "Marrakech Expo",
     year: "2024",
   },
+  {
+    id: "vercel-ship",
+    img: "/images/portfolio/vercel-ship.jpg",
+    ratio: "aspect-[16/9]",
+    cat: "event",
+    title: { en: "Vercel Ship Event — keynote stage & backdrop branding", fr: "Événement Vercel Ship — scène principale et habillage", ar: "حدث Vercel Ship — المسرح الرئيسي والهوية البصرية" },
+    client: "Vercel",
+    year: "2025",
+  },
+  {
+    id: "vercel-booth",
+    img: "/images/portfolio/vercel-booth.jpg",
+    ratio: "aspect-[4/3]",
+    cat: "event",
+    title: { en: "Vercel Conf — exhibition booth, roll-ups & printed badges", fr: "Vercel Conf — stand d'exposition, roll-ups et badges", ar: "مؤتمر Vercel — أجنحة العرض، رول أب وبطاقات مطبوعة" },
+    client: "Vercel",
+    year: "2025",
+  },
 ];
 
 export const NUMBERS = [
