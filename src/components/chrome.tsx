@@ -39,44 +39,49 @@ export function Navbar() {
     { href: "/customize", label: "Customizer" },
     { href: "/#products", label: t.nav.products },
     { href: "/order", label: t.nav.configurator },
-    { href: "/designs", label: t.designs.kicker },
-    { href: "/floor", label: t.floor.kicker },
     { href: "/portfolio", label: t.nav.portfolio },
     { href: "/pricing", label: t.nav.pricing },
     { href: "/about", label: t.nav.about },
-    { href: "/blog", label: t.blog.kicker },
   ];
 
   return (
     <>
-      <header className={`fixed top-0 inset-x-0 z-[80] transition-all duration-500 ${scrolled ? "py-2" : "py-4"}`}>
+      <header className={`fixed top-0 inset-x-0 z-[80] transition-all duration-500 ${scrolled ? "py-2.5" : "py-4 md:py-5"}`}>
         <nav
-          className={`mx-auto max-w-7xl px-4 md:px-6 flex items-center justify-between gap-4 rounded-full transition-all duration-500 ${
-            scrolled ? "glass mx-4 md:mx-6 px-5 md:px-7 py-2.5" : "py-3 px-2 md:px-4 bg-transparent"
+          className={`mx-auto max-w-7xl px-4 md:px-6 flex items-center justify-between gap-3 md:gap-5 rounded-full transition-all duration-500 ${
+            scrolled
+              ? "glass mx-3 md:mx-6 px-4 md:px-6 py-2 shadow-[0_20px_50px_-20px_rgba(11,99,214,0.3)] backdrop-blur-xl border border-white/20"
+              : "py-2.5 px-3 md:px-5 bg-white/70 backdrop-blur-md border border-[#0b63d6]/10 shadow-[0_12px_32px_-14px_rgba(11,60,140,0.12)]"
           }`}
           aria-label="Main"
         >
-          <a href="/" className="flex items-center gap-2.5" aria-label="VEROLA home">
-            <VerolaMark className="w-9 h-9" />
-            <VerolaWordmark className="h-[22px] w-auto" />
+          <a href="/" className="flex items-center gap-2.5 shrink-0" aria-label="VEROLA home">
+            <VerolaMark className="w-8 h-8 md:w-9 md:h-9" />
+            <VerolaWordmark className="h-[20px] md:h-[22px] w-auto" />
           </a>
 
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm font-medium text-paper/70 hover:text-cyan transition-colors relative group">
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-[0.84rem] font-semibold text-[#3d4a5c] hover:text-[#0b63d6] transition-colors relative py-1 group"
+              >
                 {l.label}
-                <span className="absolute -bottom-1 inset-x-0 h-px aurora-bg scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300" />
+                <span className="absolute bottom-0 inset-x-0 h-0.5 aurora-bg scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300 rounded-full" />
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="hidden sm:flex items-center rounded-full border border-white/10 p-0.5 text-xs font-semibold" role="group" aria-label={t.common.lang}>
+          <div className="flex items-center gap-1.5 md:gap-2.5 shrink-0">
+            <div className="hidden sm:flex items-center rounded-full bg-[#f2f6fc] border border-[#0b63d6]/12 p-0.5 text-xs font-semibold" role="group" aria-label={t.common.lang}>
               {(["ar", "fr", "en"] as const).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className={`px-2.5 py-1 rounded-full transition-colors cursor-pointer ${lang === l ? "aurora-bg text-ink" : "text-muted hover:text-paper"}`}
+                  className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+                    lang === l ? "aurora-bg text-white shadow-sm" : "text-[#5b6779] hover:text-[#0b63d6]"
+                  }`}
                   aria-pressed={lang === l}
                 >
                   {l.toUpperCase()}
@@ -86,7 +91,7 @@ export function Navbar() {
 
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-paper/70 hover:text-cyan transition-colors cursor-pointer"
+              className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-[#f2f6fc] border border-[#0b63d6]/10 text-[#3d4a5c] hover:text-[#0b63d6] hover:bg-white transition-all cursor-pointer shadow-sm"
               aria-label={t.common.theme}
               aria-pressed={theme === "dark"}
             >
@@ -95,7 +100,7 @@ export function Navbar() {
 
             <button
               onClick={toggleSound}
-              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full border border-white/10 text-paper/60 hover:text-cyan transition-colors cursor-pointer"
+              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full bg-[#f2f6fc] border border-[#0b63d6]/10 text-[#5b6779] hover:text-[#0b63d6] hover:bg-white transition-all cursor-pointer shadow-sm"
               aria-label={`${t.common.sound}: ${soundOn ? "on" : "off"}`}
               aria-pressed={soundOn}
             >
@@ -106,55 +111,57 @@ export function Navbar() {
 
             <button
               onClick={() => setCartOpen(true)}
-              className="relative w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-paper/80 hover:text-cyan transition-colors cursor-pointer"
+              className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-[#f2f6fc] border border-[#0b63d6]/10 text-[#3d4a5c] hover:text-[#0b63d6] hover:bg-white transition-all cursor-pointer shadow-sm"
               aria-label={t.cart.title}
             >
-              <Icon name="cart" className="w-5 h-5" />
+              <Icon name="cart" className="w-4 h-4 md:w-5 md:h-5" />
               {mounted && cartCount > 0 && (
-                <span className="absolute -top-1 -end-1 min-w-5 h-5 px-1 rounded-full aurora-bg text-ink text-[0.65rem] font-bold flex items-center justify-center tabular-nums">
+                <span className="absolute -top-1 -end-1 min-w-5 h-5 px-1 rounded-full aurora-bg text-white text-[0.65rem] font-bold flex items-center justify-center tabular-nums shadow-sm">
                   {cartCount}
                 </span>
               )}
             </button>
 
             {user ? (
-              <div className="hidden md:flex items-center gap-2">
-                <span className="flex items-center gap-2 rounded-full border border-white/10 ps-1.5 pe-3 py-1.5">
-                  <span className="w-7 h-7 rounded-full aurora-bg text-ink flex items-center justify-center font-bold text-xs">
+              <div className="hidden md:flex items-center gap-2 ps-1">
+                <a
+                  href="/account"
+                  className="flex items-center gap-2 rounded-full bg-[#f2f6fc] border border-[#0b63d6]/15 ps-1.5 pe-3 py-1 hover:border-[#0b63d6] transition-colors"
+                >
+                  <span className="w-6 h-6 rounded-full aurora-bg text-white flex items-center justify-center font-bold text-xs shadow-sm">
                     {user.name[0]?.toUpperCase()}
                   </span>
-                  <span className="text-xs font-semibold max-w-24 truncate">{user.name}</span>
-                </span>
+                  <span className="text-xs font-semibold text-[#0d1b32] max-w-24 truncate">{user.name}</span>
+                </a>
                 <button
                   onClick={() => void logout()}
-                  className="text-xs text-muted hover:text-[#e11d48] transition-colors cursor-pointer"
+                  className="text-xs text-[#98a2b3] hover:text-[#e11d48] transition-colors cursor-pointer px-1"
                 >
                   Logout
                 </button>
               </div>
             ) : (
-              <>
-                <Button href="/login" variant="glass" size="sm" className="hidden md:inline-flex">
-                  <Icon name="pin" className="w-4 h-4" />
-                  Sign in
+              <div className="hidden md:flex items-center gap-1.5 ps-1">
+                <Button href="/login" variant="ghost" size="sm" className="!px-3 text-xs font-semibold text-[#3d4a5c] hover:text-[#0b63d6]">
+                  {lang === "ar" ? "دخول" : "Sign in"}
                 </Button>
-                <Button href="/signup" variant="ghost" size="sm" className="hidden xl:inline-flex">
-                  Sign up
+                <Button href="/signup" variant="glass" size="sm" className="!px-3.5 text-xs font-semibold !border-[#0b63d6]/25 text-[#0b63d6]">
+                  {lang === "ar" ? "حساب جديد" : "Sign up"}
                 </Button>
-              </>
+              </div>
             )}
 
-            <Button href="/order" size="sm" magnetic className="hidden lg:inline-flex">
+            <Button href="/order" size="sm" magnetic className="hidden sm:inline-flex !py-2 !px-4 text-xs font-bold shadow-[0_12px_28px_-10px_rgba(11,99,214,0.65)]">
               {t.nav.cta}
             </Button>
 
             <button
-              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-white/10 text-paper cursor-pointer"
+              className="lg:hidden w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-[#f2f6fc] border border-[#0b63d6]/10 text-[#0d1b32] cursor-pointer"
               onClick={() => setOpen(!open)}
               aria-label={t.nav.menu}
               aria-expanded={open}
             >
-              <Icon name={open ? "x" : "menu"} className="w-5 h-5" />
+              <Icon name={open ? "x" : "menu"} className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
         </nav>
