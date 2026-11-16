@@ -5,18 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Icon, Button, Badge } from "@/components/ui";
 
 const TEMPLATES = [
-  { id: "studio", name: "Luxury Studio", prompt: "Podium with soft lighting, dark marble & golden accents" },
-  { id: "nature", name: "Organic Nature", prompt: "Sunlit botanical garden, stone pedestal with tropical leaves" },
-  { id: "cyber", name: "Cyber Neon", prompt: "Futuristic neon grid, moody reflections, glowing cyan & pink rim" },
-  { id: "cozy", name: "Warm Home", prompt: "Scandinavian wooden table, gentle morning sun rays, cozy vibe" },
+  { id: "studio", name: "Luxury Studio", prompt: "Podium with soft lighting, dark marble & golden accents", output: "/images/ai-ads/ad-studio.jpg" },
+  { id: "nature", name: "Organic Nature", prompt: "Sunlit botanical garden, stone pedestal with tropical leaves", output: "/images/ai-ads/ad-nature.jpg" },
+  { id: "cyber", name: "Cyber Neon", prompt: "Futuristic neon grid, moody reflections, glowing cyan & pink rim", output: "/images/ai-ads/ad-cyber.jpg" },
+  { id: "cozy", name: "Warm Home", prompt: "Scandinavian wooden table, gentle morning sun rays, cozy vibe", output: "/images/ai-ads/ad-cozy.jpg" },
 ];
 
 export function AiStudioTool() {
-  const [file, setFile] = useState<string | null>(null);
+  const [file, setFile] = useState<string | null>("/images/products/packaging.jpg");
   const [template, setTemplate] = useState(TEMPLATES[0].id);
   const [generating, setGenerating] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
-  const [headline, setHeadline] = useState("");
+  const [result, setResult] = useState<string | null>("/images/ai-ads/ad-studio.jpg");
+  const [headline, setHeadline] = useState("Unleash the Power of Pure Elegance — 50% Off Limited Time");
   const [freeCredits, setFreeCredits] = useState(3);
 
   const sampleProducts = [
@@ -30,12 +30,22 @@ export function AiStudioTool() {
     setGenerating(true);
     setResult(null);
 
+    const chosen = TEMPLATES.find((t) => t.id === template)?.output || "/images/ai-ads/ad-studio.jpg";
+
     setTimeout(() => {
       setGenerating(false);
-      setResult(file); // generated enhanced preview
-      setHeadline("Unleash the Power of Pure Elegance — 50% Off Limited Time");
+      setResult(chosen);
+      setHeadline(
+        template === "studio"
+          ? "Unleash Pure Elegance — Bespoke Luxury Quality"
+          : template === "nature"
+          ? "100% Organic & Pure Botanical Radiance"
+          : template === "cyber"
+          ? "The Next-Gen Audio Experience — Limited Drop"
+          : "Crafted With Soul — Warm Artisan Comfort"
+      );
       setFreeCredits((c) => Math.max(0, c - 1));
-    }, 2400);
+    }, 1800);
   };
 
   return (
