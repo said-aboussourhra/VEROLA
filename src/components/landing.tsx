@@ -9,6 +9,7 @@ import { Button, Icon, SectionHeading, Reveal, CountUp, Badge } from "./ui";
 import { Marquee } from "./motion";
 import { VerolaMark } from "./logo";
 import { DesignsTeaser, Faq } from "./home";
+import { AiStudioTool } from "./aistudio";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -705,6 +706,7 @@ export function Landing() {
     <div className="flex flex-col gap-12 md:gap-20">
       <Hero />
       <Band />
+      <AiStudioTool />
       <Showcase />
       <Services />
       <Steps />
