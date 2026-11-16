@@ -169,6 +169,111 @@ export default function PricingPage() {
           <TierCalc />
         </Reveal>
 
+        <Reveal delay={0.08}>
+          <div className="mt-12 mb-8">
+            <div className="text-center max-w-2xl mx-auto mb-8">
+              <span className="text-xs uppercase font-extrabold tracking-[0.25em] text-[#0b63d6]">
+                SaaS Subscription Plans
+              </span>
+              <h2 className="mt-2 text-2xl md:text-3xl font-display font-extrabold text-[#0d1b32]">
+                {lang === "ar" ? "خطط اشتراك SaaS لأدوات الذكاء الاصطناعي والتجهيز الطباعي" : "AI Preflight & Packaging 3D SaaS Subscriptions"}
+              </h2>
+              <p className="mt-2 text-sm text-[#5b6779]">
+                {lang === "ar" ? "اشترك للحصول على وصول غير محدود لأدوات فحص الملفات وتوليد التصاميم ثلاثية الأبعاد بضغطة زر." : "Unlimited automated print checks, 3D packaging generator and API endpoints."}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  name: "Starter / Freelancer",
+                  price: "199",
+                  sub: lang === "ar" ? "شهرياً" : "/month",
+                  desc: lang === "ar" ? "مثالي للمصممين الأفراد والوكالات الناشئة" : "Perfect for independent designers & creators",
+                  features: [
+                    lang === "ar" ? "50 فحص ملفات طباعي AI شهرياً" : "50 AI preflight checks / month",
+                    lang === "ar" ? "تصدير ثلاثي الأبعاد 4K للتغليف" : "4K 3D packaging export",
+                    lang === "ar" ? "معالجة أوتوماتيكية للهوامش والألوان" : "Auto-bleed & CMYK conversion",
+                    lang === "ar" ? "دعم فني عبر البريد" : "Standard email support",
+                  ],
+                  popular: false,
+                },
+                {
+                  name: "Pro Agency / Studio",
+                  price: "499",
+                  sub: lang === "ar" ? "شهرياً" : "/month",
+                  desc: lang === "ar" ? "للوكالات الإعلانية ومصممي الهويات البصرية" : "For creative studios & printing agencies",
+                  features: [
+                    lang === "ar" ? "فحوصات طباعة بالذكاء الاصطناعي غير محدودة" : "Unlimited AI preflight checks",
+                    lang === "ar" ? "استوديو 3D حي وتعديل القوالب" : "Real-time 3D die-cut studio",
+                    lang === "ar" ? "توليد ملفات PDF/X جاهزة للطباعة فوراً" : "Instant PDF/X-4 print-ready output",
+                    lang === "ar" ? "ربط 5 مستخدمين للفريق" : "Up to 5 team seats",
+                    lang === "ar" ? "أولوية في طوابير معالجة السحابة" : "High-speed cloud queue priority",
+                  ],
+                  popular: true,
+                },
+                {
+                  name: "Enterprise Printing SaaS",
+                  price: "1,299",
+                  sub: lang === "ar" ? "شهرياً" : "/month",
+                  desc: lang === "ar" ? "للمطابع الكبرى وشبكات التجارة الإلكترونية" : "For commercial printers & e-commerce",
+                  features: [
+                    lang === "ar" ? "واجهة برمجة تطبيقات REST API كاملة" : "Full REST API & Webhooks access",
+                    lang === "ar" ? "لوحة تحكم White-label باسم مطبعتك" : "White-label client portal",
+                    lang === "ar" ? "تكامل آلات Zünd & HP Indigo" : "Zünd & Indigo direct gateway bridge",
+                    lang === "ar" ? "حسابات مستخدمين غير محدودة" : "Unlimited team accounts",
+                    lang === "ar" ? "مدير حساب مخصص واتفاقية SLA 99.9%" : "Dedicated account manager & SLA",
+                  ],
+                  popular: false,
+                },
+              ].map((plan, i) => (
+                <div
+                  key={i}
+                  className={`relative rounded-[28px] p-7 transition-all duration-300 ${
+                    plan.popular
+                      ? "bg-gradient-to-b from-white to-[#f0f6ff] border-2 border-[#0b63d6] shadow-[0_25px_60px_-20px_rgba(11,99,214,0.35)] scale-[1.02]"
+                      : "bg-white border border-[#0b63d6]/15 shadow-sm hover:border-[#0b63d6]/40"
+                  }`}
+                >
+                  {plan.popular && (
+                    <span className="absolute -top-3.5 start-1/2 -translate-x-1/2 px-3 py-1 rounded-full aurora-bg text-white text-[0.68rem] font-extrabold uppercase tracking-wider shadow-sm">
+                      {lang === "ar" ? "الخيار الأكثر طلباً" : "Most High-Demand"}
+                    </span>
+                  )}
+                  <p className="font-display font-extrabold text-lg text-[#0d1b32]">{plan.name}</p>
+                  <p className="mt-1 text-xs text-[#5b6779] min-h-[32px]">{plan.desc}</p>
+                  <div className="mt-4 flex items-baseline gap-1">
+                    <span className="font-display font-black text-4xl text-[#0b63d6]">{plan.price}</span>
+                    <span className="text-xs text-[#5b6779] font-medium">{t.common.mad} {plan.sub}</span>
+                  </div>
+
+                  <ul className="mt-6 space-y-3 border-t border-[#0b63d6]/10 pt-6">
+                    {plan.features.map((feat, fi) => (
+                      <li key={fi} className="flex items-center gap-2.5 text-xs text-[#33445e]">
+                        <span className="w-4 h-4 rounded-full bg-[#0b63d6]/10 flex items-center justify-center shrink-0">
+                          <Icon name="check" className="w-2.5 h-2.5 text-[#0b63d6]" />
+                        </span>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="/order"
+                    className={`mt-8 block text-center rounded-full py-3 text-xs font-bold transition-all ${
+                      plan.popular
+                        ? "aurora-bg text-white shadow-md hover:brightness-110"
+                        : "bg-[#f2f6fc] text-[#0b63d6] hover:bg-[#0b63d6] hover:text-white"
+                    }`}
+                  >
+                    {lang === "ar" ? "ابدأ التجربة المجانية 14 يوماً" : "Start 14-Day Free Trial"}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
         <Reveal delay={0.1}>
           <div className="mt-10 glass rounded-[28px] overflow-hidden">
             <div className="overflow-x-auto">

@@ -100,12 +100,18 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
             >
-              <span className="inline-flex items-center gap-2.5 rounded-full bg-white/80 border border-[#0b63d6]/15 ps-2 pe-4 py-2 text-[0.82rem] font-semibold text-[#0b4fb0] shadow-[0_14px_34px_-20px_rgba(11,99,214,0.7)]">
-                <span className="w-6 h-6 rounded-full aurora-bg flex items-center justify-center">
-                  <Icon name="sparkle" className="w-3.5 h-3.5 text-white" />
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-[#0b63d6]/15 ps-2 pe-3.5 py-1.5 text-[0.78rem] font-semibold text-[#0b4fb0] shadow-[0_14px_34px_-20px_rgba(11,99,214,0.7)]">
+                  <span className="w-5 h-5 rounded-full aurora-bg flex items-center justify-center">
+                    <Icon name="sparkle" className="w-3 h-3 text-white" />
+                  </span>
+                  AI Preflight & Print Cloud SaaS
                 </span>
-                {t.hero.kicker}
-              </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-500/20 px-2.5 py-1 text-[0.72rem] font-bold text-emerald-700">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  High Demand 99.9% Uptime
+                </span>
+              </div>
             </motion.div>
 
             <h1 className="mt-7 font-display font-extrabold leading-[0.94] tracking-[-0.035em] text-[#0d1b32]">

@@ -71,6 +71,13 @@ export function Navbar() {
                 <span className="absolute bottom-0 inset-x-0 h-0.5 aurora-bg scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300 rounded-full" />
               </a>
             ))}
+            <a
+              href="/pricing"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#0b63d6]/10 to-[#ff2e93]/10 border border-[#0b63d6]/20 text-[0.75rem] font-extrabold text-[#0b63d6] hover:scale-105 transition-transform"
+            >
+              <Icon name="sparkle" className="w-3 h-3 text-[#ff2e93]" />
+              SaaS AI
+            </a>
           </div>
 
           <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
