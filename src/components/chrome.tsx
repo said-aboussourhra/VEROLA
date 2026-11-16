@@ -142,10 +142,6 @@ export function Navbar() {
           </div>
         </nav>
       </header>
-            </button>
-          </div>
-        </nav>
-      </header>
 
       {open && (
         <div className="fixed inset-0 z-[75] bg-ink/95 backdrop-blur-2xl lg:hidden">
