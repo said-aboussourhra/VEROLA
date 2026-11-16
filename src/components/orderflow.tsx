@@ -751,10 +751,88 @@ export function OrderFlow({ initialProduct }: { initialProduct?: string }) {
                             <input
                               className={inputCls}
                               dir="ltr"
+                              placeholder={lang === "ar" ? "اسم صاحب الحساب أو رقم التحويل" : "Account holder name or transfer ref"}
                               value={sender}
                               onChange={(e) => setSender(e.target.value)}
                             />
                           </Field>
+                        </div>
+                      </div>
+                    )}
+
+                    {payment === "card" && (
+                      <div className="mt-5 rounded-2xl border border-[#0b63d6]/25 bg-gradient-to-br from-white to-[#f0f6ff] p-5 shadow-sm">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-xl bg-[#0b63d6]/10 flex items-center justify-center text-[#0b63d6]">
+                              <Icon name="card" className="w-4 h-4" />
+                            </span>
+                            <div>
+                              <p className="font-semibold text-xs text-[#0d1b32]">
+                                {lang === "ar" ? "بوابة الدفع الإلكتروني الفوري (CMI / Visa / Mastercard)" : "Instant Secure Payment Gateway (CMI / Visa / Mastercard)"}
+                              </p>
+                              <p className="text-[0.68rem] text-[#5b6779]">
+                                {lang === "ar" ? "تشفير آمن 256-bit بمعايير 3D Secure الدولية" : "256-bit encrypted with 3D Secure authentication"}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex gap-1.5 opacity-80 scale-90">
+                            <span className="px-2 py-0.5 rounded bg-white text-[0.62rem] font-bold border border-[#0b63d6]/15 text-[#0b63d6]">CMI</span>
+                            <span className="px-2 py-0.5 rounded bg-white text-[0.62rem] font-bold border border-[#0b63d6]/15 text-[#1a1f71]">VISA</span>
+                            <span className="px-2 py-0.5 rounded bg-white text-[0.62rem] font-bold border border-[#0b63d6]/15 text-[#eb001b]">MC</span>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2.5 mt-3">
+                          <div>
+                            <label className="block text-[0.72rem] font-medium text-[#5b6779] mb-1">
+                              {lang === "ar" ? "رقم البطاقة البنكية" : "Card number"}
+                            </label>
+                            <div className="relative">
+                              <input
+                                className={`${inputCls} !py-2.5 !ps-10 font-mono text-sm`}
+                                placeholder="4242 •••• •••• 4242"
+                                maxLength={19}
+                                dir="ltr"
+                              />
+                              <Icon name="card" className="absolute top-1/2 -translate-y-1/2 start-3.5 w-4 h-4 text-[#98a2b3]" />
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2.5">
+                            <div>
+                              <label className="block text-[0.72rem] font-medium text-[#5b6779] mb-1">
+                                {lang === "ar" ? "تاريخ الانتهاء" : "Expiry MM/YY"}
+                              </label>
+                              <input className={`${inputCls} !py-2.5 font-mono text-sm`} placeholder="12/28" maxLength={5} dir="ltr" />
+                            </div>
+                            <div>
+                              <label className="block text-[0.72rem] font-medium text-[#5b6779] mb-1">CVC / CVV</label>
+                              <input className={`${inputCls} !py-2.5 font-mono text-sm`} placeholder="•••" maxLength={4} dir="ltr" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 pt-3 border-t border-[#0b63d6]/10 flex items-center justify-between text-xs">
+                          <span className="text-[#5b6779]">{lang === "ar" ? "المبلغ المخصوم الآن:" : "Charge amount:"}</span>
+                          <span className="font-display font-extrabold text-[#0b63d6] text-base tabular-nums">
+                            {formatMAD(bp.total, lang)}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {payment === "cod" && (
+                      <div className="mt-5 rounded-2xl border border-emerald-500/20 bg-emerald-50/40 p-4 flex items-center gap-3">
+                        <span className="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center shrink-0">
+                          <Icon name="cash" className="w-5 h-5" />
+                        </span>
+                        <div>
+                          <p className="text-xs font-semibold text-[#0d1b32]">
+                            {lang === "ar" ? "الدفع نقداً عند الاستلام" : "Cash on delivery"}
+                          </p>
+                          <p className="text-[0.72rem] text-[#5b6779] mt-0.5">
+                            {lang === "ar" ? "تدفع المبلغ كاملاً للموزع عند فحص طلبك واستلامه بمدينتك." : "Pay in cash to the courier upon inspecting your print order."}
+                          </p>
                         </div>
                       </div>
                     )}

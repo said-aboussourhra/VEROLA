@@ -933,6 +933,43 @@ function ReviewStep({
           </div>
         </div>
       )}
+
+      {form.payment === "card" && (
+        <div className="glass rounded-2xl p-5 space-y-3.5 border border-cyan/30">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-paper flex items-center gap-2">
+              <Icon name="card" className="w-4 h-4 text-cyan" />
+              {t.pay.card} (CMI / Visa / Mastercard)
+            </span>
+            <span className="text-[0.68rem] text-cyan font-mono font-bold px-2 py-0.5 rounded bg-cyan/10">3D SECURE</span>
+          </div>
+          <div>
+            <label className="block text-xs text-muted mb-1">Card number</label>
+            <input className={`${inputCls} font-mono text-sm`} placeholder="4242 •••• •••• 4242" maxLength={19} dir="ltr" />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs text-muted mb-1">MM/YY</label>
+              <input className={`${inputCls} font-mono text-sm`} placeholder="12/28" maxLength={5} dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-xs text-muted mb-1">CVC</label>
+              <input className={`${inputCls} font-mono text-sm`} placeholder="•••" maxLength={4} dir="ltr" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {form.payment === "cod" && (
+        <div className="glass rounded-2xl p-4 flex items-center gap-3 border border-emerald-400/30">
+          <span className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+            <Icon name="cash" className="w-4 h-4" />
+          </span>
+          <p className="text-xs text-paper/85">
+            {t.pay.cod} — Pay cash to the courier upon delivery at your door.
+          </p>
+        </div>
+      )}
       <Field label={t.order.review.notes}>
         <textarea
           className={`${inputCls} min-h-20 resize-y`}
