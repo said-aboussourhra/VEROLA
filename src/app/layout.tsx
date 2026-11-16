@@ -7,7 +7,6 @@ import { TenantProvider } from "@/components/tenant";
 import { I18nProvider } from "@/lib/i18n";
 import { Navbar, Footer, WhatsAppFloat } from "@/components/chrome";
 import { BrandyCursor } from "@/components/cursor";
-import { LogoIntro } from "@/components/logo";
 import { ToastProvider, AuthProvider } from "@/components/notify";
 
 const syne = Syne({
@@ -74,7 +73,6 @@ export default async function RootLayout({
           <TenantProvider brand={brand}>
             <ToastProvider>
               <AuthProvider>
-                <LogoIntro />
                 <BrandyCursor />
                 <Navbar />
                 <main>{children}</main>
