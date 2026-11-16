@@ -317,27 +317,27 @@ export function Showcase() {
   };
 
   const tiles = [
-    { id: "posters", span: "lg:col-span-7 lg:row-span-2", h: "h-[280px] lg:h-full" },
-    { id: "stickers", span: "lg:col-span-5", h: "h-[280px] lg:h-[300px]" },
-    { id: "tshirts", span: "lg:col-span-5", h: "h-[280px] lg:h-[300px]" },
-    { id: "packaging", span: "lg:col-span-4", h: "h-[240px]" },
-    { id: "roll-ups", span: "lg:col-span-4", h: "h-[240px]" },
-    { id: "business-cards", span: "lg:col-span-4", h: "h-[240px]" },
+    { id: "posters", span: "md:col-span-2 lg:col-span-7", h: "h-[320px] lg:h-[400px]" },
+    { id: "stickers", span: "md:col-span-1 lg:col-span-5", h: "h-[320px] lg:h-[400px]" },
+    { id: "packaging", span: "md:col-span-1 lg:col-span-4", h: "h-[280px]" },
+    { id: "roll-ups", span: "md:col-span-1 lg:col-span-4", h: "h-[280px]" },
+    { id: "business-cards", span: "md:col-span-1 lg:col-span-4", h: "h-[280px]" },
+    { id: "tshirts", span: "md:col-span-2 lg:col-span-12", h: "h-[260px] lg:h-[300px]" },
   ];
 
   return (
-    <section id="products" className="relative py-[clamp(64px,8vw,120px)]">
+    <section id="products" className="relative py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-8 md:mb-12">
           <Reveal>
             <div className="max-w-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-9 h-[3px] rounded-full aurora-bg" />
-                <span className="text-[#0b63d6] text-xs font-bold tracking-[0.28em] uppercase">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-8 h-[3px] rounded-full aurora-bg" />
+                <span className="text-[#0b63d6] text-xs font-bold tracking-[0.25em] uppercase">
                   {t.products.kicker}
                 </span>
               </div>
-              <h2 className="font-display font-extrabold leading-[1.02] tracking-[-0.03em] text-[#0d1b32] text-[clamp(2.15rem,5vw,4.15rem)] uppercase">
+              <h2 className="font-display font-extrabold leading-[1.05] tracking-[-0.03em] text-[#0d1b32] text-[clamp(2rem,4.5vw,3.75rem)] uppercase">
                 {t.products.title}
               </h2>
             </div>
@@ -350,27 +350,27 @@ export function Showcase() {
           </Reveal>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-4 md:gap-5 lg:grid-rows-[repeat(2,minmax(0,1fr))_auto]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 md:gap-6">
           {tiles.map((tile, i) => {
             const { c, price } = p(tile.id);
             return (
               <Reveal key={tile.id} delay={(i % 3) * 0.07} className={`${tile.span} min-w-0`}>
                 <a
                   href={`/order?product=${c.id}`}
-                  className={`group relative block rounded-[26px] overflow-hidden bg-[#0d1b32] ${tile.h} min-h-[240px] shadow-[0_28px_70px_-38px_rgba(11,60,140,0.75)] hover:shadow-[0_44px_90px_-32px_rgba(11,99,214,0.8)] transition-all duration-600 hover:-translate-y-1.5`}
+                  className={`group relative block rounded-[24px] overflow-hidden bg-[#0d1b32] ${tile.h} shadow-[0_20px_50px_-25px_rgba(11,60,140,0.5)] hover:shadow-[0_30px_70px_-20px_rgba(11,99,214,0.65)] transition-all duration-500 hover:-translate-y-1`}
                 >
                   <div className="absolute inset-0">
                     <img
                       src={c.image}
                       alt={L(c.name)}
                       loading={i < 3 ? "eager" : "lazy"}
-                      className="w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.12]"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#08204a]/92 via-[#08204a]/22 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08204a]/90 via-[#08204a]/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 flex flex-col justify-end">
                     <div className="flex items-center gap-2 mb-2">
-                      <Badge className="!bg-white/15 !text-white !border-white/25 backdrop-blur-sm">
+                      <Badge className="!bg-white/20 !text-white !border-white/30 backdrop-blur-md text-[0.7rem]">
                         {c.sizes[0].dim}
                       </Badge>
                       {i === 0 && <Badge gold>{t.designs.featured}</Badge>}
@@ -378,15 +378,15 @@ export function Showcase() {
                     <h3 className="font-display font-extrabold text-white text-xl md:text-2xl leading-tight">
                       {L(c.name)}
                     </h3>
-                    <div className="mt-2 flex items-center justify-between">
-                      <p className="text-white/70 text-sm">
+                    <div className="mt-2.5 flex items-center justify-between">
+                      <p className="text-white/80 text-xs md:text-sm">
                         {t.products.from}{" "}
-                        <strong className="text-white font-display tabular-nums">
+                        <strong className="text-white font-display tabular-nums text-sm md:text-base">
                           {price.toLocaleString()} {t.common.mad}
                         </strong>
                       </p>
-                      <span className="w-9 h-9 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white transition-all duration-500 group-hover:bg-white group-hover:text-[#0b63d6]">
-                        <Icon name="arrow" className="w-4 h-4 rtl-flip" />
+                      <span className="w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-[#0b63d6]">
+                        <Icon name="arrow" className="w-3.5 h-3.5 rtl-flip" />
                       </span>
                     </div>
                   </div>
