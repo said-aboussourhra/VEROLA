@@ -696,18 +696,17 @@ export function FinalCta() {
 
 export function Landing() {
   return (
-    <>
+    <div className="flex flex-col gap-12 md:gap-20">
       <Hero />
       <Band />
       <Showcase />
-      <FinishBand />
-      <DesignsTeaser />
       <Services />
       <Steps />
+      <FinishBand />
       <Stats />
       <Testimonials />
       <Faq />
       <FinalCta />
-    </>
+    </div>
   );
 }
