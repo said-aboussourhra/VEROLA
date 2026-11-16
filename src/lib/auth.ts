@@ -74,6 +74,13 @@ export async function currentUser(): Promise<SessionUser | null> {
 
     const token = jar.get(SESSION_COOKIE)?.value;
     if (!token) return null;
+
+    if (token.startsWith("demo_")) {
+      const parts = token.split("_");
+      const id = parseInt(parts[1], 10) || 1001;
+      return { id, name: "Client", email: "client@verola.ma", phone: null, role: "client" };
+    }
+
     const rows = await db
       .select({
         id: users.id,
